@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+
+<%@ Register src="Web/Common/Controls/FindProduct.ascx" tagname="FindProduct" tagprefix="uc2" %>
+
+<%@ Register src="Web/Common/Controls/MainMenu.ascx" tagname="MainMenu" tagprefix="uc3" %>
+
+<%@ Register src="Web/Common/Controls/UserLogin.ascx" tagname="UserLogin" tagprefix="uc1" %>
+
+<%@ Register src="Web/Common/Controls/CatMenu.ascx" tagname="CatMenu" tagprefix="uc4" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FarmBarn</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="Div1">
+        <div id="log">
+            FarmBarn
+        </div>
+    </div>
+    <div id="mainMenu">
+        &nbsp;<uc3:MainMenu ID="MainMenu1" runat="server" /></div>
+    <div id="categoryMenu">
+        <uc4:CatMenu ID="CatMenu1" runat="server" />
+    </div>
+    <div id="main">
+        <div id="left">
+            <uc1:UserLogin ID="UserLogin1" runat="server" />
+            
+           
+           <p style="text-align:left;"><uc2:FindProduct ID="FindProduct" runat="server" /></p> 
+            
+            
+            
+            
+        </div>
+        <div id="navigator">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                </asp:SiteMapPath>
+        </div>
+    <div  id="content">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="bottom">
+        Bottom
+    
+    </div>
+    </form>
+</body>
+</html>

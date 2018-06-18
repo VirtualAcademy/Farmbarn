@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Home Page"  url="~/Default.aspx">
+    <siteMapNode title="Category Manage" url="~/Web/Admin/CategoryManage.aspx">
+      <siteMapNode title="Add Category" url="~/Web/Admin/CategoryAdd.aspx"/>
+    </siteMapNode>
+    <siteMapNode title="Product Manage"  url="~/Web/Admin/ProductManage.aspx">
+      <siteMapNode title="Product Query" url="~/Web/User/ProductFind.aspx" />
+      <siteMapNode title="Product View" url="~/Web/User/ProductShow.aspx" />
+      <siteMapNode title="Update Product information" url="~/Software.aspx" />
+    </siteMapNode>
+    <siteMapNode title="User Manage" url="~/Web/Admin/UserManage.aspx">
+      <siteMapNode title="Update User information" url="~/Training.aspx" />
+      <siteMapNode title="Register" url="~/ss1.aspx" />
+      
+    </siteMapNode>
+    <siteMapNode title="Cart View" url="~/Web/Memeber/CartBrowse.aspx"/>
+  </siteMapNode>
+</siteMap>
