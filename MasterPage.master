@@ -16,6 +16,11 @@
     <title>FarmBarn</title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style3 {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -23,9 +28,15 @@
         <div id="log">
             FarmBarn
         </div>
+        <div id="findProductdiv">
+           <p style="text-align:right;"><uc2:FindProduct ID="FindProduct" runat="server" /></p> 
+
+        </div>
     </div>
     <div id="mainMenu">
-        &nbsp;<uc3:MainMenu ID="MainMenu1" runat="server" /></div>
+        <div id="mainMenudiv"><uc3:MainMenu ID="MainMenu1" runat="server" /></div>
+
+    </div>
     <div id="categoryMenu">
         <uc4:CatMenu ID="CatMenu1" runat="server" />
     </div>
@@ -34,7 +45,6 @@
             <uc1:UserLogin ID="UserLogin1" runat="server" />
             
            
-           <p style="text-align:left;"><uc2:FindProduct ID="FindProduct" runat="server" /></p> 
             
             
             
@@ -49,8 +59,23 @@
         
         </asp:ContentPlaceHolder>
     </div>
+    </div>
     <div id="bottom">
-        Bottom
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#home">News</a></li>
+            <li><a href="#home">Contact</a></li>
+        </ul>
+        
+        <table class="auto-style3">
+            <tr>
+                <td><asp:Image ID="Image1" runat="server" Height="40px" ImageUrl="~/App_Themes/Farm_Theme/images/fb.bmp" Width="44px" /></td>
+                <td><asp:Image ID="Image2" runat="server" Height="40px" ImageUrl="~/App_Themes/Farm_Theme/images/tw.bmp" Width="44px" /></td>
+                <td><asp:Image ID="Image3" runat="server" Height="40px" ImageUrl="~/App_Themes/Farm_Theme/images/ut.bmp" Width="44px" /></td>
+            </tr>
+        </table>
+        
+        Copy Right 2018
     
     </div>
     </form>
