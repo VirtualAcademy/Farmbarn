@@ -1,4 +1,4 @@
-USE [FarmBarn]
+USE [MyFarmdb]
 GO
 /****** Object:  User [cho]    Script Date: 05/16/2018 15:12:44 ******/
 CREATE USER [cho] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]

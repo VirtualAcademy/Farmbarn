@@ -8,20 +8,20 @@
     NavigateUrl="~/Web/Member/CartBrowse.aspx">Cart</asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink4" runat="server" 
-    NavigateUrl="~/Web/User/ProductFind.aspx">Product Query</asp:HyperLink>
+    NavigateUrl="~/Web/User/ProductFind.aspx"> Products </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink5" runat="server" 
-    NavigateUrl="~/Web/Member/OrderQuery.aspx">Order Query</asp:HyperLink>
+    NavigateUrl="~/Web/Member/OrderQuery.aspx"> Orders </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink6" runat="server" 
-    NavigateUrl="~/Web/Admin/UserManage.aspx">User Query</asp:HyperLink>
+    NavigateUrl="~/Web/Admin/UserManage.aspx"> User </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink7" runat="server" 
-    NavigateUrl="~/Web/Admin/CategoryManage.aspx">Category Manage</asp:HyperLink>
+    NavigateUrl="~/Web/Admin/CategoryManage.aspx">Manage Category </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink8" runat="server" 
-    NavigateUrl="~/Web/Admin/ProductManage.aspx" >Product Manage</asp:HyperLink>
+    NavigateUrl="~/Web/Admin/ProductManage.aspx" >Manage Product </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink9" runat="server" 
-    NavigateUrl="~/Web/Admin/OrderManage.aspx" CssClass=".Menu">Order Manage</asp:HyperLink>
+    NavigateUrl="~/Web/Admin/OrderManage.aspx" CssClass=".Menu">Manage Order </asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

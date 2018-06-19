@@ -72,12 +72,12 @@
             Summary:
             <asp:TextBox ID="SummaryTextBox" runat="server" Text='<%# Bind("Summary") %>' />
             <br />
-            Producer:
-            <asp:TextBox ID="ProducerTextBox" runat="server" Text='<%# Bind("Producer") %>' />
+            producer:
+            <asp:TextBox ID="producerTextBox" runat="server" Text='<%# Bind("Producer") %>' />
             <br />
             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
                 CommandName="Update" Text="Update" />
-            &nfbp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
+            &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
                 CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
         <InsertItemTemplate>
@@ -103,12 +103,12 @@
             Summary:
             <asp:TextBox ID="SummaryTextBox" runat="server" Text='<%# Bind("Summary") %>' />
             <br />
-            Producer:
-            <asp:TextBox ID="ProducerTextBox" runat="server" Text='<%# Bind("Producer") %>' />
+            producer:
+            <asp:TextBox ID="producerTextBox" runat="server" Text='<%# Bind("producer") %>' />
             <br />
             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                 CommandName="Insert" Text="Insert" />
-            &nfbp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
+            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
                 CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
@@ -139,7 +139,7 @@
                 </tr>
                 <tr>
                     <td class="style12">
-                        Producer:<asp:Literal ID="Literal4" runat="server" Text='<%# Eval("Producer") %>'></asp:Literal>
+                        producer:<asp:Literal ID="Literal4" runat="server" Text='<%# Eval("producer") %>'></asp:Literal>
                     </td>
                 </tr>
             </table>
