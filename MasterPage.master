@@ -62,9 +62,9 @@
     </div>
     <div id="bottom">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#home">News</a></li>
-            <li><a href="#home">Contact</a></li>
+            <li><a href="#terms">Terms</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         
         <table class="auto-style3">

@@ -2,7 +2,7 @@
 /// <summary>
 /// User 的摘要说明
 /// </summary>
-public class BsUser
+public class FbUser
 {
     private Guid  _ID;
     private String _Username;
@@ -13,9 +13,9 @@ public class BsUser
     private String _Address;
     private String _Zipcode;
     private int _Role;
-    public BsUser()
+    public FbUser()
     { }
-    public BsUser(Guid id, string username, string password, string realname, string email,
+    public FbUser(Guid id, string username, string password, string realname, string email,
         string phone, string address, string zipcode, int role)
     {
         _ID = id;

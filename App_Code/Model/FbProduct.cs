@@ -11,25 +11,25 @@ using System.Web.UI.WebControls.WebParts;
 /// <summary>
 ///Product 
 /// </summary>
-public class BsProduct 
+public class FbProduct 
 {
     private int _ID;
     private int _CatID;
-    private BsCategory _BsCategory;
+    private FbCategory _FbCategory;
     private string _Name;
     private string _Image;
     private decimal _Price;
     private string _Summary;
     private string _Producer;
-    public BsProduct()
+    public FbProduct()
     {
-        _BsCategory = new BsCategory();
+        _FbCategory = new FbCategory();
     }
-    public BsProduct(string catName,int id, int catID, string name, string image, decimal price, string summary, string Producer)
+    public FbProduct(string catName,int id, int catID, string name, string image, decimal price, string summary, string Producer)
     {
-        _BsCategory = new BsCategory();
-        _BsCategory.ID = catID;
-        _BsCategory.Name = catName;
+        _FbCategory = new FbCategory();
+        _FbCategory.ID = catID;
+        _FbCategory.Name = catName;
         _ID = id;
         _CatID = catID;
         _Name = name;
@@ -49,10 +49,10 @@ public class BsProduct
         get { return _CatID; }
         set { _CatID = value; }
     }
-    public BsCategory BsCategory
+    public FbCategory FbCategory
     {
-        get { return _BsCategory; }
-        set { _BsCategory = value; }
+        get { return _FbCategory; }
+        set { _FbCategory = value; }
     }
     public string Name
     {

@@ -11,13 +11,13 @@ using System.Web.UI.HtmlControls;
 /// <summary>
 /// Category 的摘要说明
 /// </summary>
-public class BsCategory
+public class FbCategory
 {
     private int _ID;
     private string _Name;
-    public BsCategory()
+    public FbCategory()
     { }
-    public BsCategory(int id, string name)
+    public FbCategory(int id, string name)
     {
         _ID = id;
         _Name = name;

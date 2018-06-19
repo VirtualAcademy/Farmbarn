@@ -500,12 +500,12 @@ CREATE Procedure [dbo].[CountShoppingCartItem]
     WHERE
         UserID = @UserID
 GO
-/****** Object:  Table [dbo].[BsUser]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbUser]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsUser](
+CREATE TABLE [dbo].[FbUser](
 	[ID] [uniqueidentifier] NOT NULL,
 	[Username] [nvarchar](50) NOT NULL,
 	[Password] [nvarchar](50) NOT NULL,
@@ -525,7 +525,7 @@ CREATE TABLE [dbo].[BsUser](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'BsUser', @level2type=N'COLUMN',@level2name=N'Username'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FbUser', @level2type=N'COLUMN',@level2name=N'Username'
 GO
 /****** Object:  StoredProcedure [dbo].[ShowOrderInfo]    Script Date: 05/16/2018 15:12:44 ******/
 SET ANSI_NULLS OFF
@@ -706,12 +706,12 @@ create proc [dbo].[aaa3]
      commit tran addorder
   end
 GO
-/****** Object:  Table [dbo].[BsCategory]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbCategory]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsCategory](
+CREATE TABLE [dbo].[FbCategory](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ProductCategories] PRIMARY KEY CLUSTERED 
@@ -791,12 +791,12 @@ BEGIN
     )
 END
 GO
-/****** Object:  Table [dbo].[BsProduct]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbProduct]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsProduct](
+CREATE TABLE [dbo].[FbProduct](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[CatID] [int] NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
@@ -1148,12 +1148,12 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BsOrder]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbOrder]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsOrder](
+CREATE TABLE [dbo].[FbOrder](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[UserID] [uniqueidentifier] NOT NULL,
 	[Date] [datetime] NOT NULL,
@@ -1192,16 +1192,16 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  Table [dbo].[BsCart]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbCart]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsCart](
+CREATE TABLE [dbo].[FbCart](
 	[ProductID] [int] NOT NULL,
 	[Quantity] [int] NOT NULL,
 	[UserID] [uniqueidentifier] NOT NULL,
- CONSTRAINT [PK_BsCart] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_FbCart] PRIMARY KEY CLUSTERED 
 (
 	[ProductID] ASC,
 	[UserID] ASC
@@ -1414,12 +1414,12 @@ CREATE VIEW [dbo].[vw_aspnet_MembershipUsers]
   FROM [dbo].[aspnet_Membership] INNER JOIN [dbo].[aspnet_Users]
       ON [dbo].[aspnet_Membership].[UserId] = [dbo].[aspnet_Users].[UserId]
 GO
-/****** Object:  Table [dbo].[BsDetail]    Script Date: 05/16/2018 15:12:41 ******/
+/****** Object:  Table [dbo].[FbDetail]    Script Date: 05/16/2018 15:12:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BsDetail](
+CREATE TABLE [dbo].[FbDetail](
 	[OrderID] [int] NOT NULL,
 	[ProductID] [int] NOT NULL,
 	[Quantity] [int] NOT NULL,
@@ -4154,16 +4154,16 @@ BEGIN
 --BEGIN TRY
 
    /* 插入订单 */
-   INSERT INTO BsOrder(UserID) VALUES(@UserID)
+   INSERT INTO FbOrder(UserID) VALUES(@UserID)
    /* 保存订单号 */
    SET @OrderID = @@Identity  
    /* 将购物车中的图书移到订单细目表 */
-   INSERT INTO BsDetail(OrderID,ProductID,Quantity,Price)
-   SELECT @OrderID, BsCart.ProductID,BsCart.Quantity, BsProduct.Price 
-   FROM BsCart 
-   INNER JOIN BsProduct ON BsCart.ProductID = BsProduct.ID
+   INSERT INTO FbDetail(OrderID,ProductID,Quantity,Price)
+   SELECT @OrderID, FbCart.ProductID,FbCart.Quantity, FbProduct.Price 
+   FROM FbCart 
+   INNER JOIN FbProduct ON FbCart.ProductID = FbProduct.ID
    /* 删除购物车中的图书 */
-   DELETE FROM BsCart WHERE userID=@UserID
+   DELETE FROM FbCart WHERE userID=@UserID
    /* 提交事务 */
 --   COMMIT TRAN OrderAdd 
 -- END TRY
@@ -4199,13 +4199,13 @@ GO
 ALTER TABLE [dbo].[aspnet_Users] ADD  DEFAULT ((0)) FOR [IsAnonymous]
 GO
 /****** Object:  Default [DF_Orders_OrderDate]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsOrder] ADD  CONSTRAINT [DF_Orders_OrderDate]  DEFAULT (getdate()) FOR [Date]
+ALTER TABLE [dbo].[FbOrder] ADD  CONSTRAINT [DF_Orders_OrderDate]  DEFAULT (getdate()) FOR [Date]
 GO
-/****** Object:  Default [DF_BsOrder_State]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsOrder] ADD  CONSTRAINT [DF_BsOrder_State]  DEFAULT ((0)) FOR [State]
+/****** Object:  Default [DF_FbOrder_State]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbOrder] ADD  CONSTRAINT [DF_FbOrder_State]  DEFAULT ((0)) FOR [State]
 GO
 /****** Object:  Default [DF_Users_Userright]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsUser] ADD  CONSTRAINT [DF_Users_Userright]  DEFAULT ((1)) FOR [Role]
+ALTER TABLE [dbo].[FbUser] ADD  CONSTRAINT [DF_Users_Userright]  DEFAULT ((1)) FOR [Role]
 GO
 /****** Object:  ForeignKey [FK__aspnet_Me__Appli__151B244E]    Script Date: 05/16/2018 15:12:41 ******/
 ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
@@ -4251,39 +4251,39 @@ GO
 ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK_BsProduct_BsCategory]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsProduct]  WITH CHECK ADD  CONSTRAINT [FK_BsProduct_BsCategory] FOREIGN KEY([CatID])
-REFERENCES [dbo].[BsCategory] ([ID])
+/****** Object:  ForeignKey [FK_FbProduct_FbCategory]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbProduct]  WITH CHECK ADD  CONSTRAINT [FK_FbProduct_FbCategory] FOREIGN KEY([CatID])
+REFERENCES [dbo].[FbCategory] ([ID])
 GO
-ALTER TABLE [dbo].[BsProduct] CHECK CONSTRAINT [FK_BsProduct_BsCategory]
+ALTER TABLE [dbo].[FbProduct] CHECK CONSTRAINT [FK_FbProduct_FbCategory]
 GO
-/****** Object:  ForeignKey [FK_BsCart_aspnet_Users]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsCart]  WITH CHECK ADD  CONSTRAINT [FK_BsCart_aspnet_Users] FOREIGN KEY([UserID])
+/****** Object:  ForeignKey [FK_FbCart_aspnet_Users]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbCart]  WITH CHECK ADD  CONSTRAINT [FK_FbCart_aspnet_Users] FOREIGN KEY([UserID])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-ALTER TABLE [dbo].[BsCart] CHECK CONSTRAINT [FK_BsCart_aspnet_Users]
+ALTER TABLE [dbo].[FbCart] CHECK CONSTRAINT [FK_FbCart_aspnet_Users]
 GO
-/****** Object:  ForeignKey [FK_BsCart_BsProduct]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsCart]  WITH CHECK ADD  CONSTRAINT [FK_BsCart_BsProduct] FOREIGN KEY([ProductID])
-REFERENCES [dbo].[BsProduct] ([ID])
+/****** Object:  ForeignKey [FK_FbCart_FbProduct]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbCart]  WITH CHECK ADD  CONSTRAINT [FK_FbCart_FbProduct] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[FbProduct] ([ID])
 GO
-ALTER TABLE [dbo].[BsCart] CHECK CONSTRAINT [FK_BsCart_BsProduct]
+ALTER TABLE [dbo].[FbCart] CHECK CONSTRAINT [FK_FbCart_FbProduct]
 GO
-/****** Object:  ForeignKey [FK_BsDetail_BsProduct]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsDetail]  WITH CHECK ADD  CONSTRAINT [FK_BsDetail_BsProduct] FOREIGN KEY([ProductID])
-REFERENCES [dbo].[BsProduct] ([ID])
+/****** Object:  ForeignKey [FK_FbDetail_FbProduct]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbDetail]  WITH CHECK ADD  CONSTRAINT [FK_FbDetail_FbProduct] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[FbProduct] ([ID])
 GO
-ALTER TABLE [dbo].[BsDetail] CHECK CONSTRAINT [FK_BsDetail_BsProduct]
+ALTER TABLE [dbo].[FbDetail] CHECK CONSTRAINT [FK_FbDetail_FbProduct]
 GO
-/****** Object:  ForeignKey [FK_BsDetail_BsOrder]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsDetail]  WITH CHECK ADD  CONSTRAINT [FK_BsDetail_BsOrder] FOREIGN KEY([OrderID])
-REFERENCES [dbo].[BsOrder] ([ID])
+/****** Object:  ForeignKey [FK_FbDetail_FbOrder]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbDetail]  WITH CHECK ADD  CONSTRAINT [FK_FbDetail_FbOrder] FOREIGN KEY([OrderID])
+REFERENCES [dbo].[FbOrder] ([ID])
 GO
-ALTER TABLE [dbo].[BsDetail] CHECK CONSTRAINT [FK_BsDetail_BsOrder]
+ALTER TABLE [dbo].[FbDetail] CHECK CONSTRAINT [FK_FbDetail_FbOrder]
 GO
-/****** Object:  ForeignKey [FK_BsOrder_aspnet_Users]    Script Date: 05/16/2018 15:12:41 ******/
-ALTER TABLE [dbo].[BsOrder]  WITH CHECK ADD  CONSTRAINT [FK_BsOrder_aspnet_Users] FOREIGN KEY([UserID])
+/****** Object:  ForeignKey [FK_FbOrder_aspnet_Users]    Script Date: 05/16/2018 15:12:41 ******/
+ALTER TABLE [dbo].[FbOrder]  WITH CHECK ADD  CONSTRAINT [FK_FbOrder_aspnet_Users] FOREIGN KEY([UserID])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-ALTER TABLE [dbo].[BsOrder] CHECK CONSTRAINT [FK_BsOrder_aspnet_Users]
+ALTER TABLE [dbo].[FbOrder] CHECK CONSTRAINT [FK_FbOrder_aspnet_Users]
 GO

@@ -1,5 +1,5 @@
 ﻿using System;
-public class BsOrder
+public class FbOrder
 {
     private int _id;
     private string _userID;
