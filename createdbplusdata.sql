@@ -1,8 +1,303 @@
-USE [FarmBarn]
+USE [FarmStoredb]
 GO
-INSERT [dbo].[aspnet_Applications] ([ApplicationName], [LoweredApplicationName], [ApplicationId], [Description]) VALUES (N'FarmBarn', N'FarmBarn', N'5ca80562-b037-4314-b04e-a3e6277aece1', NULL)
+/****** Object:  Database [FarmStoredb]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE DATABASE [FarmStoredb] ON  PRIMARY 
+( NAME = N'FarmStoredb_dat', FILENAME = N'C:\Users\123\AppData\Local\Microsoft\VisualStudio\SSDT\FarmStoredb.mdf' , SIZE = 3712KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
+ LOG ON 
+( NAME = N'FarmStoredb_log', FILENAME = N'C:\Users\123\AppData\Local\Microsoft\VisualStudio\SSDT\FarmStoredb.ldf' , SIZE = 3840KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [FarmStoredb] SET COMPATIBILITY_LEVEL = 80
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [FarmStoredb].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [FarmStoredb] SET ANSI_NULL_DEFAULT OFF
+GO
+ALTER DATABASE [FarmStoredb] SET ANSI_NULLS OFF
+GO
+ALTER DATABASE [FarmStoredb] SET ANSI_PADDING OFF
+GO
+ALTER DATABASE [FarmStoredb] SET ANSI_WARNINGS OFF
+GO
+ALTER DATABASE [FarmStoredb] SET ARITHABORT OFF
+GO
+ALTER DATABASE [FarmStoredb] SET AUTO_CLOSE ON
+GO
+ALTER DATABASE [FarmStoredb] SET AUTO_CREATE_STATISTICS ON
+GO
+ALTER DATABASE [FarmStoredb] SET AUTO_SHRINK OFF
+GO
+ALTER DATABASE [FarmStoredb] SET AUTO_UPDATE_STATISTICS ON
+GO
+ALTER DATABASE [FarmStoredb] SET CURSOR_CLOSE_ON_COMMIT OFF
+GO
+ALTER DATABASE [FarmStoredb] SET CURSOR_DEFAULT  GLOBAL
+GO
+ALTER DATABASE [FarmStoredb] SET CONCAT_NULL_YIELDS_NULL OFF
+GO
+ALTER DATABASE [FarmStoredb] SET NUMERIC_ROUNDABORT OFF
+GO
+ALTER DATABASE [FarmStoredb] SET QUOTED_IDENTIFIER OFF
+GO
+ALTER DATABASE [FarmStoredb] SET RECURSIVE_TRIGGERS OFF
+GO
+ALTER DATABASE [FarmStoredb] SET  DISABLE_BROKER
+GO
+ALTER DATABASE [FarmStoredb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF
+GO
+ALTER DATABASE [FarmStoredb] SET DATE_CORRELATION_OPTIMIZATION OFF
+GO
+ALTER DATABASE [FarmStoredb] SET TRUSTWORTHY OFF
+GO
+ALTER DATABASE [FarmStoredb] SET ALLOW_SNAPSHOT_ISOLATION OFF
+GO
+ALTER DATABASE [FarmStoredb] SET PARAMETERIZATION SIMPLE
+GO
+ALTER DATABASE [FarmStoredb] SET READ_COMMITTED_SNAPSHOT OFF
+GO
+ALTER DATABASE [FarmStoredb] SET HONOR_BROKER_PRIORITY OFF
+GO
+ALTER DATABASE [FarmStoredb] SET  READ_WRITE
+GO
+ALTER DATABASE [FarmStoredb] SET RECOVERY FULL
+GO
+ALTER DATABASE [FarmStoredb] SET  MULTI_USER
+GO
+ALTER DATABASE [FarmStoredb] SET PAGE_VERIFY NONE
+GO
+ALTER DATABASE [FarmStoredb] SET DB_CHAINING OFF
+GO
+USE [FarmStoredb]
+GO
+/****** Object:  User [yang]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE USER [yang] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Role [aspnet_Membership_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Membership_BasicAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Membership_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Membership_FullAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Membership_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Membership_ReportingAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Personalization_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Personalization_BasicAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Personalization_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Personalization_FullAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Personalization_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Personalization_ReportingAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Profile_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Profile_BasicAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Profile_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Profile_FullAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Profile_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Profile_ReportingAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Roles_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Roles_BasicAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Roles_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Roles_FullAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_Roles_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_Roles_ReportingAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Role [aspnet_WebEvent_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE ROLE [aspnet_WebEvent_FullAccess] AUTHORIZATION [dbo]
+GO
+/****** Object:  Schema [aspnet_WebEvent_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_WebEvent_FullAccess] AUTHORIZATION [aspnet_WebEvent_FullAccess]
+GO
+/****** Object:  Schema [aspnet_Roles_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Roles_ReportingAccess] AUTHORIZATION [aspnet_Roles_ReportingAccess]
+GO
+/****** Object:  Schema [aspnet_Roles_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Roles_FullAccess] AUTHORIZATION [aspnet_Roles_FullAccess]
+GO
+/****** Object:  Schema [aspnet_Roles_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Roles_BasicAccess] AUTHORIZATION [aspnet_Roles_BasicAccess]
+GO
+/****** Object:  Schema [aspnet_Profile_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Profile_ReportingAccess] AUTHORIZATION [aspnet_Profile_ReportingAccess]
+GO
+/****** Object:  Schema [aspnet_Profile_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Profile_FullAccess] AUTHORIZATION [aspnet_Profile_FullAccess]
+GO
+/****** Object:  Schema [aspnet_Profile_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Profile_BasicAccess] AUTHORIZATION [aspnet_Profile_BasicAccess]
+GO
+/****** Object:  Schema [aspnet_Personalization_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Personalization_ReportingAccess] AUTHORIZATION [aspnet_Personalization_ReportingAccess]
+GO
+/****** Object:  Schema [aspnet_Personalization_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Personalization_FullAccess] AUTHORIZATION [aspnet_Personalization_FullAccess]
+GO
+/****** Object:  Schema [aspnet_Personalization_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Personalization_BasicAccess] AUTHORIZATION [aspnet_Personalization_BasicAccess]
+GO
+/****** Object:  Schema [aspnet_Membership_ReportingAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Membership_ReportingAccess] AUTHORIZATION [aspnet_Membership_ReportingAccess]
+GO
+/****** Object:  Schema [aspnet_Membership_FullAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Membership_FullAccess] AUTHORIZATION [aspnet_Membership_FullAccess]
+GO
+/****** Object:  Schema [aspnet_Membership_BasicAccess]    Script Date: 05/16/2018 14:06:21 ******/
+CREATE SCHEMA [aspnet_Membership_BasicAccess] AUTHORIZATION [aspnet_Membership_BasicAccess]
+GO
+/****** Object:  Table [dbo].[aspnet_Applications]    Script Date: 05/16/2018 14:06:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Applications](
+	[ApplicationName] [nvarchar](256) NOT NULL,
+	[LoweredApplicationName] [nvarchar](256) NOT NULL,
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[Description] [nvarchar](256) NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[ApplicationId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[LoweredApplicationName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[ApplicationName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE CLUSTERED INDEX [aspnet_Applications_Index] ON [dbo].[aspnet_Applications] 
+(
+	[LoweredApplicationName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+INSERT [dbo].[aspnet_Applications] ([ApplicationName], [LoweredApplicationName], [ApplicationId], [Description]) VALUES (N'FarmStoredb', N'FarmStoredb', N'5ca80562-b037-4314-b04e-a3e6277aece1', NULL)
 /****** Object:  Table [dbo].[aspnet_WebEvent_Events]    Script Date: 05/16/2018 14:06:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[aspnet_WebEvent_Events](
+	[EventId] [char](32) NOT NULL,
+	[EventTimeUtc] [datetime] NOT NULL,
+	[EventTime] [datetime] NOT NULL,
+	[EventType] [nvarchar](256) NOT NULL,
+	[EventSequence] [decimal](19, 0) NOT NULL,
+	[EventOccurrence] [decimal](19, 0) NOT NULL,
+	[EventCode] [int] NOT NULL,
+	[EventDetailCode] [int] NOT NULL,
+	[Message] [nvarchar](1024) NULL,
+	[ApplicationPath] [nvarchar](256) NULL,
+	[ApplicationVirtualPath] [nvarchar](256) NULL,
+	[MachineName] [nvarchar](256) NOT NULL,
+	[RequestUrl] [nvarchar](1024) NULL,
+	[ExceptionType] [nvarchar](256) NULL,
+	[Details] [ntext] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EventId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RestorePermissions]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Setup_RestorePermissions]
+    @name   sysname
+AS
+BEGIN
+    DECLARE @object sysname
+    DECLARE @protectType char(10)
+    DECLARE @action varchar(60)
+    DECLARE @grantee sysname
+    DECLARE @cmd nvarchar(500)
+    DECLARE c1 cursor FORWARD_ONLY FOR
+        SELECT Object, ProtectType, [Action], Grantee FROM #aspnet_Permissions where Object = @name
 
+    OPEN c1
+
+    FETCH c1 INTO @object, @protectType, @action, @grantee
+    WHILE (@@fetch_status = 0)
+    BEGIN
+        SET @cmd = @protectType + ' ' + @action + ' on ' + @object + ' TO [' + @grantee + ']'
+        EXEC (@cmd)
+        FETCH c1 INTO @object, @protectType, @action, @grantee
+    END
+
+    CLOSE c1
+    DEALLOCATE c1
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RemoveAllRoleMembers]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Setup_RemoveAllRoleMembers]
+    @name   sysname
+AS
+BEGIN
+    CREATE TABLE #aspnet_RoleMembers
+    (
+        Group_name      sysname,
+        Group_id        smallint,
+        Users_in_group  sysname,
+        User_id         smallint
+    )
+
+    INSERT INTO #aspnet_RoleMembers
+    EXEC sp_helpuser @name
+
+    DECLARE @user_id smallint
+    DECLARE @cmd nvarchar(500)
+    DECLARE c1 cursor FORWARD_ONLY FOR
+        SELECT User_id FROM #aspnet_RoleMembers
+
+    OPEN c1
+
+    FETCH c1 INTO @user_id
+    WHILE (@@fetch_status = 0)
+    BEGIN
+        SET @cmd = 'EXEC sp_droprolemember ' + '''' + @name + ''', ''' + USER_NAME(@user_id) + ''''
+        EXEC (@cmd)
+        FETCH c1 INTO @user_id
+    END
+
+    CLOSE c1
+    DEALLOCATE c1
+END
+GO
+/****** Object:  Table [dbo].[aspnet_SchemaVersions]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_SchemaVersions](
+	[Feature] [nvarchar](128) NOT NULL,
+	[CompatibleSchemaVersion] [nvarchar](128) NOT NULL,
+	[IsCurrentVersion] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Feature] ASC,
+	[CompatibleSchemaVersion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_SchemaVersions] ([Feature], [CompatibleSchemaVersion], [IsCurrentVersion]) VALUES (N'common', N'1', 1)
 INSERT [dbo].[aspnet_SchemaVersions] ([Feature], [CompatibleSchemaVersion], [IsCurrentVersion]) VALUES (N'health monitoring', N'1', 1)
@@ -11,12 +306,506 @@ INSERT [dbo].[aspnet_SchemaVersions] ([Feature], [CompatibleSchemaVersion], [IsC
 INSERT [dbo].[aspnet_SchemaVersions] ([Feature], [CompatibleSchemaVersion], [IsCurrentVersion]) VALUES (N'profile', N'1', 1)
 INSERT [dbo].[aspnet_SchemaVersions] ([Feature], [CompatibleSchemaVersion], [IsCurrentVersion]) VALUES (N'role manager', N'1', 1)
 /****** Object:  StoredProcedure [dbo].[AddUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[AddUser]
+(
+    @UserName   nvarchar(20),
+    @Password   nvarchar(50),
+    @Name   nvarchar(50),
+    @Email    nvarchar(50),
+    @IDCard   nvarchar(20),
+    @Telephone   nvarchar(20),
+    @Address   nvarchar(50),
+    @Zipcode   nvarchar(10),
+    @UserID int OUTPUT
+)
+AS
+
+INSERT INTO Users
+(
+    UserName,
+    Password,
+    Name,
+    Email,
+    IDCard,
+    Telephone,
+    Address,
+    Zipcode
+)
+
+VALUES
+(
+    @UserName,
+    @Password,
+    @Name,
+    @Email,
+    @IDCard,
+    @Telephone,
+    @Address,
+    @Zipcode
+)
+
+SELECT
+    @UserID = @@Identity
+GO
+/****** Object:  StoredProcedure [dbo].[UserLogin]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[UserLogin]
+(
+    @UserName   nvarchar(20),
+    @Password   nvarchar(50),
+    @UserID int OUTPUT
+)
+AS
+
+SELECT 
+    @UserID = UserID
+    
+FROM 
+    Users
+    
+WHERE 
+    UserName = @UserName
+  AND 
+    Password = @Password
+
+IF @@Rowcount < 1 
+SELECT 
+    @UserID = 0
+GO
+/****** Object:  StoredProcedure [dbo].[UpdateShoppingCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[UpdateShoppingCart]
+    (
+        @UserID    int,
+        @ProductID int,
+        @ProductQuantity  int
+    )
+    AS
+
+    UPDATE ShoppingCarts
+    SET
+        ProductQuantity = @ProductQuantity
+    WHERE
+        UserID = @UserID
+      AND
+        ProductID = @ProductID
+GO
+/****** Object:  StoredProcedure [dbo].[AddItemtoShoppingCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[AddItemtoShoppingCart]
+(
+    @UserID int,
+    @ProductID int,
+    @ProductQuantity int,
+    @ItemId int output
+)
+As
+
+DECLARE @CountItems int
+
+SELECT
+    @CountItems = Count(ProductID)
+FROM
+    ShoppingCarts
+WHERE
+    ProductID = @ProductID
+  AND
+    UserID = @UserID
+
+IF @CountItems > 0  /* 如果新填进购物车的图书已经存在，则更新该图书的购买数量*/
+Begin
+    UPDATE
+        ShoppingCarts
+    SET
+        ProductQuantity = (@ProductQuantity + ShoppingCarts.ProductQuantity)
+    WHERE
+        ProductID = @ProductID
+      AND
+        UserID = @UserID
+
+Select
+ @ItemId = CartID
+from
+    ShoppingCarts
+ where
+    ProductID = @ProductID
+  AND
+    UserID = @UserID
+end
+ELSE  /*  如果新填进购物车的图书已经存在，则添加新的一条购书记录*/
+begin
+    INSERT INTO ShoppingCarts
+    (
+        UserID,
+        ProductQuantity,
+        ProductID
+    )
+    VALUES
+    (
+        @UserID,
+        @ProductQuantity,
+        @ProductID
+    )
+Select
+ @ItemId = @@Identity
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[RemoveItemFromShoppingCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[RemoveItemFromShoppingCart]
+(
+    @UserID int,
+    @ProductID int
+)
+AS
+
+DELETE
+
+FROM ShoppingCarts
+
+WHERE 
+    UserID = @UserID
+  AND
+    ProductID = @ProductID
+GO
+/****** Object:  StoredProcedure [dbo].[ModifyUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[ModifyUser]
+(
+    @UserName   nvarchar(20),
+    @Password   nvarchar(50),
+    @Name   nvarchar(50),
+    @Email    nvarchar(50),
+    @IDCard   nvarchar(20),
+    @Telephone   nvarchar(20),
+    @Address   nvarchar(50),
+    @Zipcode   nvarchar(10),
+    @UserID int OUTPUT
+)
+AS
+
+Update  Users
+set 
+    Password = @Password,
+    Name = @Name,
+    Email = @Email,
+    IDCard = @IDCard,
+    Telephone = @Telephone,
+    Address = @Address,
+    Zipcode = @Zipcode
+
+where
+   @UserName =  UserName
+
+SELECT
+    @UserID = @@Identity
+GO
+/****** Object:  StoredProcedure [dbo].[ListOrders]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[ListOrders]
+(
+    @UserID int
+)
+As
+
+SELECT  
+    Orders.OrderID,
+    Cast(sum(OrderDetail.ProductQuantity*OrderDetail.unitcost) as money) as OrderTotalCost,
+    Orders.OrderDate
+
+FROM    
+    Orders 
+  INNER JOIN OrderDetail ON Orders.OrderID = OrderDetail.OrderID
+
+GROUP BY    
+    UserID, 
+    Orders.OrderID, 
+    Orders.OrderDate
+
+HAVING  
+    Orders.UserID = @UserID
+GO
+/****** Object:  StoredProcedure [dbo].[EmptyShoppingCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[EmptyShoppingCart]
+(
+    @UserID int
+)
+AS
+
+DELETE FROM ShoppingCarts
+
+WHERE 
+    UserID = @UserID
+GO
+/****** Object:  StoredProcedure [dbo].[CountShoppingCartItem]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[CountShoppingCartItem]
+    (
+        @UserID    int,
+        @ItemCount int OUTPUT
+    )
+    AS
+
+    SELECT
+        @ItemCount = COUNT(ProductID)
+    FROM
+        ShoppingCarts
+    WHERE
+        UserID = @UserID
+GO
+/****** Object:  Table [dbo].[FbUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbUser](
+	[ID] [uniqueidentifier] NOT NULL,
+	[Username] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[Realname] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[Phone] [nvarchar](20) NULL,
+	[Address] [nvarchar](50) NULL,
+	[Zipcode] [nvarchar](10) NULL,
+	[Role] [int] NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+ CONSTRAINT [IX_Users] UNIQUE NONCLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'FbUser', @level2type=N'COLUMN',@level2name=N'Username'
 GO
 INSERT [dbo].[FbUser] ([ID], [Username], [Password], [Realname], [Email], [Phone], [Address], [Zipcode], [Role]) VALUES (N'3b000000-0000-0000-0000-000000000000', N'zlq', N'123456', N'gff', N'hfg@163.com', N'5465775', N'gfdgfdgd', N'5654654', 1)
 INSERT [dbo].[FbUser] ([ID], [Username], [Password], [Realname], [Email], [Phone], [Address], [Zipcode], [Role]) VALUES (N'3d000000-0000-0000-0000-000000000000', N'limeng', N'123456', N'limeng', N'11@126.com', N'12345678', N'hasdhfhsafhkdhsa', N'54455421', 1)
 INSERT [dbo].[FbUser] ([ID], [Username], [Password], [Realname], [Email], [Phone], [Address], [Zipcode], [Role]) VALUES (N'3e000000-0000-0000-0000-000000000000', N'wangqiang', N'333333', N'rrr', N'afd@hjf.com', N'12345678', N'qwerqwer', N'100800', 1)
 INSERT [dbo].[FbUser] ([ID], [Username], [Password], [Realname], [Email], [Phone], [Address], [Zipcode], [Role]) VALUES (N'3f000000-0000-0000-0000-000000000000', N'bb', N'123456', N'bao', N'sina@fjgjgdfg.com', N'123456789', N'sdsddsdssdsd', N'100079', 1)
 /****** Object:  StoredProcedure [dbo].[ShowOrderInfo]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[ShowOrderInfo]
+(
+    @OrderID    int,
+    @UserID int
+)
+AS
+
+SELECT  
+    Products.ProductID, 
+    Products.Name,
+    Products.ProducerName,
+    OrderDetail.UnitCost,
+    OrderDetail.ProductQuantity,
+    (OrderDetail.ProductQuantity * OrderDetail.UnitCost) as ExtendedAmount
+
+FROM
+    OrderDetail
+  INNER JOIN Products ON OrderDetail.ProductID = Products.ProductID
+  
+WHERE   
+    OrderID = @OrderID
+GO
+/****** Object:  StoredProcedure [dbo].[ShowProductByCategory]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[ShowProductByCategory]
+(
+    @CategoryID int
+)
+AS
+
+SELECT 
+    ProductID,
+    Name,
+    OriginalPrice,
+    SalePrice, 
+    ProductImage,
+    ProducerName
+
+FROM 
+    Products
+
+WHERE 
+    CategoryID = @CategoryID
+
+ORDER BY 
+    Name
+GO
+/****** Object:  StoredProcedure [dbo].[SearchProductByProductName]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[SearchProductByProductName]
+(
+    @Search nvarchar(255)
+)
+AS
+
+SELECT 
+    ProductID,
+    Name,
+    ProducerName,
+    SalePrice, 
+    ProductImage
+
+FROM 
+    Products
+
+WHERE 
+       Name LIKE '%' + @Search + '%'
+GO
+/****** Object:  StoredProcedure [dbo].[SearchProductByProducerName]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[SearchProductByProducerName]
+(
+    @Search nvarchar(255)
+)
+AS
+
+SELECT 
+    ProductID,
+    Name,
+    ProducerName,
+    SalePrice, 
+    ProductImage
+
+FROM 
+    Products
+
+WHERE 
+    ProducerName LIKE '%' + @Search + '%'
+GO
+/****** Object:  StoredProcedure [dbo].[DisplayShoppingCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[DisplayShoppingCart]
+(
+    @UserID int
+)
+AS
+
+SELECT 
+    Products.ProductID, 
+    Products.Name,
+    Products.ProducerName,
+    ShoppingCarts.ProductQuantity,
+    Products.SalePrice,
+    Cast((Products.SalePrice * ShoppingCarts.ProductQuantity) as money) as ExtendedAmount
+
+FROM 
+    Products,
+    ShoppingCarts
+
+WHERE 
+    Products.ProductID = ShoppingCarts.ProductID
+  AND 
+    ShoppingCarts.UserID = @UserID
+
+ORDER BY 
+    Products.Name, 
+    Products.ProducerName
+GO
+/****** Object:  StoredProcedure [dbo].[CalculateShoppingCartTotalCost]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE Procedure [dbo].[CalculateShoppingCartTotalCost]
+(
+    @UserID    int,
+    @TotalCost money OUTPUT
+)
+AS
+
+SELECT 
+    @TotalCost = SUM(Products.SalePrice * ShoppingCarts.ProductQuantity)
+
+FROM 
+    ShoppingCarts,
+    Products
+
+WHERE
+    ShoppingCarts.UserID = @UserID
+  AND
+    Products.ProductID = ShoppingCarts.ProductID
+GO
+/****** Object:  StoredProcedure [dbo].[aaa3]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[aaa3]
+  (
+    @userid int
+  )
+  as
+  begin
+     begin tran addorder
+     declare @orderid int
+     insert into orders(userid,orderdate) values(@userid,getDate())
+     select @orderid=@@identity
+     insert into orderdetials(orderid,productid,productquantity,unitcost) select @orderid,products.productid,shoppingcarts.productquantity,products.saleprice from products,shoppingcarts where products.productid=shoppingcarts.productid and userid=@userid
+     delete from shoppingcarts where userid=@userid
+     commit tran addorder
+  end
+GO
+/****** Object:  Table [dbo].[FbCategory]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbCategory](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_ProductCategories] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[FbCategory] ON
 INSERT [dbo].[FbCategory] ([ID], [Name]) VALUES (14, N'Gardening')
@@ -33,79 +822,196 @@ INSERT [dbo].[FbCategory] ([ID], [Name]) VALUES (25, N'Travel')
 INSERT [dbo].[FbCategory] ([ID], [Name]) VALUES (26, N'Beauty')
 SET IDENTITY_INSERT [dbo].[FbCategory] OFF
 /****** Object:  View [dbo].[vw_aspnet_Applications]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_Applications]
+  AS SELECT [dbo].[aspnet_Applications].[ApplicationName], [dbo].[aspnet_Applications].[LoweredApplicationName], [dbo].[aspnet_Applications].[ApplicationId], [dbo].[aspnet_Applications].[Description]
+  FROM [dbo].[aspnet_Applications]
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_WebEvent_LogEvent]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_WebEvent_LogEvent]
+        @EventId         char(32),
+        @EventTimeUtc    datetime,
+        @EventTime       datetime,
+        @EventType       nvarchar(256),
+        @EventSequence   decimal(19,0),
+        @EventOccurrence decimal(19,0),
+        @EventCode       int,
+        @EventDetailCode int,
+        @Message         nvarchar(1024),
+        @ApplicationPath nvarchar(256),
+        @ApplicationVirtualPath nvarchar(256),
+        @MachineName    nvarchar(256),
+        @RequestUrl      nvarchar(1024),
+        @ExceptionType   nvarchar(256),
+        @Details         ntext
+AS
+BEGIN
+    INSERT
+        dbo.aspnet_WebEvent_Events
+        (
+            EventId,
+            EventTimeUtc,
+            EventTime,
+            EventType,
+            EventSequence,
+            EventOccurrence,
+            EventCode,
+            EventDetailCode,
+            Message,
+            ApplicationPath,
+            ApplicationVirtualPath,
+            MachineName,
+            RequestUrl,
+            ExceptionType,
+            Details
+        )
+    VALUES
+    (
+        @EventId,
+        @EventTimeUtc,
+        @EventTime,
+        @EventType,
+        @EventSequence,
+        @EventOccurrence,
+        @EventCode,
+        @EventDetailCode,
+        @Message,
+        @ApplicationPath,
+        @ApplicationVirtualPath,
+        @MachineName,
+        @RequestUrl,
+        @ExceptionType,
+        @Details
+    )
+END
+GO
+/****** Object:  Table [dbo].[FbProduct]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbProduct](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CatID] [int] NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Image] [nvarchar](50) NULL,
+	[Price] [numeric](8, 2) NOT NULL,
+	[Summary] [nvarchar](4000) NOT NULL,
+	[Producer] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[FbProduct] ON
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (355, 16, N'Why Nations Fail: The Origins of Power, Prosperity', N'Product355.jpg', CAST(55.00 AS Numeric(8, 2)), N'Daron Acemoglu and James Robinson conclusively show that it is man-made political and economic institutions that underlie economic success (or lack of it). Korea, to take just one of their fascinating examples, is a remarkably homogeneous nation, yet the people of North Korea are among the poorest on earth while their brothers and sisters in South Korea are among the richest. The south forged a society that created incentives, rewarded innovation, and allowed everyone to participate in economic opportunities. The economic success thus spurred was sustained because the government became accountable and responsive to citizens and the great mass of people. Sadly, the people of the north have endured decades of famine, political repression, and very different economic institutions—with no end in sight. The differences between the Koreas is due to the politics that created these completely different institutional trajectories. ', N'Daron Acemoglu ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (356, 20, N'Cracking the Coding Interview, 6th Edition', N'Product488.jpg', CAST(18.00 AS Numeric(8, 2)), N'Cracking the Coding Interview, 6th Edition is here to help you through this process, teaching you what you need to know and enabling you to perform at your very best. I''ve coached and interviewed hundreds of software engineers. The result is this product.', N'Gayle Laakmann McDowell ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (357, 15, N'The Architecture of Happiness', N'Product357.jpg', CAST(60.00 AS Numeric(8, 2)), N'The Achitecture of Happiness is a dazzling and generously illustrated journey through the philosophy and psychology of architecture and the indelible connection between our identities and our locations.One of the great but often unmentioned causes of both happiness and misery is the quality of our environment: the kinds of walls, chairs, buildings, and streets that surround us. And yet a concern for architecture is too often described as frivolous, even self-indulgent. Alain de Botton starts from the idea that where we are heavily influences who we can be, and argues that it is architecture''s task to stand as an eloquent reminder of our full potential.', N'Alain De Botton')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (358, 19, N'Living Language Mandarin Chinese, Complete Edition', N'Product358.jpg', CAST(22.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Living Language ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (359, 16, N'The New Jim Crow', N'Product359.jpg', CAST(56.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Tara Nolan')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (360, 14, N'Raised Bed Revolution: Build It, Fill It, Plant It', N'Product360.jpg', CAST(23.00 AS Numeric(8, 2)), N'Join the revolution and create a beautiful raised bed garden with inspiration from the ultimate raised bed gardening guideProduct!', N'Tara Nolan')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (362, 14, N'Mini Farming: Self-Sufficiency on 1/4 Acre', N'Product362.jpg', CAST(24.00 AS Numeric(8, 2)), N'Start a mini farm on a quarter acre or less, provide 85 percent of the food for a family of four and earn an income.', N'Brett L. Markham ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (363, 18, N'240 Writing Topics: with Sample Essays', N'Product363.jpg', CAST(39.00 AS Numeric(8, 2)), N'This product contains -120 Writing Topics -120 Model Essays -120 Essay Outlines -1200 Model Sentences Great for -ESL Learners -High School Students -Test Prep Students -College Students *This product is a sequel to 120 Writing Topics. It only contains 120 writing topics and sample essays. "240 Speaking Topics" and "240 Writing Topics" cover the same topics. Visit www.liketestprep.com for free downloads!', N' LIKE Test Prep')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (364, 24, N'Hamilton: The Revolution', N'Product364.jpg', CAST(152.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Lin-Manuel Miranda ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (365, 19, N'Integrated Chinese: Simplified Characters TextProduct', N'Product365.jpg', CAST(22.00 AS Numeric(8, 2)), N'Cheng & Tsui s best-loved Chinese textProduct series is new, revised, and better than ever! Integrated Chinese is already the leading introductory Chinese textProduct at colleges and universities around the world. The third edition of this time-tested series has been fully updated to meet the needs of today s students with new communicative and interactive exercises, a full-color design, up-to-date vocabulary, enhanced cultural coverage, a diverse cast of characters, and a realistic storyline linking all the dialogues and readings. The second edition will remain available to order.', N'Yuehua Liu')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (367, 18, N'How to Write an Essay in Five Easy Steps', N'Product367.jpg', CAST(25.00 AS Numeric(8, 2)), N'This product explains how to write an essay in five easy steps. This simple essay writing guide can be used by high school, college, or university students. How to Write an Essay covers the various kinds of essays, how to quickly research your essay, and how to organize your essay so your instructor can easily follow your thoughts. ', N'Scribendi')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (368, 16, N'Constitutional Law: Principles and Policies ', N'Product368.jpg', CAST(100.00 AS Numeric(8, 2)), N'Relied on by students, professors, and practitioners, Erwin Chemerinsky s popular treatise clearly states the law and identifies the underlying policy issues in each area of constitutional law. Thorough coverage of the topic makes it appropriate for both beginning and advanced courses.', N'Erwin Chemerinsky')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (370, 17, N'Cravings: Recipes for All the Food You Want to Eat', N'Product370.jpg', CAST(16.00 AS Numeric(8, 2)), N'Maybe she’s on a photo shoot in Zanzibar. Maybe she’s making people laugh on TV. But all Chrissy Teigen really wants to do is talk about dinner. Or breakfast. Lunch gets some love, too.', N'Clarkson Potter Publishers')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (371, 18, N'On Writing the College Application Essay', N'Product371.jpg', CAST(12.00 AS Numeric(8, 2)), N'A newly revised edition of a perennial favorite, On Writing the College Application Essay by Harry Bauld—formerly an admissions officer at Brown University and assistant director of admissions at Columbia University—is an insider’s guide to writing a college application essay that will stand out from the pack.', N'Harry Bauld ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (372, 20, N'Dark Souls III Collector''s Edition', N'Product372.jpg', CAST(50.00 AS Numeric(8, 2)), N'The Dark Souls III Collector’s Edition Guide includes...', N'Prima Games ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (373, 24, N'Calm the F*ck Down', N'Product373.jpg', CAST(168.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Sasha O''Hara')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (375, 16, N'Black''s Law Dictionary, 10th Edition', N'Product375.jpg', CAST(24.00 AS Numeric(8, 2)), N'For more than a century, Black''s Law Dictionary has been the gold standard for the language of law. Today, it s the most widely cited law product in the world. By Editor in Chief Bryan A. Garner, the world s leading legal lexicographer, the 10th Edition is the most authoritative, comprehensive law dictionary ever published. It contains more than 50,000 terms and includes: More than 7,500 terms new to this edition, including affluenza defense, bioweapon, cryptanalysis, gazump, hacker, legaldygook, intrapreneur, mommy track, one-bite rule, psephology, unperson, and zero-tolerance law 16,000 new definitions and expanded bibliographic coverage, with more than twice as many sources quoted and cited than in the 9th Edition Earliest usage dates in English-language contexts for nearly all terms (Black s is the only legal dictionary with this feature) Trusted authority every term has been reviewed for accuracy by attorneys across the country Definitions of more than 1,000 law-related abbreviations and acronyms Pronunciation guidance Thoroughly reviewed and edited Latin maxims, with 900 new maxims added', N'Bryan A. Garner')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (376, 15, N'Draw 50 Buildings and Other Structures', N'Product376.jpg', CAST(18.00 AS Numeric(8, 2)), N'Draw 50 Buildings and Other Structures teaches aspiring artists how to draw with ease by following simple, step-by-step instructions. Celebrated author Lee J. Ames shows readers how to draw famous structures from all over the world, as well as an igloo, a barn and silo, a windmill, and even a teepee. Ames''s illustration style and renowned drawing method has made him a leader in the step-by-step drawing manual, and the 31 Products in his Draw 50 series have sold more than three million copies. Ames''s instruction allows seasoned artists to refine their technique and guides amateurs to develop their own artistic abilities. Even the youngest artists can draw the tallest, grandest structures. It''s easy to construct any type of building when it''s done the Draw 50 way.', N'Lee J. Ames ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (377, 15, N'The Story of Buildings', N'Product377.jpg', CAST(36.00 AS Numeric(8, 2)), N'We spend most of our lives in buildings. We make our homes in them. We go to school in them. We work in them. But why and how did people start making buildings? How did they learn to make them stronger, bigger, and more comfortable? Why did they start to decorate them in different ways? From the pyramid erected so that an Egyptian pharaoh would last forever to the dramatic, machine-like Pompidou Center designed by two young architects, Patrick Dillon’s stories of remarkable buildings — and the remarkable people who made them — celebrates the ingenuity of human creation. Stephen Biesty’s extraordinarily detailed illustrations take us inside famous buildings throughout history and demonstrate just how these marvelous structures fit together.', N'Patrick Dillon ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (378, 17, N'The Food Lab: Better Home Cooking ', N'Product378.jpg', CAST(10.00 AS Numeric(8, 2)), N'As Serious Eats''s culinary nerd-in-residence, J. Kenji López-Alt has pondered all these questions and more. In The Food Lab, Kenji focuses on the science behind beloved American dishes, delving into the interactions between heat, energy, and molecules that create great food. Kenji shows that often, conventional methods don’t work that well, and home cooks can achieve far better results using new―but simple―techniques. In hundreds of easy-to-make recipes with over 1,000 full-color images, you will find out how to make foolproof Hollandaise sauce in just two minutes, how to transform one simple tomato sauce into a half dozen dishes, how to make the crispiest, creamiest potato casserole ever conceived, and much more.', N'J. Kenji López-Alt ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (379, 17, N'Lose Weight by Eating', N'Product379.jpg', CAST(19.50 AS Numeric(8, 2)), N'Lose weight by eating guilt-free, low-calorie, unprocessed versions of all your favorite foods, with this helpful, accessible diet and cookProduct—featuring more than 130 clean eating recipes and gorgeous full-color photos—from the popular weight loss blogger who lost 150 pounds in eleven months.', N'Audrey Johns')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (382, 20, N'CompTIA A+ Certification All-in-One Exam Guide ', N'Product382.jpg', CAST(39.00 AS Numeric(8, 2)), N'This bestselling on-the-job reference and test preparation guide has been fully revised for the new 2015 CompTIA A+ exam objectives for exams 901 & 902', N'Mike Meyers ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (384, 19, N'Chinese for Beginners', N'Product384.jpg', CAST(22.00 AS Numeric(8, 2)), N'Chinese for Beginners includes:', N'Yi Ren')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (385, 16, N'Sisters in Law: How Sandra Day ', N'Product385.jpg', CAST(25.00 AS Numeric(8, 2)), N'The relationship between Sandra Day O’Connor and Ruth Bader Ginsburg—Republican and Democrat, Christian and Jew, western rancher’s daughter and Brooklyn girl—transcends party, religion, region, and culture. Strengthened by each other’s presence, these groundbreaking judges, the first and second to serve on the highest court in the land, have transformed the Constitution and America itself, making it a more equal place for all women.', N'Linda Hirshman')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (386, 17, N'Inspiralized: Turn Vegetables into Healthy', N'Product386.jpg', CAST(8.00 AS Numeric(8, 2)), N'The definitive cookProduct for using a spiralizer: the kitchen gadget that turns vegetables and fruits into imaginative, low-carb dishes.', N'Ali Maffucci ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (387, 20, N'Site Reliability Engineering', N'Product387.jpg', CAST(32.00 AS Numeric(8, 2)), N'The overwhelming majority of a software system’s lifespan is spent in use, not in design or implementation. So, why does conventional wisdom insist that software engineers focus primarily on the design and development of large-scale computing systems?', N'Niall Richard Murphy ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (388, 20, N'Windows 10 For Seniors For Dummies', N'Product388.jpg', CAST(40.00 AS Numeric(8, 2)), N'Your clear-cut, easy-to-follow guide to Windows 10 ', N'Peter Weverka')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (389, 21, N'Secrets of Mental Math', N'Product389.jpg', CAST(15.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Arthur Benjamin ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (390, 19, N'Tuttle Learning Chinese Characters', N'Product390.jpg', CAST(22.00 AS Numeric(8, 2)), N'At last—there is a truly effective and enjoyable way to learn Chinese characters! This product helps students to learn and remember both the meanings and the pronunciations of over 800 characters. This otherwise daunting task is made easier by the use of techniques based on the psychology of learning and memory. key principles include the use of visual imagery, the visualization of short "stories," and the systematic building up of more complicated characters from basic building blocks.', N'Alison Matthews')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (391, 17, N'Thug Kitchen: The Official CookProduct', N'Product391.jpg', CAST(19.00 AS Numeric(8, 2)), N'Thug Kitchen started their wildly popular wefbite to inspire people to eatsome goddamn vegetables and adopt a healthier lifestyle. Beloved byGwyneth Paltrow (''This might be my favorite thing ever'') and with half a million FaceProduct fans and counting, Thug Kitchen wants to show everyone how to take charge of their plates and cook up some real f*cking food.', N'Thug Kitchen ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (393, 21, N'The Magic of Math', N'Product393.jpg', CAST(17.00 AS Numeric(8, 2)), N'he Magic of Math is the math product you wish you had in school. Using a delightful assortment of examples—from ice cream scoops and poker hands to measuring mountains and making magic squares—this product empowers you to see the beauty, simplicity, and truly magical properties behind those formulas and equations that once left your head spinning. You’ll learn the key ideas of classic areas of mathematics like arithmetic, algebra, geometry, trigonometry, and calculus, but you’ll also have fun fooling around with Fibonacci numbers, investigating infinity, and marveling over mathematical magic tricks that will make you look like a math genius!', N'Arthur Benjamin ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (394, 15, N'Detail in Contemporary Residential Architecture', N'Product394.jpg', CAST(20.00 AS Numeric(8, 2)), N'Detail in Contemporary Residential Architecture provides analysis of both the technical and the aesthetic importance of details in the development of contemporary residential architecture. Featuring many of the world''s most highly acclaimed architects, the product presents more than 50 of the most recently completed and influential house designs. For each house there are color photographs, plans of every floor, sections and elevations as well as numerous consistently styled construction details. The product also features in-depth information for each project.', N'Virginia McLeod')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (396, 19, N'Chinese Flash Cards Kit Volume 1
-', N'Product396.jpg', CAST(22.00 AS Numeric(8, 2)), N'Everything you need to learn the 349 most basic Chinese characters quickly and easily is in this box - our #1 Chinese language learning kit!', N'Philip Yungkin Lee ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (397, 24, N'Secret Garden', N'Product397.jpg', CAST(57.00 AS Numeric(8, 2)), N'Good news for all SECRET GARDEN fans! All editions of SECRET GARDEN now feature thicker and heavier paper stock, fighting bleed-through from ink pens.', N'Johanna Basford')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (399, 20, N'CISSP  Official Study Guide', N'Product399.jpg', CAST(32.00 AS Numeric(8, 2)), N'CISSP Study Guide -  fully updated for the 2015 CISSP Body of Knowledge', N'James M. Stewart')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (400, 15, N'World Architecture: The Masterworks', N'Product400.jpg', CAST(25.00 AS Numeric(8, 2)), N'Will Pryce unveils a world of beauty and genius in this unparalleled, specially photographed survey of the world’s architectural master- pieces. More than 350 color photographs celebrate the finest buildings from over two thousand years of civilization: Hagia Sophia, the Gothic cathedrals of Europe, Islamic masterworks at Isfahan, the Taj Mahal, the Palace of Westminster, Gehry’s iconic Guggenheim Museum in Bilbao, and much more.', N'Will Pryce')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (401, 24, N'Adult Coloring Product Designs', N'Product401.jpg', CAST(150.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Adult Coloring Product Designs')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (402, 20, N'Python Machine Learning', N'Product402.jpg', CAST(25.00 AS Numeric(8, 2)), N'About This Product', N'Sebastian Raschka')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (406, 19, N'The Chinese Language for Beginners', N'Product406.jpg', CAST(22.00 AS Numeric(8, 2)), N'Reading basic Chinese becomes simplified in this highly attractive and unique manual designed for readers of all ages. Chinese writing, pronunciation, and vocabulary are described here in an entertaining and interesting manner to help beginners learn Chinese quickly. The author starts with simple characters and then combines these to make sentences and stories. This step–by–step process allows the reader to develop a basic knowledge of the complex Mandarin Chinese language with maximum comprehension. A section dealing with pronunciation and intonation and a vocabulary list of the characters used in the product are included as an aid for the reader. Beautiful, imaginative Chinese characters, hand painted by a professional calligrapher and amusing illustrations by the author supplement the text and make learning to read Chinese fun along with fancy.', N'Lee Cooper ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (407, 21, N'All the Math You''ll Ever Need', N'Product407.jpg', CAST(12.00 AS Numeric(8, 2)), N'A sharp mind, like a healthy body, is subject to the same rule of nature: Use it or lose it', N'Steve Slavin ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (408, 26, N'Fashion (Discovering Careers for Your Future)', N'Product408.jpg', CAST(40.00 AS Numeric(8, 2)), N'Providing a broad view of the typical responsibilities, job assignments, working conditions and equipment used, also offers general information on average salary ranges and fringe benefits associated with the career. Information is presented in a two-colour format designed specially to appeal to students.', N' Ferguson')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (409, 23, N'Smarter Faster Better', N'Product409.jpg', CAST(50.00 AS Numeric(8, 2)), N'At the core of Smarter Faster Better are eight key productivity concepts—from motivation and goal setting to focus and decision making—that explain why some people and companies get so much done. Drawing on the latest findings in neuroscience, psychology, and behavioral economics—as well as the experiences of CEOs, educational reformers, four-star generals, FBI agents, airplane pilots, and Broadway songwriters—this painstakingly researched product explains that the most productive people, companies, and organizations don’t merely act differently.', N'Charles Duhigg')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (410, 24, N'Good Vibes Coloring Product ', N'Product410.jpg', CAST(123.00 AS Numeric(8, 2)), N'Enter a world of creative self-expression with this relaxing coloring product for grownups. Inside you ll find 30 amazing art activities that will take you to a happy place of patterning, shading, and coloring. These whimsical images offer a easy way to de-stress and unleash your inner artist.Thaneeya McArdle s transcendental art explores a visual language of shape, form, line, and color. Each vibrantly detailed illustration is designed to exercise your creativity. Beautifully colored finished examples are provided, along with a handy guide to basic art techniques, from patterning and combinations to shading and color theory.This therapeutic coloring product is perfect for decorating with markers, colored pencils, gel pens, or watercolors. Printed on high-quality, extra-thick paper that won t bleed through, all of the pages are pre-perforated for easy removal and display.', N'Design Originals')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (415, 16, N'Examples & Explanations: Property', N'Product415.jpg', CAST(150.00 AS Numeric(8, 2)), N'Using proven Examples & Explanations pedagogy, this comprehensive study guide provides students with a short account of the law, followed by a variety of concrete examples and explanations that help reinforce and give sufbtance to the key rules and concepts in contract law. Its flexible organization lets students move freely between topics that range from copyrights, to patents, trademarks and trade secrets. Keyed to all major IP survey courses and using compelling examples, Contracts: Examples & Explanations is a straightforward guide that gives students a solid grounding in this dynamic area of law.', N'Barlow Burke ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (420, 14, N'Bunny Williams On Garden Style', N'Product420.jpg', CAST(6.00 AS Numeric(8, 2)), N'First published in 1998, On Garden Style established Bunny Williams as a reputable expert on gardens. In Bunny Williams on Garden Style, Williams visits impeccably designed gardens around the world, shedding light on the key components that make a garden so appealing and idyllic. For Williams, gardens offer an escape, and she imparts vital information on how to envision your garden and design a space that translates into a lush sanctuary reflecting your taste and style. Once you’ve imagined your garden, Williams offers advice for bringing it to fruition—the garden structure,” furnishing the space, and establishing an aesthetic. The product also includes plant lists, a reading list, and more. Filled with new photography of spectacular gardens, this latest volume is both a wonderful inspiration and a practical guide to gardening from one of the world’s most renowned design experts.', N'Bunny Williams')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (421, 15, N'Architecture: Form, Space, and Order', N'Product421.jpg', CAST(35.00 AS Numeric(8, 2)), N'A superb visual reference to the principles of architecture Now including interactive CD-ROM! For more than thirty years, the beautifully illustrated Architecture: Form, Space, and Order has been the classic introduction to the basic vocabulary of architectural design. The updated Third Edition features expanded sections on circulation, light, views, and site context, along with new considerations of environmental factors, building codes, and contemporary examples of form, space, and order. This classic visual reference helps both students and practicing architects understand the basic vocabulary of architectural design by examining how form and space are ordered in the built environment.? Using his trademark meticulous drawing, Professor Ching shows the relationship between fundamental elements of architecture through the ages and across cultural boundaries. By looking at these seminal ideas, Architecture: Form, Space, and Order encourages the reader to look critically at the built environment and promotes a more evocative understanding of architecture. In addition to updates to content and many of the illustrations, this new edition includes a companion CD-ROM that brings the product''s architectural concepts to life through three-dimensional models and animations created by Professor Ching.', N' Francis D. K. Ching')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (422, 16, N'Guide to Federal Pharmacy Law, 8th Ed', N'Product422.jpg', CAST(150.00 AS Numeric(8, 2)), N'This BEST SELLER is a comprehensive, easy-to-study guide to current federal pharmacy law. It is designed to help you review the most important federal pharmacy statutes and regulations, including the newest changes in the Patient Protection and Affordable Health care Act of 2010, Labeling of prescription containers,Biologics Price Competition and Innovation Act,Women''s Preventative Health Care Amendment of 2012,Medicaid Tamper-resistant Prescription Law, Risk Evaluation and Mitigation Strategy (REMS) program,and much more! This product is designed to assist candidates in preparing for pharmacy law examinations in all states. It also includes over 300 practice federal law questions and answers.', N'Barry S. Reiss ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (423, 16, N'Business Law: Text and Cases', N'Product423.jpg', CAST(56.00 AS Numeric(8, 2)), N'Comprehensive, authoritative, and student-friendly, longtime market-leader BUSINESS LAW: TEXT AND CASES delivers an ideal blend of classic "black letter law" and cutting-edge coverage of contemporary issues and cases. BUSINESS LAW continues to set the standard for excellence. The text offers a strong student orientation, making the law accessible, interesting, and relevant. The cases, content, and features of the thirteenth edition have been thoroughly updated to represent the latest developments in business law. Cases range from precedent-setting landmarks to important recent decisions. Ethical, global, and corporate themes are integrated throughout. In addition, numerous critical-thinking exercises challenge students to apply knowledge to real-world issues. It is no wonder that BUSINESS LAW is used by more colleges and universities than any other business law text.', N'Kenneth W. Clarkson ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (426, 18, N'Writing Essays For Dummies', N'Product426.jpg', CAST(23.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Mary Page')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (427, 18, N'The Best American Essays 2015', N'Product427.jpg', CAST(16.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Ariel Levy ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (428, 18, N'he Art of the Personal Essay', N'Product428.jpg', CAST(13.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Phillip Lopate ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (432, 21, N'Mathematical Mindsets', N'Product432.jpg', CAST(12.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Jo Boaler')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (433, 21, N'Mastering Essential Math Skills', N'Product433.jpg', CAST(15.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Richard W. Fisher')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (437, 23, N'Mindset: The New Psychology of Success', N'Product437.jpg', CAST(53.00 AS Numeric(8, 2)), N'Dweck explains why it’s not just our abilities and talent that bring us success—but whether we approach them with a fixed or growth mindset. She makes clear why praising intelligence and ability doesn’t foster self-esteem and lead to accomplishment, but may actually jeopardize success. With the right mindset, we can motivate our kids and help them to raise their grades, as well as reach our own goals—personal and professional. Dweck reveals what all great parents, teachers, CEOs, and athletes already know: how a simple idea about the brain can create a love of learning and a resilience that is the basis of great accomplishment in every area.', N'Carol Dweck ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (438, 23, N'A Random Walk Down Wall Street', N'Product438.jpg', CAST(60.00 AS Numeric(8, 2)), N'In today’s daunting investment landscape, the need for Burton G. Malkiel’s reassuring, authoritative, and perennially best-selling guide to investing is stronger than ever. A Random Walk Down Wall Street has long been established as the first product to purchase when starting a portfolio. This new edition features fresh material on exchange-traded funds and investment opportunities in emerging markets; a brand-new chapter on “smart beta” funds, the newest marketing gimmick of the investment management industry; and a new supplement that tackles the increasingly complex world of derivatives.', N'Burton G. Malkiel ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (439, 23, N'The Big Short: Inside the Doomsday Machine', N'Product439.jpg', CAST(52.00 AS Numeric(8, 2)), N'Forget the old concept of retirement and the rest of the deferred-life plan–there is no need to wait and every reason not to, especially in unpredictable economic times. Whether your dream is escaping the rat race, experiencing high-end world travel, earning a monthly five-figure income with zero management, or just living more and working less, The 4-Hour Workweek is the blueprint. ', N'Michael Lewis ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (446, 14, N'Planting: A New Perspective', N'Product446.jpg', CAST(30.00 AS Numeric(8, 2)), N'An intimate knowledge of plants is essential to the success of this approach and Planting makes Oudolf’s considerable understanding of plant ecology and performance accessible, explaining how plants behave in different situations, what goes on underground, and which species make good neighbors. Extensive plant charts and planting plans will help you choose plants for their structure, color, and texture as well as the way they perform in the landscape. A detailed directory, with details each plant’s life expectancy, the persistence of its seedheads, its tendency to spread, and propensity to self-seed, is an invaluable resource.', N'Noel Kingsbury')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (447, 15, N'Conditional Design', N'Product447.jpg', CAST(25.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning Products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Anthony di Mari')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (448, 14, N'The Vegetable Gardener''s Bible, 2nd Edition', N'Product448.jpg', CAST(16.00 AS Numeric(8, 2)), N'this product will answer all your questions as well as put you on the path to an abundant harvest. As a bonus, anecdotes and stories make this informative product fun to read', N'Edward C. Smith ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (450, 14, N'Gardening for Butterflies', N'Product450.jpg', CAST(12.00 AS Numeric(8, 2)), N'Gardening for Butterflies, by the experts at the Xerces Society, introduces you to a variety of colorful garden guests who need our help, and shows you how to design a habitat where they will thrive. This optimistic call to arms is packed with everything you need to create a beautiful, beneficial, butterfly-filled garden. Gardeners will learn why butterflies matter, why they are in danger, and what simple steps we can take to make a difference. You''ll learn how to choose the right plants, how to design a butterfly-friendly garden, and how to create a garden that flutters and flourishes with life.', N'Xerces Society')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (453, 25, N'Rick Steves Italy 2016', N'Product453.jpg', CAST(15.00 AS Numeric(8, 2)), N'From the beaches to the Alps, from fine art to fine pasta, Italy has it all. With this product, you’ll trace Italian culture from Rome’s Colosseum to Michelangelo’s David to the bustling elegance of Milan. Experience the art-drenched cities of Venice and Florence, explore the ancient ruins of the Roman Forum, and learn how to avoid the lines at the most popular museums. Discover the villages of Tuscany and Umbria and the lazy rhythms of the Cinque Terre. Shop at local market stalls, sip a cappuccino at an outdoor café, and pick up a picnic lunch at an allimentari. Relax and enjoy the life of Bella Italia!', N'Rick Steves')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (454, 25, N'Birnbaum''s 2016 Walt Disney World', N'Product454.jpg', CAST(45.00 AS Numeric(8, 2)), N'The finest guideProduct ever written for Maui. Now you can plan your best vacation--ever. This all new seventh edition is a candid, humorous guide to everything there is to see and do on the island. Best-selling author and longtime Hawai''i resident, Andrew Doughty, unlocks the secrets of an island so lush and diverse that many visitors never realize all that it has to offer. Explore with him as he reveals breathtaking trails, secluded beaches, pristine reefs, delicious places to eat, colorful craters, hidden waterfalls and so much more. Every restaurant, activity provider, business and resort is reviewed personally and anonymously. This product and a rental car are all you need to discover what makes Maui so exciting.', N'Birnbaum Guides ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (455, 25, N'Maui Revealed: The Ultimate GuideProduct', N'Product455.jpg', CAST(45.00 AS Numeric(8, 2)), N'The finest guideProduct ever written for Maui. Now you can plan your best vacation--ever. This all new seventh edition is a candid, humorous guide to everything there is to see and do on the island. Best-selling author and longtime Hawai''i resident, Andrew Doughty, unlocks the secrets of an island so lush and diverse that many visitors never realize all that it has to offer. Explore with him as he reveals breathtaking trails, secluded beaches, pristine reefs, delicious places to eat, colorful craters, hidden waterfalls and so much more. Every restaurant, activity provider, business and resort is reviewed personally and anonymously. This product and a rental car are all you need to discover what makes Maui so exciting.', N'Andrew Doughty ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (456, 25, N'Rick Steves Paris 2016', N'Product456.jpg', CAST(25.00 AS Numeric(8, 2)), N'With the self-guided tours in this product, you’ll explore the grand Champs-Elysées, the eye-popping Eiffel Tower, and the radiant cathedral of Notre-Dame. Learn how to save money and avoid the lines at the Louvre and Orsay Museums. Enjoy the ambience of Parisian neighborhoods, and take a day trip to the glittering palace of Versailles, or to the Champagne-soaked city of Reims. Then grab a café crème at a sidewalk café and listen to the hum of the city. You’ll see why Paris remains at the heart of global culture.', N'Rick Steves ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (457, 25, N'Rick Steves Ireland 2016', N'Product457.jpg', CAST(23.00 AS Numeric(8, 2)), N'With this guide, you can explore lively Dublin, quaint Kilkenny, and the moss-draped ruins of the Ring of Kerry. Navigate meandering back roads that lead to windswept crags on the dramatic Dingle Peninsula. Explore Ireland’s revered past by following St. Patrick’s footsteps to the Rock of Cashel. Marvel at Newgrange, the mysterious mound older than the pyramids; then connect with today’s Irish culture by grabbing a pint at the local pub, enjoying the fiddle music, and jumping into conversations that buzz with brogue.', N'Rick Steves')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (460, 26, N'The 7-Day Flat-Belly Tea Cleanse', N'Product460.jpg', CAST(25.00 AS Numeric(8, 2)), N'From metabolism-boosting green tea to fat-blocking white tea to the multi-powered chai, you’ll learn how to time your tea intake throughout the day, ensuring your body is burning fat and staying strong 24/7. All the while, you’ll get to enjoy delicious tea-based smoothies and indulgent dinners (yes, you get to eat on this cleanse!).', N'Kelly Choi ')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (461, 26, N'The 5-Day Real Food Detox', N'Product461.jpg', CAST(26.00 AS Numeric(8, 2)), N'As a professional model, Nikki Sharp traveled constantly, barely slept, skipped meals, and relied on quick fixes to stay skinny, all of which took a toll on her physical and emotional health. Realizing she needed to make a serious change, she began to study integrative nutrition—and learned that the key to weight loss, radiant skin, and overall well-being is not starving yourself but eating. That’s right: eating! Sharp created her detox plan based on the knowledge that in the right combinations, real whole foods—grains, vegetables, fruits, and spices—can aid digestion, burn body fat, flush out toxins, reduce bloating, banish fatigue, and clear up acne.', N'Nikki Sharp')
-INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Author]) VALUES (462, 26, N'A Fashionable History of: Dresses and Skirts', N'Product462.jpg', CAST(10.00 AS Numeric(8, 2)), N'Exploring the development of costumes through the ages, this series covers all main items of clothing - from shoes to hats, and makeup to underwear. Each title shows the history and technology behind each item, making the series a resource for fashion, history, design, and art.', N'Helen Reynolds ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (355, 16, N'Why Nations Fail: The Origins of Power, Prosperity', N'product355.jpg', CAST(55.00 AS Numeric(8, 2)), N'Daron Acemoglu and James Robinson conclusively show that it is man-made political and economic institutions that underlie economic success (or lack of it). Korea, to take just one of their fascinating examples, is a remarkably homogeneous nation, yet the people of North Korea are among the poorest on earth while their brothers and sisters in South Korea are among the richest. The south forged a society that created incentives, rewarded innovation, and allowed everyone to participate in economic opportunities. The economic success thus spurred was sustained because the government became accountable and responsive to citizens and the great mass of people. Sadly, the people of the north have endured decades of famine, political repression, and very different economic institutions—with no end in sight. The differences between the Koreas is due to the politics that created these completely different institutional trajectories. ', N'Daron Acemoglu ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (356, 20, N'Cracking the Coding Interview, 6th Edition', N'product488.jpg', CAST(18.00 AS Numeric(8, 2)), N'Cracking the Coding Interview, 6th Edition is here to help you through this process, teaching you what you need to know and enabling you to perform at your very best. I''ve coached and interviewed hundreds of software engineers. The result is this product.', N'Gayle Laakmann McDowell ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (357, 15, N'The Architecture of Happiness', N'product357.jpg', CAST(60.00 AS Numeric(8, 2)), N'The Achitecture of Happiness is a dazzling and generously illustrated journey through the philosophy and psychology of architecture and the indelible connection between our identities and our locations.One of the great but often unmentioned causes of both happiness and misery is the quality of our environment: the kinds of walls, chairs, buildings, and streets that surround us. And yet a concern for architecture is too often described as frivolous, even self-indulgent. Alain de Botton starts from the idea that where we are heavily influences who we can be, and argues that it is architecture''s task to stand as an eloquent reminder of our full potential.', N'Alain De Botton')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (358, 19, N'Living Language Mandarin Chinese, Complete Edition', N'product358.jpg', CAST(22.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Living Language ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (359, 16, N'The New Jim Crow', N'product359.jpg', CAST(56.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Tara Nolan')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (360, 14, N'Raised Bed Revolution: Build It, Fill It, Plant It', N'product360.jpg', CAST(23.00 AS Numeric(8, 2)), N'Join the revolution and create a beautiful raised bed garden with inspiration from the ultimate raised bed gardening guideproduct!', N'Tara Nolan')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (362, 14, N'Mini Farming: Self-Sufficiency on 1/4 Acre', N'product362.jpg', CAST(24.00 AS Numeric(8, 2)), N'Start a mini farm on a quarter acre or less, provide 85 percent of the food for a family of four and earn an income.', N'Brett L. Markham ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (363, 18, N'240 Writing Topics: with Sample Essays', N'product363.jpg', CAST(39.00 AS Numeric(8, 2)), N'This product contains -120 Writing Topics -120 Model Essays -120 Essay Outlines -1200 Model Sentences Great for -ESL Learners -High School Students -Test Prep Students -College Students *This product is a sequel to 120 Writing Topics. It only contains 120 writing topics and sample essays. "240 Speaking Topics" and "240 Writing Topics" cover the same topics. Visit www.liketestprep.com for free downloads!', N' LIKE Test Prep')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (364, 24, N'Hamilton: The Revolution', N'product364.jpg', CAST(152.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Lin-Manuel Miranda ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (365, 19, N'Integrated Chinese: Simplified Characters Textproduct', N'product365.jpg', CAST(22.00 AS Numeric(8, 2)), N'Cheng & Tsui s best-loved Chinese textproduct series is new, revised, and better than ever! Integrated Chinese is already the leading introductory Chinese textproduct at colleges and universities around the world. The third edition of this time-tested series has been fully updated to meet the needs of today s students with new communicative and interactive exercises, a full-color design, up-to-date vocabulary, enhanced cultural coverage, a diverse cast of characters, and a realistic storyline linking all the dialogues and readings. The second edition will remain available to order.', N'Yuehua Liu')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (367, 18, N'How to Write an Essay in Five Easy Steps', N'product367.jpg', CAST(25.00 AS Numeric(8, 2)), N'This product explains how to write an essay in five easy steps. This simple essay writing guide can be used by high school, college, or university students. How to Write an Essay covers the various kinds of essays, how to quickly research your essay, and how to organize your essay so your instructor can easily follow your thoughts. ', N'Scribendi')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (368, 16, N'Constitutional Law: Principles and Policies ', N'product368.jpg', CAST(100.00 AS Numeric(8, 2)), N'Relied on by students, professors, and practitioners, Erwin Chemerinsky s popular treatise clearly states the law and identifies the underlying policy issues in each area of constitutional law. Thorough coverage of the topic makes it appropriate for both beginning and advanced courses.', N'Erwin Chemerinsky')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (370, 17, N'Cravings: Recipes for All the Food You Want to Eat', N'product370.jpg', CAST(16.00 AS Numeric(8, 2)), N'Maybe she’s on a photo shoot in Zanzibar. Maybe she’s making people laugh on TV. But all Chrissy Teigen really wants to do is talk about dinner. Or breakfast. Lunch gets some love, too.', N'Clarkson Potter Publishers')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (371, 18, N'On Writing the College Application Essay', N'product371.jpg', CAST(12.00 AS Numeric(8, 2)), N'A newly revised edition of a perennial favorite, On Writing the College Application Essay by Harry Bauld—formerly an admissions officer at Brown University and assistant director of admissions at Columbia University—is an insider’s guide to writing a college application essay that will stand out from the pack.', N'Harry Bauld ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (372, 20, N'Dark Souls III Collector''s Edition', N'product372.jpg', CAST(50.00 AS Numeric(8, 2)), N'The Dark Souls III Collector’s Edition Guide includes...', N'Prima Games ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (373, 24, N'Calm the F*ck Down', N'product373.jpg', CAST(168.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Sasha O''Hara')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (375, 16, N'Black''s Law Dictionary, 10th Edition', N'product375.jpg', CAST(24.00 AS Numeric(8, 2)), N'For more than a century, Black''s Law Dictionary has been the gold standard for the language of law. Today, it s the most widely cited law product in the world. By Editor in Chief Bryan A. Garner, the world s leading legal lexicographer, the 10th Edition is the most authoritative, comprehensive law dictionary ever published. It contains more than 50,000 terms and includes: More than 7,500 terms new to this edition, including affluenza defense, bioweapon, cryptanalysis, gazump, hacker, legaldygook, intrapreneur, mommy track, one-bite rule, psephology, unperson, and zero-tolerance law 16,000 new definitions and expanded bibliographic coverage, with more than twice as many sources quoted and cited than in the 9th Edition Earliest usage dates in English-language contexts for nearly all terms (Black s is the only legal dictionary with this feature) Trusted authority every term has been reviewed for accuracy by attorneys across the country Definitions of more than 1,000 law-related abbreviations and acronyms Pronunciation guidance Thoroughly reviewed and edited Latin maxims, with 900 new maxims added', N'Bryan A. Garner')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (376, 15, N'Draw 50 Buildings and Other Structures', N'product376.jpg', CAST(18.00 AS Numeric(8, 2)), N'Draw 50 Buildings and Other Structures teaches aspiring artists how to draw with ease by following simple, step-by-step instructions. Celebrated author Lee J. Ames shows readers how to draw famous structures from all over the world, as well as an igloo, a barn and silo, a windmill, and even a teepee. Ames''s illustration style and renowned drawing method has made him a leader in the step-by-step drawing manual, and the 31 products in his Draw 50 series have sold more than three million copies. Ames''s instruction allows seasoned artists to refine their technique and guides amateurs to develop their own artistic abilities. Even the youngest artists can draw the tallest, grandest structures. It''s easy to construct any type of building when it''s done the Draw 50 way.', N'Lee J. Ames ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (377, 15, N'The Story of Buildings', N'product377.jpg', CAST(36.00 AS Numeric(8, 2)), N'We spend most of our lives in buildings. We make our homes in them. We go to school in them. We work in them. But why and how did people start making buildings? How did they learn to make them stronger, bigger, and more comfortable? Why did they start to decorate them in different ways? From the pyramid erected so that an Egyptian pharaoh would last forever to the dramatic, machine-like Pompidou Center designed by two young architects, Patrick Dillon’s stories of remarkable buildings — and the remarkable people who made them — celebrates the ingenuity of human creation. Stephen Biesty’s extraordinarily detailed illustrations take us inside famous buildings throughout history and demonstrate just how these marvelous structures fit together.', N'Patrick Dillon ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (378, 17, N'The Food Lab: Better Home Cooking ', N'product378.jpg', CAST(10.00 AS Numeric(8, 2)), N'As Serious Eats''s culinary nerd-in-residence, J. Kenji López-Alt has pondered all these questions and more. In The Food Lab, Kenji focuses on the science behind beloved American dishes, delving into the interactions between heat, energy, and molecules that create great food. Kenji shows that often, conventional methods don’t work that well, and home cooks can achieve far better results using new―but simple―techniques. In hundreds of easy-to-make recipes with over 1,000 full-color images, you will find out how to make foolproof Hollandaise sauce in just two minutes, how to transform one simple tomato sauce into a half dozen dishes, how to make the crispiest, creamiest potato casserole ever conceived, and much more.', N'J. Kenji López-Alt ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (379, 17, N'Lose Weight by Eating', N'product379.jpg', CAST(19.50 AS Numeric(8, 2)), N'Lose weight by eating guilt-free, low-calorie, unprocessed versions of all your favorite foods, with this helpful, accessible diet and cookproduct—featuring more than 130 clean eating recipes and gorgeous full-color photos—from the popular weight loss blogger who lost 150 pounds in eleven months.', N'Audrey Johns')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (382, 20, N'CompTIA A+ Certification All-in-One Exam Guide ', N'product382.jpg', CAST(39.00 AS Numeric(8, 2)), N'This bestselling on-the-job reference and test preparation guide has been fully revised for the new 2015 CompTIA A+ exam objectives for exams 901 & 902', N'Mike Meyers ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (384, 19, N'Chinese for Beginners', N'product384.jpg', CAST(22.00 AS Numeric(8, 2)), N'Chinese for Beginners includes:', N'Yi Ren')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (385, 16, N'Sisters in Law: How Sandra Day ', N'product385.jpg', CAST(25.00 AS Numeric(8, 2)), N'The relationship between Sandra Day O’Connor and Ruth Bader Ginsburg—Republican and Democrat, Christian and Jew, western rancher’s daughter and Brooklyn girl—transcends party, religion, region, and culture. Strengthened by each other’s presence, these groundbreaking judges, the first and second to serve on the highest court in the land, have transformed the Constitution and America itself, making it a more equal place for all women.', N'Linda Hirshman')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (386, 17, N'Inspiralized: Turn Vegetables into Healthy', N'product386.jpg', CAST(8.00 AS Numeric(8, 2)), N'The definitive cookproduct for using a spiralizer: the kitchen gadget that turns vegetables and fruits into imaginative, low-carb dishes.', N'Ali Maffucci ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (387, 20, N'Site Reliability Engineering', N'product387.jpg', CAST(32.00 AS Numeric(8, 2)), N'The overwhelming majority of a software system’s lifespan is spent in use, not in design or implementation. So, why does conventional wisdom insist that software engineers focus primarily on the design and development of large-scale computing systems?', N'Niall Richard Murphy ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (388, 20, N'Windows 10 For Seniors For Dummies', N'product388.jpg', CAST(40.00 AS Numeric(8, 2)), N'Your clear-cut, easy-to-follow guide to Windows 10 ', N'Peter Weverka')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (389, 21, N'Secrets of Mental Math', N'product389.jpg', CAST(15.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Arthur Benjamin ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (390, 19, N'Tuttle Learning Chinese Characters', N'product390.jpg', CAST(22.00 AS Numeric(8, 2)), N'At last—there is a truly effective and enjoyable way to learn Chinese characters! This product helps students to learn and remember both the meanings and the pronunciations of over 800 characters. This otherwise daunting task is made easier by the use of techniques based on the psychology of learning and memory. key principles include the use of visual imagery, the visualization of short "stories," and the systematic building up of more complicated characters from basic building blocks.', N'Alison Matthews')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (391, 17, N'Thug Kitchen: The Official Cookproduct', N'product391.jpg', CAST(19.00 AS Numeric(8, 2)), N'Thug Kitchen started their wildly popular website to inspire people to eatsome goddamn vegetables and adopt a healthier lifestyle. Beloved byGwyneth Paltrow (''This might be my favorite thing ever'') and with half a million Faceproduct fans and counting, Thug Kitchen wants to show everyone how to take charge of their plates and cook up some real f*cking food.', N'Thug Kitchen ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (393, 21, N'The Magic of Math', N'product393.jpg', CAST(17.00 AS Numeric(8, 2)), N'he Magic of Math is the math product you wish you had in school. Using a delightful assortment of examples—from ice cream scoops and poker hands to measuring mountains and making magic squares—this product empowers you to see the beauty, simplicity, and truly magical properties behind those formulas and equations that once left your head spinning. You’ll learn the key ideas of classic areas of mathematics like arithmetic, algebra, geometry, trigonometry, and calculus, but you’ll also have fun fooling around with Fibonacci numbers, investigating infinity, and marveling over mathematical magic tricks that will make you look like a math genius!', N'Arthur Benjamin ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (394, 15, N'Detail in Contemporary Residential Architecture', N'product394.jpg', CAST(20.00 AS Numeric(8, 2)), N'Detail in Contemporary Residential Architecture provides analysis of both the technical and the aesthetic importance of details in the development of contemporary residential architecture. Featuring many of the world''s most highly acclaimed architects, the product presents more than 50 of the most recently completed and influential house designs. For each house there are color photographs, plans of every floor, sections and elevations as well as numerous consistently styled construction details. The product also features in-depth information for each project.', N'Virginia McLeod')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (396, 19, N'Chinese Flash Cards Kit Volume 1
+', N'product396.jpg', CAST(22.00 AS Numeric(8, 2)), N'Everything you need to learn the 349 most basic Chinese characters quickly and easily is in this box - our #1 Chinese language learning kit!', N'Philip Yungkin Lee ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (397, 24, N'Secret Garden', N'product397.jpg', CAST(57.00 AS Numeric(8, 2)), N'Good news for all SECRET GARDEN fans! All editions of SECRET GARDEN now feature thicker and heavier paper stock, fighting bleed-through from ink pens.', N'Johanna Basford')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (399, 20, N'CISSP  Official Study Guide', N'product399.jpg', CAST(32.00 AS Numeric(8, 2)), N'CISSP Study Guide -  fully updated for the 2015 CISSP Body of Knowledge', N'James M. Stewart')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (400, 15, N'World Architecture: The Masterworks', N'product400.jpg', CAST(25.00 AS Numeric(8, 2)), N'Will Pryce unveils a world of beauty and genius in this unparalleled, specially photographed survey of the world’s architectural master- pieces. More than 350 color photographs celebrate the finest buildings from over two thousand years of civilization: Hagia Sophia, the Gothic cathedrals of Europe, Islamic masterworks at Isfahan, the Taj Mahal, the Palace of Westminster, Gehry’s iconic Guggenheim Museum in Bilbao, and much more.', N'Will Pryce')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (401, 24, N'Adult Coloring Product Designs', N'product401.jpg', CAST(150.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Adult Coloring Product Designs')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (402, 20, N'Python Machine Learning', N'product402.jpg', CAST(25.00 AS Numeric(8, 2)), N'About This Product', N'Sebastian Raschka')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (406, 19, N'The Chinese Language for Beginners', N'product406.jpg', CAST(22.00 AS Numeric(8, 2)), N'Reading basic Chinese becomes simplified in this highly attractive and unique manual designed for readers of all ages. Chinese writing, pronunciation, and vocabulary are described here in an entertaining and interesting manner to help beginners learn Chinese quickly. The author starts with simple characters and then combines these to make sentences and stories. This step–by–step process allows the reader to develop a basic knowledge of the complex Mandarin Chinese language with maximum comprehension. A section dealing with pronunciation and intonation and a vocabulary list of the characters used in the product are included as an aid for the reader. Beautiful, imaginative Chinese characters, hand painted by a professional calligrapher and amusing illustrations by the author supplement the text and make learning to read Chinese fun along with fancy.', N'Lee Cooper ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (407, 21, N'All the Math You''ll Ever Need', N'product407.jpg', CAST(12.00 AS Numeric(8, 2)), N'A sharp mind, like a healthy body, is subject to the same rule of nature: Use it or lose it', N'Steve Slavin ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (408, 26, N'Fashion (Discovering Careers for Your Future)', N'product408.jpg', CAST(40.00 AS Numeric(8, 2)), N'Providing a broad view of the typical responsibilities, job assignments, working conditions and equipment used, also offers general information on average salary ranges and fringe benefits associated with the career. Information is presented in a two-colour format designed specially to appeal to students.', N' Ferguson')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (409, 23, N'Smarter Faster Better', N'product409.jpg', CAST(50.00 AS Numeric(8, 2)), N'At the core of Smarter Faster Better are eight key productivity concepts—from motivation and goal setting to focus and decision making—that explain why some people and companies get so much done. Drawing on the latest findings in neuroscience, psychology, and behavioral economics—as well as the experiences of CEOs, educational reformers, four-star generals, FBI agents, airplane pilots, and Broadway songwriters—this painstakingly researched product explains that the most productive people, companies, and organizations don’t merely act differently.', N'Charles Duhigg')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (410, 24, N'Good Vibes Coloring Product ', N'product410.jpg', CAST(123.00 AS Numeric(8, 2)), N'Enter a world of creative self-expression with this relaxing coloring product for grownups. Inside you ll find 30 amazing art activities that will take you to a happy place of patterning, shading, and coloring. These whimsical images offer a easy way to de-stress and unleash your inner artist.Thaneeya McArdle s transcendental art explores a visual language of shape, form, line, and color. Each vibrantly detailed illustration is designed to exercise your creativity. Beautifully colored finished examples are provided, along with a handy guide to basic art techniques, from patterning and combinations to shading and color theory.This therapeutic coloring product is perfect for decorating with markers, colored pencils, gel pens, or watercolors. Printed on high-quality, extra-thick paper that won t bleed through, all of the pages are pre-perforated for easy removal and display.', N'Design Originals')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (415, 16, N'Examples & Explanations: Property', N'product415.jpg', CAST(150.00 AS Numeric(8, 2)), N'Using proven Examples & Explanations pedagogy, this comprehensive study guide provides students with a short account of the law, followed by a variety of concrete examples and explanations that help reinforce and give substance to the key rules and concepts in contract law. Its flexible organization lets students move freely between topics that range from copyrights, to patents, trademarks and trade secrets. Keyed to all major IP survey courses and using compelling examples, Contracts: Examples & Explanations is a straightforward guide that gives students a solid grounding in this dynamic area of law.', N'Barlow Burke ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (420, 14, N'Bunny Williams On Garden Style', N'product420.jpg', CAST(6.00 AS Numeric(8, 2)), N'First published in 1998, On Garden Style established Bunny Williams as a reputable expert on gardens. In Bunny Williams on Garden Style, Williams visits impeccably designed gardens around the world, shedding light on the key components that make a garden so appealing and idyllic. For Williams, gardens offer an escape, and she imparts vital information on how to envision your garden and design a space that translates into a lush sanctuary reflecting your taste and style. Once you’ve imagined your garden, Williams offers advice for bringing it to fruition—the garden structure,” furnishing the space, and establishing an aesthetic. The product also includes plant lists, a reading list, and more. Filled with new photography of spectacular gardens, this latest volume is both a wonderful inspiration and a practical guide to gardening from one of the world’s most renowned design experts.', N'Bunny Williams')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (421, 15, N'Architecture: Form, Space, and Order', N'product421.jpg', CAST(35.00 AS Numeric(8, 2)), N'A superb visual reference to the principles of architecture Now including interactive CD-ROM! For more than thirty years, the beautifully illustrated Architecture: Form, Space, and Order has been the classic introduction to the basic vocabulary of architectural design. The updated Third Edition features expanded sections on circulation, light, views, and site context, along with new considerations of environmental factors, building codes, and contemporary examples of form, space, and order. This classic visual reference helps both students and practicing architects understand the basic vocabulary of architectural design by examining how form and space are ordered in the built environment.? Using his trademark meticulous drawing, Professor Ching shows the relationship between fundamental elements of architecture through the ages and across cultural boundaries. By looking at these seminal ideas, Architecture: Form, Space, and Order encourages the reader to look critically at the built environment and promotes a more evocative understanding of architecture. In addition to updates to content and many of the illustrations, this new edition includes a companion CD-ROM that brings the product''s architectural concepts to life through three-dimensional models and animations created by Professor Ching.', N' Francis D. K. Ching')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (422, 16, N'Guide to Federal Pharmacy Law, 8th Ed', N'product422.jpg', CAST(150.00 AS Numeric(8, 2)), N'This BEST SELLER is a comprehensive, easy-to-study guide to current federal pharmacy law. It is designed to help you review the most important federal pharmacy statutes and regulations, including the newest changes in the Patient Protection and Affordable Health care Act of 2010, Labeling of prescription containers,Biologics Price Competition and Innovation Act,Women''s Preventative Health Care Amendment of 2012,Medicaid Tamper-resistant Prescription Law, Risk Evaluation and Mitigation Strategy (REMS) program,and much more! This product is designed to assist candidates in preparing for pharmacy law examinations in all states. It also includes over 300 practice federal law questions and answers.', N'Barry S. Reiss ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (423, 16, N'Business Law: Text and Cases', N'product423.jpg', CAST(56.00 AS Numeric(8, 2)), N'Comprehensive, authoritative, and student-friendly, longtime market-leader BUSINESS LAW: TEXT AND CASES delivers an ideal blend of classic "black letter law" and cutting-edge coverage of contemporary issues and cases. BUSINESS LAW continues to set the standard for excellence. The text offers a strong student orientation, making the law accessible, interesting, and relevant. The cases, content, and features of the thirteenth edition have been thoroughly updated to represent the latest developments in business law. Cases range from precedent-setting landmarks to important recent decisions. Ethical, global, and corporate themes are integrated throughout. In addition, numerous critical-thinking exercises challenge students to apply knowledge to real-world issues. It is no wonder that BUSINESS LAW is used by more colleges and universities than any other business law text.', N'Kenneth W. Clarkson ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (426, 18, N'Writing Essays For Dummies', N'product426.jpg', CAST(23.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Mary Page')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (427, 18, N'The Best American Essays 2015', N'product427.jpg', CAST(16.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Ariel Levy ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (428, 18, N'he Art of the Personal Essay', N'product428.jpg', CAST(13.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Phillip Lopate ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (432, 21, N'Mathematical Mindsets', N'product432.jpg', CAST(12.00 AS Numeric(8, 2)), N'Scores of students hate and fear math, so they end up leaving school without an understanding of basic mathematical concepts. Their evasion and departure hinders math-related pathways and STEM career opportunities. Research has shown very clear methods to change this phenomena, but the information has been confined to research journals—until now. Mathematical Mindsets provides a proven, practical roadmap to mathematics success for any student at any age.', N'Jo Boaler')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (433, 21, N'Mastering Essential Math Skills', N'product433.jpg', CAST(15.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Richard W. Fisher')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (437, 23, N'Mindset: The New Psychology of Success', N'product437.jpg', CAST(53.00 AS Numeric(8, 2)), N'Dweck explains why it’s not just our abilities and talent that bring us success—but whether we approach them with a fixed or growth mindset. She makes clear why praising intelligence and ability doesn’t foster self-esteem and lead to accomplishment, but may actually jeopardize success. With the right mindset, we can motivate our kids and help them to raise their grades, as well as reach our own goals—personal and professional. Dweck reveals what all great parents, teachers, CEOs, and athletes already know: how a simple idea about the brain can create a love of learning and a resilience that is the basis of great accomplishment in every area.', N'Carol Dweck ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (438, 23, N'A Random Walk Down Wall Street', N'product438.jpg', CAST(60.00 AS Numeric(8, 2)), N'In today’s daunting investment landscape, the need for Burton G. Malkiel’s reassuring, authoritative, and perennially best-selling guide to investing is stronger than ever. A Random Walk Down Wall Street has long been established as the first product to purchase when starting a portfolio. This new edition features fresh material on exchange-traded funds and investment opportunities in emerging markets; a brand-new chapter on “smart beta” funds, the newest marketing gimmick of the investment management industry; and a new supplement that tackles the increasingly complex world of derivatives.', N'Burton G. Malkiel ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (439, 23, N'The Big Short: Inside the Doomsday Machine', N'product439.jpg', CAST(52.00 AS Numeric(8, 2)), N'Forget the old concept of retirement and the rest of the deferred-life plan–there is no need to wait and every reason not to, especially in unpredictable economic times. Whether your dream is escaping the rat race, experiencing high-end world travel, earning a monthly five-figure income with zero management, or just living more and working less, The 4-Hour Workweek is the blueprint. ', N'Michael Lewis ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (446, 14, N'Planting: A New Perspective', N'product446.jpg', CAST(30.00 AS Numeric(8, 2)), N'An intimate knowledge of plants is essential to the success of this approach and Planting makes Oudolf’s considerable understanding of plant ecology and performance accessible, explaining how plants behave in different situations, what goes on underground, and which species make good neighbors. Extensive plant charts and planting plans will help you choose plants for their structure, color, and texture as well as the way they perform in the landscape. A detailed directory, with details each plant’s life expectancy, the persistence of its seedheads, its tendency to spread, and propensity to self-seed, is an invaluable resource.', N'Noel Kingsbury')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (447, 15, N'Conditional Design', N'product447.jpg', CAST(25.00 AS Numeric(8, 2)), N'After purchasing this award-winning product, you will realize that it deserves a 5-star review. Give us a 5-star review and Math Essentials will send you a gift (a $14.95 value). You help others to find out about our award-winning products, and we show our appreciation. Just email us using the address in the front of the product with the name on your review.', N'Anthony di Mari')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (448, 14, N'The Vegetable Gardener''s Bible, 2nd Edition', N'product448.jpg', CAST(16.00 AS Numeric(8, 2)), N'this product will answer all your questions as well as put you on the path to an abundant harvest. As a bonus, anecdotes and stories make this informative product fun to read', N'Edward C. Smith ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (450, 14, N'Gardening for Butterflies', N'product450.jpg', CAST(12.00 AS Numeric(8, 2)), N'Gardening for Butterflies, by the experts at the Xerces Society, introduces you to a variety of colorful garden guests who need our help, and shows you how to design a habitat where they will thrive. This optimistic call to arms is packed with everything you need to create a beautiful, beneficial, butterfly-filled garden. Gardeners will learn why butterflies matter, why they are in danger, and what simple steps we can take to make a difference. You''ll learn how to choose the right plants, how to design a butterfly-friendly garden, and how to create a garden that flutters and flourishes with life.', N'Xerces Society')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (453, 25, N'Rick Steves Italy 2016', N'product453.jpg', CAST(15.00 AS Numeric(8, 2)), N'From the beaches to the Alps, from fine art to fine pasta, Italy has it all. With this product, you’ll trace Italian culture from Rome’s Colosseum to Michelangelo’s David to the bustling elegance of Milan. Experience the art-drenched cities of Venice and Florence, explore the ancient ruins of the Roman Forum, and learn how to avoid the lines at the most popular museums. Discover the villages of Tuscany and Umbria and the lazy rhythms of the Cinque Terre. Shop at local market stalls, sip a cappuccino at an outdoor café, and pick up a picnic lunch at an allimentari. Relax and enjoy the life of Bella Italia!', N'Rick Steves')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (454, 25, N'Birnbaum''s 2016 Walt Disney World', N'product454.jpg', CAST(45.00 AS Numeric(8, 2)), N'The finest guideproduct ever written for Maui. Now you can plan your best vacation--ever. This all new seventh edition is a candid, humorous guide to everything there is to see and do on the island. Best-selling author and longtime Hawai''i resident, Andrew Doughty, unlocks the secrets of an island so lush and diverse that many visitors never realize all that it has to offer. Explore with him as he reveals breathtaking trails, secluded beaches, pristine reefs, delicious places to eat, colorful craters, hidden waterfalls and so much more. Every restaurant, activity provider, business and resort is reviewed personally and anonymously. This product and a rental car are all you need to discover what makes Maui so exciting.', N'Birnbaum Guides ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (455, 25, N'Maui Revealed: The Ultimate Guideproduct', N'product455.jpg', CAST(45.00 AS Numeric(8, 2)), N'The finest guideproduct ever written for Maui. Now you can plan your best vacation--ever. This all new seventh edition is a candid, humorous guide to everything there is to see and do on the island. Best-selling author and longtime Hawai''i resident, Andrew Doughty, unlocks the secrets of an island so lush and diverse that many visitors never realize all that it has to offer. Explore with him as he reveals breathtaking trails, secluded beaches, pristine reefs, delicious places to eat, colorful craters, hidden waterfalls and so much more. Every restaurant, activity provider, business and resort is reviewed personally and anonymously. This product and a rental car are all you need to discover what makes Maui so exciting.', N'Andrew Doughty ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (456, 25, N'Rick Steves Paris 2016', N'product456.jpg', CAST(25.00 AS Numeric(8, 2)), N'With the self-guided tours in this product, you’ll explore the grand Champs-Elysées, the eye-popping Eiffel Tower, and the radiant cathedral of Notre-Dame. Learn how to save money and avoid the lines at the Louvre and Orsay Museums. Enjoy the ambience of Parisian neighborhoods, and take a day trip to the glittering palace of Versailles, or to the Champagne-soaked city of Reims. Then grab a café crème at a sidewalk café and listen to the hum of the city. You’ll see why Paris remains at the heart of global culture.', N'Rick Steves ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (457, 25, N'Rick Steves Ireland 2016', N'product457.jpg', CAST(23.00 AS Numeric(8, 2)), N'With this guide, you can explore lively Dublin, quaint Kilkenny, and the moss-draped ruins of the Ring of Kerry. Navigate meandering back roads that lead to windswept crags on the dramatic Dingle Peninsula. Explore Ireland’s revered past by following St. Patrick’s footsteps to the Rock of Cashel. Marvel at Newgrange, the mysterious mound older than the pyramids; then connect with today’s Irish culture by grabbing a pint at the local pub, enjoying the fiddle music, and jumping into conversations that buzz with brogue.', N'Rick Steves')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (460, 26, N'The 7-Day Flat-Belly Tea Cleanse', N'product460.jpg', CAST(25.00 AS Numeric(8, 2)), N'From metabolism-boosting green tea to fat-blocking white tea to the multi-powered chai, you’ll learn how to time your tea intake throughout the day, ensuring your body is burning fat and staying strong 24/7. All the while, you’ll get to enjoy delicious tea-based smoothies and indulgent dinners (yes, you get to eat on this cleanse!).', N'Kelly Choi ')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (461, 26, N'The 5-Day Real Food Detox', N'product461.jpg', CAST(26.00 AS Numeric(8, 2)), N'As a professional model, Nikki Sharp traveled constantly, barely slept, skipped meals, and relied on quick fixes to stay skinny, all of which took a toll on her physical and emotional health. Realizing she needed to make a serious change, she began to study integrative nutrition—and learned that the key to weight loss, radiant skin, and overall well-being is not starving yourself but eating. That’s right: eating! Sharp created her detox plan based on the knowledge that in the right combinations, real whole foods—grains, vegetables, fruits, and spices—can aid digestion, burn body fat, flush out toxins, reduce bloating, banish fatigue, and clear up acne.', N'Nikki Sharp')
+INSERT [dbo].[FbProduct] ([ID], [CatID], [Name], [Image], [Price], [Summary], [Producer]) VALUES (462, 26, N'A Fashionable History of: Dresses and Skirts', N'product462.jpg', CAST(10.00 AS Numeric(8, 2)), N'Exploring the development of costumes through the ages, this series covers all main items of clothing - from shoes to hats, and makeup to underwear. Each title shows the history and technology behind each item, making the series a resource for fashion, history, design, and art.', N'Helen Reynolds ')
 SET IDENTITY_INSERT [dbo].[FbProduct] OFF
 /****** Object:  Table [dbo].[aspnet_Users]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Users](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[UserId] [uniqueidentifier] NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+	[LoweredUserName] [nvarchar](256) NOT NULL,
+	[MobileAlias] [nvarchar](16) NULL,
+	[IsAnonymous] [bit] NOT NULL,
+	[LastActivityDate] [datetime] NOT NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Users_Index] ON [dbo].[aspnet_Users] 
+(
+	[ApplicationId] ASC,
+	[LoweredUserName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [aspnet_Users_Index2] ON [dbo].[aspnet_Users] 
+(
+	[ApplicationId] ASC,
+	[LastActivityDate] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUserName], [MobileAlias], [IsAnonymous], [LastActivityDate]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'51dc21fe-db1c-4368-ad5b-61c3e95c19dc', N'4c168042-1a1c-4b90-ba42-be6b45b6177e', N'4c168042-1a1c-4b90-ba42-be6b45b6177e', NULL, 1, CAST(0x00009E2200F824F2 AS DateTime))
 INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUserName], [MobileAlias], [IsAnonymous], [LastActivityDate]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'd31f6549-a6b7-4779-afa1-3b77f924f553', N'64d5ed62-fd9d-4fcf-ba20-658dc16def30', N'64d5ed62-fd9d-4fcf-ba20-658dc16def30', NULL, 1, CAST(0x00009E2600B874E8 AS DateTime))
@@ -116,26 +1022,384 @@ INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUser
 INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUserName], [MobileAlias], [IsAnonymous], [LastActivityDate]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'826b6335-4db7-430a-83c6-a1b5d9a59741', N'yang', N'yang', NULL, 0, CAST(0x00009E3000C8346E AS DateTime))
 INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUserName], [MobileAlias], [IsAnonymous], [LastActivityDate]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'c09ef8c5-4c7c-4a41-9111-6774f4e583d4', N'zhang', N'zhang', NULL, 0, CAST(0x00009E0900DF270A AS DateTime))
 /****** Object:  StoredProcedure [dbo].[aspnet_UnRegisterSchemaVersion]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UnRegisterSchemaVersion]
+    @Feature                   nvarchar(128),
+    @CompatibleSchemaVersion   nvarchar(128)
+AS
+BEGIN
+    DELETE FROM dbo.aspnet_SchemaVersions
+        WHERE   Feature = LOWER(@Feature) AND @CompatibleSchemaVersion = CompatibleSchemaVersion
+END
+GO
+/****** Object:  Table [dbo].[aspnet_Paths]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Paths](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[PathId] [uniqueidentifier] NOT NULL,
+	[Path] [nvarchar](256) NOT NULL,
+	[LoweredPath] [nvarchar](256) NOT NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[PathId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Paths_index] ON [dbo].[aspnet_Paths] 
+(
+	[ApplicationId] ASC,
+	[LoweredPath] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_Roles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Roles](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[RoleId] [uniqueidentifier] NOT NULL,
+	[RoleName] [nvarchar](256) NOT NULL,
+	[LoweredRoleName] [nvarchar](256) NOT NULL,
+	[Description] [nvarchar](256) NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Roles_index1] ON [dbo].[aspnet_Roles] 
+(
+	[ApplicationId] ASC,
+	[LoweredRoleName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_Roles] ([ApplicationId], [RoleId], [RoleName], [LoweredRoleName], [Description]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'556db47b-d6ef-468e-af18-4665d215a155', N'admin', N'admin', NULL)
 INSERT [dbo].[aspnet_Roles] ([ApplicationId], [RoleId], [RoleName], [LoweredRoleName], [Description]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'5e8c6bf4-6ff1-4f3f-993b-083b030a9043', N'member', N'member', NULL)
 /****** Object:  StoredProcedure [dbo].[aspnet_RegisterSchemaVersion]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_RegisterSchemaVersion]
+    @Feature                   nvarchar(128),
+    @CompatibleSchemaVersion   nvarchar(128),
+    @IsCurrentVersion          bit,
+    @RemoveIncompatibleSchema  bit
+AS
+BEGIN
+    IF( @RemoveIncompatibleSchema = 1 )
+    BEGIN
+        DELETE FROM dbo.aspnet_SchemaVersions WHERE Feature = LOWER( @Feature )
+    END
+    ELSE
+    BEGIN
+        IF( @IsCurrentVersion = 1 )
+        BEGIN
+            UPDATE dbo.aspnet_SchemaVersions
+            SET IsCurrentVersion = 0
+            WHERE Feature = LOWER( @Feature )
+        END
+    END
+
+    INSERT  dbo.aspnet_SchemaVersions( Feature, CompatibleSchemaVersion, IsCurrentVersion )
+    VALUES( LOWER( @Feature ), @CompatibleSchemaVersion, @IsCurrentVersion )
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_CheckSchemaVersion]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_CheckSchemaVersion]
+    @Feature                   nvarchar(128),
+    @CompatibleSchemaVersion   nvarchar(128)
+AS
+BEGIN
+    IF (EXISTS( SELECT  *
+                FROM    dbo.aspnet_SchemaVersions
+                WHERE   Feature = LOWER( @Feature ) AND
+                        CompatibleSchemaVersion = @CompatibleSchemaVersion ))
+        RETURN 0
+
+    RETURN 1
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Applications_CreateApplication]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Applications_CreateApplication]
+    @ApplicationName      nvarchar(256),
+    @ApplicationId        uniqueidentifier OUTPUT
+AS
+BEGIN
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+    IF(@ApplicationId IS NULL)
+    BEGIN
+        DECLARE @TranStarted   bit
+        SET @TranStarted = 0
+
+        IF( @@TRANCOUNT = 0 )
+        BEGIN
+	        BEGIN TRANSACTION
+	        SET @TranStarted = 1
+        END
+        ELSE
+    	    SET @TranStarted = 0
+
+        SELECT  @ApplicationId = ApplicationId
+        FROM dbo.aspnet_Applications WITH (UPDLOCK, HOLDLOCK)
+        WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+        IF(@ApplicationId IS NULL)
+        BEGIN
+            SELECT  @ApplicationId = NEWID()
+            INSERT  dbo.aspnet_Applications (ApplicationId, ApplicationName, LoweredApplicationName)
+            VALUES  (@ApplicationId, @ApplicationName, LOWER(@ApplicationName))
+        END
+
+
+        IF( @TranStarted = 1 )
+        BEGIN
+            IF(@@ERROR = 0)
+            BEGIN
+	        SET @TranStarted = 0
+	        COMMIT TRANSACTION
+            END
+            ELSE
+            BEGIN
+                SET @TranStarted = 0
+                ROLLBACK TRANSACTION
+            END
+        END
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Personalization_GetApplicationId]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Personalization_GetApplicationId] (
+    @ApplicationName NVARCHAR(256),
+    @ApplicationId UNIQUEIDENTIFIER OUT)
+AS
+BEGIN
+    SELECT @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+END
+GO
+/****** Object:  Table [dbo].[aspnet_Membership]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Membership](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[UserId] [uniqueidentifier] NOT NULL,
+	[Password] [nvarchar](128) NOT NULL,
+	[PasswordFormat] [int] NOT NULL,
+	[PasswordSalt] [nvarchar](128) NOT NULL,
+	[MobilePIN] [nvarchar](16) NULL,
+	[Email] [nvarchar](256) NULL,
+	[LoweredEmail] [nvarchar](256) NULL,
+	[PasswordQuestion] [nvarchar](256) NULL,
+	[PasswordAnswer] [nvarchar](128) NULL,
+	[IsApproved] [bit] NOT NULL,
+	[IsLockedOut] [bit] NOT NULL,
+	[CreateDate] [datetime] NOT NULL,
+	[LastLoginDate] [datetime] NOT NULL,
+	[LastPasswordChangedDate] [datetime] NOT NULL,
+	[LastLockoutDate] [datetime] NOT NULL,
+	[FailedPasswordAttemptCount] [int] NOT NULL,
+	[FailedPasswordAttemptWindowStart] [datetime] NOT NULL,
+	[FailedPasswordAnswerAttemptCount] [int] NOT NULL,
+	[FailedPasswordAnswerAttemptWindowStart] [datetime] NOT NULL,
+	[Comment] [ntext] NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+CREATE CLUSTERED INDEX [aspnet_Membership_index] ON [dbo].[aspnet_Membership] 
+(
+	[ApplicationId] ASC,
+	[LoweredEmail] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_Membership] ([ApplicationId], [UserId], [Password], [PasswordFormat], [PasswordSalt], [MobilePIN], [Email], [LoweredEmail], [PasswordQuestion], [PasswordAnswer], [IsApproved], [IsLockedOut], [CreateDate], [LastLoginDate], [LastPasswordChangedDate], [LastLockoutDate], [FailedPasswordAttemptCount], [FailedPasswordAttemptWindowStart], [FailedPasswordAnswerAttemptCount], [FailedPasswordAnswerAttemptWindowStart], [Comment]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'8f7664cb-7a3d-4c42-9e75-a220e5764505', N'pLt3qMA53LtQMNEsQBpEJ77UMrk=', 1, N'D/MTIbifz98cfub0e3cHnA==', NULL, N'wang@sing.com', N'wang@sing.com', N'w', N'uS4Oz5mTKWDaL5riaJYmy6RfhqQ=', 1, 0, CAST(0x00009E09016BE634 AS DateTime), CAST(0x00009E09016C56F6 AS DateTime), CAST(0x00009E09016BE634 AS DateTime), CAST(0xFFFF2FB300000000 AS DateTime), 1, CAST(0x00009E22009AD0C2 AS DateTime), 0, CAST(0xFFFF2FB300000000 AS DateTime), NULL)
 INSERT [dbo].[aspnet_Membership] ([ApplicationId], [UserId], [Password], [PasswordFormat], [PasswordSalt], [MobilePIN], [Email], [LoweredEmail], [PasswordQuestion], [PasswordAnswer], [IsApproved], [IsLockedOut], [CreateDate], [LastLoginDate], [LastPasswordChangedDate], [LastLockoutDate], [FailedPasswordAttemptCount], [FailedPasswordAttemptWindowStart], [FailedPasswordAnswerAttemptCount], [FailedPasswordAnswerAttemptWindowStart], [Comment]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'826b6335-4db7-430a-83c6-a1b5d9a59741', N'KZVW92aGGnObW1FdOBz1hr3/u5s=', 1, N'Pa7WRphP79r4jTTN28VGdg==', NULL, N'yang@sohu.com', N'yang@sohu.com', N'a', N'xHdUNchspZ39KrHs6792zTwdPXA=', 1, 0, CAST(0x00009E09006ED444 AS DateTime), CAST(0x00009E3000C83388 AS DateTime), CAST(0x00009E09006ED444 AS DateTime), CAST(0xFFFF2FB300000000 AS DateTime), 0, CAST(0xFFFF2FB300000000 AS DateTime), 0, CAST(0xFFFF2FB300000000 AS DateTime), NULL)
 INSERT [dbo].[aspnet_Membership] ([ApplicationId], [UserId], [Password], [PasswordFormat], [PasswordSalt], [MobilePIN], [Email], [LoweredEmail], [PasswordQuestion], [PasswordAnswer], [IsApproved], [IsLockedOut], [CreateDate], [LastLoginDate], [LastPasswordChangedDate], [LastLockoutDate], [FailedPasswordAttemptCount], [FailedPasswordAttemptWindowStart], [FailedPasswordAnswerAttemptCount], [FailedPasswordAnswerAttemptWindowStart], [Comment]) VALUES (N'5ca80562-b037-4314-b04e-a3e6277aece1', N'c09ef8c5-4c7c-4a41-9111-6774f4e583d4', N'a1EXDv3JsI1gJlHctB+zCaKWCTs=', 1, N'RDhFiZuN2uxGRcnUv5xqAA==', NULL, N'zhang@sohu.com', N'zhang@sohu.com', N'b', N'cjVdBkEHUKAlSphf9YQQHLIrVp0=', 1, 0, CAST(0x00009E0900DF2690 AS DateTime), CAST(0x00009E0900DF270A AS DateTime), CAST(0x00009E0900DF2690 AS DateTime), CAST(0xFFFF2FB300000000 AS DateTime), 0, CAST(0xFFFF2FB300000000 AS DateTime), 0, CAST(0xFFFF2FB300000000 AS DateTime), NULL)
 /****** Object:  StoredProcedure [dbo].[aspnet_Paths_CreatePath]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Paths_CreatePath]
+    @ApplicationId UNIQUEIDENTIFIER,
+    @Path           NVARCHAR(256),
+    @PathId         UNIQUEIDENTIFIER OUTPUT
+AS
+BEGIN
+    BEGIN TRANSACTION
+    IF (NOT EXISTS(SELECT * FROM dbo.aspnet_Paths WHERE LoweredPath = LOWER(@Path) AND ApplicationId = @ApplicationId))
+    BEGIN
+        INSERT dbo.aspnet_Paths (ApplicationId, Path, LoweredPath) VALUES (@ApplicationId, @Path, LOWER(@Path))
+    END
+    COMMIT TRANSACTION
+    SELECT @PathId = PathId FROM dbo.aspnet_Paths WHERE LOWER(@Path) = LoweredPath AND ApplicationId = @ApplicationId
+END
+GO
+/****** Object:  Table [dbo].[aspnet_PersonalizationAllUsers]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_PersonalizationAllUsers](
+	[PathId] [uniqueidentifier] NOT NULL,
+	[PageSettings] [image] NOT NULL,
+	[LastUpdatedDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PathId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_PersonalizationPerUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_PersonalizationPerUser](
+	[Id] [uniqueidentifier] NOT NULL,
+	[PathId] [uniqueidentifier] NULL,
+	[UserId] [uniqueidentifier] NULL,
+	[PageSettings] [image] NOT NULL,
+	[LastUpdatedDate] [datetime] NOT NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+CREATE UNIQUE CLUSTERED INDEX [aspnet_PersonalizationPerUser_index1] ON [dbo].[aspnet_PersonalizationPerUser] 
+(
+	[PathId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [aspnet_PersonalizationPerUser_ncindex2] ON [dbo].[aspnet_PersonalizationPerUser] 
+(
+	[UserId] ASC,
+	[PathId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_Profile]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Profile](
+	[UserId] [uniqueidentifier] NOT NULL,
+	[PropertyNames] [ntext] NOT NULL,
+	[PropertyValuesString] [ntext] NOT NULL,
+	[PropertyValuesBinary] [image] NOT NULL,
+	[LastUpdatedDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_Profile] ([UserId], [PropertyNames], [PropertyValuesString], [PropertyValuesBinary], [LastUpdatedDate]) VALUES (N'826b6335-4db7-430a-83c6-a1b5d9a59741', N'CartBLL:B:0:1406:OtherInfo.Phone:S:0:8:OtherInfo.Realname:S:8:4:OtherInfo.Address:S:12:7:OtherInfo.Zipcode:S:19:6:', N'12345678yangbeijing111111', 0x0001000000FFFFFFFF01000000000000000C02000000484170705F436F64652E78736D70747469752C2056657273696F6E3D302E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D6E756C6C05010000000743617274424C4C0100000009636172744974656D7303D90153797374656D2E436F6C6C656374696F6E732E47656E657269632E44696374696F6E61727960325B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D2C5B436172744974656D2C204170705F436F64652E78736D70747469752C2056657273696F6E3D302E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D6E756C6C5D5D0200000009030000000403000000D90153797374656D2E436F6C6C656374696F6E732E47656E657269632E44696374696F6E61727960325B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D2C5B436172744974656D2C204170705F436F64652E78736D70747469752C2056657273696F6E3D302E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D6E756C6C5D5D040000000756657273696F6E08436F6D7061726572084861736853697A650D4B657956616C756550616972730003000308910153797374656D2E436F6C6C656374696F6E732E47656E657269632E47656E65726963457175616C697479436F6D706172657260315B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D5D08DD0153797374656D2E436F6C6C656374696F6E732E47656E657269632E4B657956616C75655061697260325B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D2C5B436172744974656D2C204170705F436F64652E78736D70747469752C2056657273696F6E3D302E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D6E756C6C5D5D5B5D1600000009040000000300000009050000000404000000910153797374656D2E436F6C6C656374696F6E732E47656E657269632E47656E65726963457175616C697479436F6D706172657260315B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D5D00000000070500000000010000000000000003DB0153797374656D2E436F6C6C656374696F6E732E47656E657269632E4B657956616C75655061697260325B5B53797374656D2E496E7433322C206D73636F726C69622C2056657273696F6E3D322E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D623737613563353631393334653038395D2C5B436172744974656D2C204170705F436F64652E78736D70747469752C2056657273696F6E3D302E302E302E302C2043756C747572653D6E65757472616C2C205075626C69634B6579546F6B656E3D6E756C6C5D5D0B, CAST(0x00009E2D00ED593E AS DateTime))
 /****** Object:  StoredProcedure [dbo].[aspnet_Roles_RoleExists]    Script Date: 05/16/2018 14:06:23 ******/
-
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_RoleExists]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(0)
+    IF (EXISTS (SELECT RoleName FROM dbo.aspnet_Roles WHERE LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId ))
+        RETURN(1)
+    ELSE
+        RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_GetAllRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_GetAllRoles] (
+    @ApplicationName           nvarchar(256))
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+    SELECT RoleName
+    FROM   dbo.aspnet_Roles WHERE ApplicationId = @ApplicationId
+    ORDER BY RoleName
+END
+GO
+/****** Object:  Table [dbo].[aspnet_UsersInRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_UsersInRoles](
+	[UserId] [uniqueidentifier] NOT NULL,
+	[RoleId] [uniqueidentifier] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [aspnet_UsersInRoles_index] ON [dbo].[aspnet_UsersInRoles] 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 INSERT [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (N'c09ef8c5-4c7c-4a41-9111-6774f4e583d4', N'5e8c6bf4-6ff1-4f3f-993b-083b030a9043')
 INSERT [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (N'826b6335-4db7-430a-83c6-a1b5d9a59741', N'5e8c6bf4-6ff1-4f3f-993b-083b030a9043')
 INSERT [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (N'8f7664cb-7a3d-4c42-9e75-a220e5764505', N'5e8c6bf4-6ff1-4f3f-993b-083b030a9043')
 INSERT [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (N'826b6335-4db7-430a-83c6-a1b5d9a59741', N'556db47b-d6ef-468e-af18-4665d215a155')
 /****** Object:  Table [dbo].[FbOrder]    Script Date: 05/16/2018 14:06:23 ******/
-
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbOrder](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [uniqueidentifier] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[State] [int] NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[FbOrder] ON
 INSERT [dbo].[FbOrder] ([ID], [UserID], [Date], [State]) VALUES (227, N'826b6335-4db7-430a-83c6-a1b5d9a59741', CAST(0x00009E27008FCCC4 AS DateTime), 0)
@@ -5777,7 +7041,271 @@ INSERT [dbo].[FbOrder] ([ID], [UserID], [Date], [State]) VALUES (5754, N'826b633
 INSERT [dbo].[FbOrder] ([ID], [UserID], [Date], [State]) VALUES (5755, N'826b6335-4db7-430a-83c6-a1b5d9a59741', CAST(0x00009E2D01712F3D AS DateTime), 0)
 SET IDENTITY_INSERT [dbo].[FbOrder] OFF
 /****** Object:  StoredProcedure [dbo].[aspnet_Users_CreateUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Users_CreateUser]
+    @ApplicationId    uniqueidentifier,
+    @UserName         nvarchar(256),
+    @IsUserAnonymous  bit,
+    @LastActivityDate DATETIME,
+    @UserId           uniqueidentifier OUTPUT
+AS
+BEGIN
+    IF( @UserId IS NULL )
+        SELECT @UserId = NEWID()
+    ELSE
+    BEGIN
+        IF( EXISTS( SELECT UserId FROM dbo.aspnet_Users
+                    WHERE @UserId = UserId ) )
+            RETURN -1
+    END
 
+    INSERT dbo.aspnet_Users (ApplicationId, UserId, UserName, LoweredUserName, IsAnonymous, LastActivityDate)
+    VALUES (@ApplicationId, @UserId, @UserName, LOWER(@UserName), @IsUserAnonymous, @LastActivityDate)
+
+    RETURN 0
+END
+GO
+/****** Object:  Table [dbo].[FbCart]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbCart](
+	[ProductID] [int] NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[UserID] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_FbCart] PRIMARY KEY CLUSTERED 
+(
+	[ProductID] ASC,
+	[UserID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[vw_aspnet_Users]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_Users]
+  AS SELECT [dbo].[aspnet_Users].[ApplicationId], [dbo].[aspnet_Users].[UserId], [dbo].[aspnet_Users].[UserName], [dbo].[aspnet_Users].[LoweredUserName], [dbo].[aspnet_Users].[MobileAlias], [dbo].[aspnet_Users].[IsAnonymous], [dbo].[aspnet_Users].[LastActivityDate]
+  FROM [dbo].[aspnet_Users]
+GO
+/****** Object:  View [dbo].[vw_aspnet_Roles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_Roles]
+  AS SELECT [dbo].[aspnet_Roles].[ApplicationId], [dbo].[aspnet_Roles].[RoleId], [dbo].[aspnet_Roles].[RoleName], [dbo].[aspnet_Roles].[LoweredRoleName], [dbo].[aspnet_Roles].[Description]
+  FROM [dbo].[aspnet_Roles]
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_CreateRole]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_CreateRole]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+        BEGIN TRANSACTION
+        SET @TranStarted = 1
+    END
+    ELSE
+        SET @TranStarted = 0
+
+    EXEC dbo.aspnet_Applications_CreateApplication @ApplicationName, @ApplicationId OUTPUT
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF (EXISTS(SELECT RoleId FROM dbo.aspnet_Roles WHERE LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId))
+    BEGIN
+        SET @ErrorCode = 1
+        GOTO Cleanup
+    END
+
+    INSERT INTO dbo.aspnet_Roles
+                (ApplicationId, RoleName, LoweredRoleName)
+         VALUES (@ApplicationId, @RoleName, LOWER(@RoleName))
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+        COMMIT TRANSACTION
+    END
+
+    RETURN(0)
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+        ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Paths]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_WebPartState_Paths]
+  AS SELECT [dbo].[aspnet_Paths].[ApplicationId], [dbo].[aspnet_Paths].[PathId], [dbo].[aspnet_Paths].[Path], [dbo].[aspnet_Paths].[LoweredPath]
+  FROM [dbo].[aspnet_Paths]
+GO
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_User]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_WebPartState_User]
+  AS SELECT [dbo].[aspnet_PersonalizationPerUser].[PathId], [dbo].[aspnet_PersonalizationPerUser].[UserId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationPerUser].[PageSettings]), [dbo].[aspnet_PersonalizationPerUser].[LastUpdatedDate]
+  FROM [dbo].[aspnet_PersonalizationPerUser]
+GO
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Shared]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_WebPartState_Shared]
+  AS SELECT [dbo].[aspnet_PersonalizationAllUsers].[PathId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationAllUsers].[PageSettings]), [dbo].[aspnet_PersonalizationAllUsers].[LastUpdatedDate]
+  FROM [dbo].[aspnet_PersonalizationAllUsers]
+GO
+/****** Object:  View [dbo].[vw_aspnet_UsersInRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_UsersInRoles]
+  AS SELECT [dbo].[aspnet_UsersInRoles].[UserId], [dbo].[aspnet_UsersInRoles].[RoleId]
+  FROM [dbo].[aspnet_UsersInRoles]
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteInactiveProfiles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT  0
+        RETURN
+    END
+
+    DELETE
+    FROM    dbo.aspnet_Profile
+    WHERE   UserId IN
+            (   SELECT  UserId
+                FROM    dbo.aspnet_Users u
+                WHERE   ApplicationId = @ApplicationId
+                        AND (LastActivityDate <= @InactiveSinceDate)
+                        AND (
+                                (@ProfileAuthOptions = 2)
+                             OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                             OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+                            )
+            )
+
+    SELECT  @@ROWCOUNT
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_Profiles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_Profiles]
+  AS SELECT [dbo].[aspnet_Profile].[UserId], [dbo].[aspnet_Profile].[LastUpdatedDate],
+      [DataSize]=  DATALENGTH([dbo].[aspnet_Profile].[PropertyNames])
+                 + DATALENGTH([dbo].[aspnet_Profile].[PropertyValuesString])
+                 + DATALENGTH([dbo].[aspnet_Profile].[PropertyValuesBinary])
+  FROM [dbo].[aspnet_Profile]
+GO
+/****** Object:  View [dbo].[vw_aspnet_MembershipUsers]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_MembershipUsers]
+  AS SELECT [dbo].[aspnet_Membership].[UserId],
+            [dbo].[aspnet_Membership].[PasswordFormat],
+            [dbo].[aspnet_Membership].[MobilePIN],
+            [dbo].[aspnet_Membership].[Email],
+            [dbo].[aspnet_Membership].[LoweredEmail],
+            [dbo].[aspnet_Membership].[PasswordQuestion],
+            [dbo].[aspnet_Membership].[PasswordAnswer],
+            [dbo].[aspnet_Membership].[IsApproved],
+            [dbo].[aspnet_Membership].[IsLockedOut],
+            [dbo].[aspnet_Membership].[CreateDate],
+            [dbo].[aspnet_Membership].[LastLoginDate],
+            [dbo].[aspnet_Membership].[LastPasswordChangedDate],
+            [dbo].[aspnet_Membership].[LastLockoutDate],
+            [dbo].[aspnet_Membership].[FailedPasswordAttemptCount],
+            [dbo].[aspnet_Membership].[FailedPasswordAttemptWindowStart],
+            [dbo].[aspnet_Membership].[FailedPasswordAnswerAttemptCount],
+            [dbo].[aspnet_Membership].[FailedPasswordAnswerAttemptWindowStart],
+            [dbo].[aspnet_Membership].[Comment],
+            [dbo].[aspnet_Users].[ApplicationId],
+            [dbo].[aspnet_Users].[UserName],
+            [dbo].[aspnet_Users].[MobileAlias],
+            [dbo].[aspnet_Users].[IsAnonymous],
+            [dbo].[aspnet_Users].[LastActivityDate]
+  FROM [dbo].[aspnet_Membership] INNER JOIN [dbo].[aspnet_Users]
+      ON [dbo].[aspnet_Membership].[UserId] = [dbo].[aspnet_Users].[UserId]
+GO
+/****** Object:  Table [dbo].[FbDetail]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FbDetail](
+	[OrderID] [int] NOT NULL,
+	[ProductID] [int] NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[Price] [numeric](8, 2) NOT NULL,
+ CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
+(
+	[OrderID] ASC,
+	[ProductID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 INSERT [dbo].[FbDetail] ([OrderID], [ProductID], [Quantity], [Price]) VALUES (228, 355, 1, CAST(55.00 AS Numeric(8, 2)))
 INSERT [dbo].[FbDetail] ([OrderID], [ProductID], [Quantity], [Price]) VALUES (228, 356, 1, CAST(18.00 AS Numeric(8, 2)))
@@ -5803,3 +7331,2858 @@ INSERT [dbo].[FbDetail] ([OrderID], [ProductID], [Quantity], [Price]) VALUES (36
 INSERT [dbo].[FbDetail] ([OrderID], [ProductID], [Quantity], [Price]) VALUES (383, 355, 1, CAST(55.00 AS Numeric(8, 2)))
 INSERT [dbo].[FbDetail] ([OrderID], [ProductID], [Quantity], [Price]) VALUES (402, 355, 1, CAST(55.00 AS Numeric(8, 2)))
 /****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]
+	@ApplicationName  nvarchar(256),
+	@UserNames		  nvarchar(4000),
+	@RoleNames		  nvarchar(4000)
+AS
+BEGIN
+	DECLARE @AppId uniqueidentifier
+	SELECT  @AppId = NULL
+	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+	IF (@AppId IS NULL)
+		RETURN(2)
+
+
+	DECLARE @TranStarted   bit
+	SET @TranStarted = 0
+
+	IF( @@TRANCOUNT = 0 )
+	BEGIN
+		BEGIN TRANSACTION
+		SET @TranStarted = 1
+	END
+
+	DECLARE @tbNames  table(Name nvarchar(256) NOT NULL PRIMARY KEY)
+	DECLARE @tbRoles  table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @tbUsers  table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @Num	  int
+	DECLARE @Pos	  int
+	DECLARE @NextPos  int
+	DECLARE @Name	  nvarchar(256)
+	DECLARE @CountAll int
+	DECLARE @CountU	  int
+	DECLARE @CountR	  int
+
+
+	SET @Num = 0
+	SET @Pos = 1
+	WHILE(@Pos <= LEN(@RoleNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@RoleNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbRoles
+	  SELECT RoleId
+	  FROM   dbo.aspnet_Roles ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
+	SELECT @CountR = @@ROWCOUNT
+
+	IF (@CountR <> @Num)
+	BEGIN
+		SELECT TOP 1 N'', Name
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(2)
+	END
+
+
+	DELETE FROM @tbNames WHERE 1=1
+	SET @Num = 0
+	SET @Pos = 1
+
+
+	WHILE(@Pos <= LEN(@UserNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@UserNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbUsers
+	  SELECT UserId
+	  FROM   dbo.aspnet_Users ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
+
+	SELECT @CountU = @@ROWCOUNT
+	IF (@CountU <> @Num)
+	BEGIN
+		SELECT TOP 1 Name, N''
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT au.LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE u.UserId = au.UserId)
+
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(1)
+	END
+
+	SELECT  @CountAll = COUNT(*)
+	FROM	dbo.aspnet_UsersInRoles ur, @tbUsers u, @tbRoles r
+	WHERE   ur.UserId = u.UserId AND ur.RoleId = r.RoleId
+
+	IF (@CountAll <> @CountU * @CountR)
+	BEGIN
+		SELECT TOP 1 UserName, RoleName
+		FROM		 @tbUsers tu, @tbRoles tr, dbo.aspnet_Users u, dbo.aspnet_Roles r
+		WHERE		 u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND
+					 tu.UserId NOT IN (SELECT ur.UserId FROM dbo.aspnet_UsersInRoles ur WHERE ur.RoleId = tr.RoleId) AND
+					 tr.RoleId NOT IN (SELECT ur.RoleId FROM dbo.aspnet_UsersInRoles ur WHERE ur.UserId = tu.UserId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(3)
+	END
+
+	DELETE FROM dbo.aspnet_UsersInRoles
+	WHERE UserId IN (SELECT UserId FROM @tbUsers)
+	  AND RoleId IN (SELECT RoleId FROM @tbRoles)
+	IF( @TranStarted = 1 )
+		COMMIT TRANSACTION
+	RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_IsUserInRole]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_IsUserInRole]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(2)
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    DECLARE @RoleId uniqueidentifier
+    SELECT  @RoleId = NULL
+
+    SELECT  @UserId = UserId
+    FROM    dbo.aspnet_Users
+    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
+
+    IF (@UserId IS NULL)
+        RETURN(2)
+
+    SELECT  @RoleId = RoleId
+    FROM    dbo.aspnet_Roles
+    WHERE   LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
+
+    IF (@RoleId IS NULL)
+        RETURN(3)
+
+    IF (EXISTS( SELECT * FROM dbo.aspnet_UsersInRoles WHERE  UserId = @UserId AND RoleId = @RoleId))
+        RETURN(1)
+    ELSE
+        RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetUsersInRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetUsersInRoles]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+     DECLARE @RoleId uniqueidentifier
+     SELECT  @RoleId = NULL
+
+     SELECT  @RoleId = RoleId
+     FROM    dbo.aspnet_Roles
+     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
+
+     IF (@RoleId IS NULL)
+         RETURN(1)
+
+    SELECT u.UserName
+    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
+    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId
+    ORDER BY u.UserName
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetRolesForUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetRolesForUser]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT  @UserId = UserId
+    FROM    dbo.aspnet_Users
+    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
+
+    IF (@UserId IS NULL)
+        RETURN(1)
+
+    SELECT r.RoleName
+    FROM   dbo.aspnet_Roles r, dbo.aspnet_UsersInRoles ur
+    WHERE  r.RoleId = ur.RoleId AND r.ApplicationId = @ApplicationId AND ur.UserId = @UserId
+    ORDER BY r.RoleName
+    RETURN (0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_FindUsersInRole]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_FindUsersInRole]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256),
+    @UserNameToMatch  nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+     DECLARE @RoleId uniqueidentifier
+     SELECT  @RoleId = NULL
+
+     SELECT  @RoleId = RoleId
+     FROM    dbo.aspnet_Roles
+     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
+
+     IF (@RoleId IS NULL)
+         RETURN(1)
+
+    SELECT u.UserName
+    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
+    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId AND LoweredUserName LIKE LOWER(@UserNameToMatch)
+    ORDER BY u.UserName
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_AddUsersToRoles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_AddUsersToRoles]
+	@ApplicationName  nvarchar(256),
+	@UserNames		  nvarchar(4000),
+	@RoleNames		  nvarchar(4000),
+	@CurrentTimeUtc   datetime
+AS
+BEGIN
+	DECLARE @AppId uniqueidentifier
+	SELECT  @AppId = NULL
+	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+	IF (@AppId IS NULL)
+		RETURN(2)
+	DECLARE @TranStarted   bit
+	SET @TranStarted = 0
+
+	IF( @@TRANCOUNT = 0 )
+	BEGIN
+		BEGIN TRANSACTION
+		SET @TranStarted = 1
+	END
+
+	DECLARE @tbNames	table(Name nvarchar(256) NOT NULL PRIMARY KEY)
+	DECLARE @tbRoles	table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @tbUsers	table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @Num		int
+	DECLARE @Pos		int
+	DECLARE @NextPos	int
+	DECLARE @Name		nvarchar(256)
+
+	SET @Num = 0
+	SET @Pos = 1
+	WHILE(@Pos <= LEN(@RoleNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@RoleNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbRoles
+	  SELECT RoleId
+	  FROM   dbo.aspnet_Roles ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
+
+	IF (@@ROWCOUNT <> @Num)
+	BEGIN
+		SELECT TOP 1 Name
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(2)
+	END
+
+	DELETE FROM @tbNames WHERE 1=1
+	SET @Num = 0
+	SET @Pos = 1
+
+	WHILE(@Pos <= LEN(@UserNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@UserNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbUsers
+	  SELECT UserId
+	  FROM   dbo.aspnet_Users ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
+
+	IF (@@ROWCOUNT <> @Num)
+	BEGIN
+		DELETE FROM @tbNames
+		WHERE LOWER(Name) IN (SELECT LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE au.UserId = u.UserId)
+
+		INSERT dbo.aspnet_Users (ApplicationId, UserId, UserName, LoweredUserName, IsAnonymous, LastActivityDate)
+		  SELECT @AppId, NEWID(), Name, LOWER(Name), 0, @CurrentTimeUtc
+		  FROM   @tbNames
+
+		INSERT INTO @tbUsers
+		  SELECT  UserId
+		  FROM	dbo.aspnet_Users au, @tbNames t
+		  WHERE   LOWER(t.Name) = au.LoweredUserName AND au.ApplicationId = @AppId
+	END
+
+	IF (EXISTS (SELECT * FROM dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr WHERE tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId))
+	BEGIN
+		SELECT TOP 1 UserName, RoleName
+		FROM		 dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr, aspnet_Users u, aspnet_Roles r
+		WHERE		u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId
+
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(3)
+	END
+
+	INSERT INTO dbo.aspnet_UsersInRoles (UserId, RoleId)
+	SELECT UserId, RoleId
+	FROM @tbUsers, @tbRoles
+
+	IF( @TranStarted = 1 )
+		COMMIT TRANSACTION
+	RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Users_DeleteUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Users_DeleteUser]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256),
+    @TablesToDeleteFrom int,
+    @NumTablesDeletedFrom int OUTPUT
+AS
+BEGIN
+    DECLARE @UserId               uniqueidentifier
+    SELECT  @UserId               = NULL
+    SELECT  @NumTablesDeletedFrom = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+	SET @TranStarted = 0
+
+    DECLARE @ErrorCode   int
+    DECLARE @RowCount    int
+
+    SET @ErrorCode = 0
+    SET @RowCount  = 0
+
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a
+    WHERE   u.LoweredUserName       = LOWER(@UserName)
+        AND u.ApplicationId         = a.ApplicationId
+        AND LOWER(@ApplicationName) = a.LoweredApplicationName
+
+    IF (@UserId IS NULL)
+    BEGIN
+        GOTO Cleanup
+    END
+
+    -- Delete from Membership table if (@TablesToDeleteFrom & 1) is set
+    IF ((@TablesToDeleteFrom & 1) <> 0 AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
+    BEGIN
+        DELETE FROM dbo.aspnet_Membership WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+               @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_UsersInRoles table if (@TablesToDeleteFrom & 2) is set
+    IF ((@TablesToDeleteFrom & 2) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_UsersInRoles') AND (type = 'V'))) )
+    BEGIN
+        DELETE FROM dbo.aspnet_UsersInRoles WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_Profile table if (@TablesToDeleteFrom & 4) is set
+    IF ((@TablesToDeleteFrom & 4) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
+    BEGIN
+        DELETE FROM dbo.aspnet_Profile WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_PersonalizationPerUser table if (@TablesToDeleteFrom & 8) is set
+    IF ((@TablesToDeleteFrom & 8) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
+    BEGIN
+        DELETE FROM dbo.aspnet_PersonalizationPerUser WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_Users table if (@TablesToDeleteFrom & 1,2,4 & 8) are all set
+    IF ((@TablesToDeleteFrom & 1) <> 0 AND
+        (@TablesToDeleteFrom & 2) <> 0 AND
+        (@TablesToDeleteFrom & 4) <> 0 AND
+        (@TablesToDeleteFrom & 8) <> 0 AND
+        (EXISTS (SELECT UserId FROM dbo.aspnet_Users WHERE @UserId = UserId)))
+    BEGIN
+        DELETE FROM dbo.aspnet_Users WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	    SET @TranStarted = 0
+	    COMMIT TRANSACTION
+    END
+
+    RETURN 0
+
+Cleanup:
+    SET @NumTablesDeletedFrom = 0
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+	    ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_DeleteRole]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_DeleteRole]
+    @ApplicationName            nvarchar(256),
+    @RoleName                   nvarchar(256),
+    @DeleteOnlyIfRoleIsEmpty    bit
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+        BEGIN TRANSACTION
+        SET @TranStarted = 1
+    END
+    ELSE
+        SET @TranStarted = 0
+
+    DECLARE @RoleId   uniqueidentifier
+    SELECT  @RoleId = NULL
+    SELECT  @RoleId = RoleId FROM dbo.aspnet_Roles WHERE LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
+
+    IF (@RoleId IS NULL)
+    BEGIN
+        SELECT @ErrorCode = 1
+        GOTO Cleanup
+    END
+    IF (@DeleteOnlyIfRoleIsEmpty <> 0)
+    BEGIN
+        IF (EXISTS (SELECT RoleId FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId))
+        BEGIN
+            SELECT @ErrorCode = 2
+            GOTO Cleanup
+        END
+    END
+
+
+    DELETE FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    DELETE FROM dbo.aspnet_Roles WHERE @RoleId = RoleId  AND ApplicationId = @ApplicationId
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+        COMMIT TRANSACTION
+    END
+
+    RETURN(0)
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+        ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_SetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationPerUser_SetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @UserName         NVARCHAR(256),
+    @Path             NVARCHAR(256),
+    @PageSettings     IMAGE,
+    @CurrentTimeUtc   DATETIME)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+    DECLARE @UserId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+    SELECT @UserId = NULL
+
+    EXEC dbo.aspnet_Applications_CreateApplication @ApplicationName, @ApplicationId OUTPUT
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        EXEC dbo.aspnet_Paths_CreatePath @ApplicationId, @Path, @PathId OUTPUT
+    END
+
+    SELECT @UserId = u.UserId FROM dbo.aspnet_Users u WHERE u.ApplicationId = @ApplicationId AND u.LoweredUserName = LOWER(@UserName)
+    IF (@UserId IS NULL)
+    BEGIN
+        EXEC dbo.aspnet_Users_CreateUser @ApplicationId, @UserName, 0, @CurrentTimeUtc, @UserId OUTPUT
+    END
+
+    UPDATE   dbo.aspnet_Users WITH (ROWLOCK)
+    SET      LastActivityDate = @CurrentTimeUtc
+    WHERE    UserId = @UserId
+    IF (@@ROWCOUNT = 0) -- Username not found
+        RETURN
+
+    IF (EXISTS(SELECT PathId FROM dbo.aspnet_PersonalizationPerUser WHERE UserId = @UserId AND PathId = @PathId))
+        UPDATE dbo.aspnet_PersonalizationPerUser SET PageSettings = @PageSettings, LastUpdatedDate = @CurrentTimeUtc WHERE UserId = @UserId AND PathId = @PathId
+    ELSE
+        INSERT INTO dbo.aspnet_PersonalizationPerUser(UserId, PathId, PageSettings, LastUpdatedDate) VALUES (@UserId, @PathId, @PageSettings, @CurrentTimeUtc)
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @UserName         NVARCHAR(256),
+    @Path             NVARCHAR(256),
+    @CurrentTimeUtc   DATETIME)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+    DECLARE @UserId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+    SELECT @UserId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @UserId = u.UserId FROM dbo.aspnet_Users u WHERE u.ApplicationId = @ApplicationId AND u.LoweredUserName = LOWER(@UserName)
+    IF (@UserId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    UPDATE   dbo.aspnet_Users WITH (ROWLOCK)
+    SET      LastActivityDate = @CurrentTimeUtc
+    WHERE    UserId = @UserId
+    IF (@@ROWCOUNT = 0) -- Username not found
+        RETURN
+
+    DELETE FROM dbo.aspnet_PersonalizationPerUser WHERE PathId = @PathId AND UserId = @UserId
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_GetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationPerUser_GetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @UserName         NVARCHAR(256),
+    @Path             NVARCHAR(256),
+    @CurrentTimeUtc   DATETIME)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+    DECLARE @UserId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+    SELECT @UserId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @UserId = u.UserId FROM dbo.aspnet_Users u WHERE u.ApplicationId = @ApplicationId AND u.LoweredUserName = LOWER(@UserName)
+    IF (@UserId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    UPDATE   dbo.aspnet_Users WITH (ROWLOCK)
+    SET      LastActivityDate = @CurrentTimeUtc
+    WHERE    UserId = @UserId
+    IF (@@ROWCOUNT = 0) -- Username not found
+        RETURN
+
+    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationPerUser p WHERE p.PathId = @PathId AND p.UserId = @UserId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUserInfo]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_UpdateUserInfo]
+    @ApplicationName                nvarchar(256),
+    @UserName                       nvarchar(256),
+    @IsPasswordCorrect              bit,
+    @UpdateLastLoginActivityDate    bit,
+    @MaxInvalidPasswordAttempts     int,
+    @PasswordAttemptWindow          int,
+    @CurrentTimeUtc                 datetime,
+    @LastLoginDate                  datetime,
+    @LastActivityDate               datetime
+AS
+BEGIN
+    DECLARE @UserId                                 uniqueidentifier
+    DECLARE @IsApproved                             bit
+    DECLARE @IsLockedOut                            bit
+    DECLARE @LastLockoutDate                        datetime
+    DECLARE @FailedPasswordAttemptCount             int
+    DECLARE @FailedPasswordAttemptWindowStart       datetime
+    DECLARE @FailedPasswordAnswerAttemptCount       int
+    DECLARE @FailedPasswordAnswerAttemptWindowStart datetime
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    SELECT  @UserId = u.UserId,
+            @IsApproved = m.IsApproved,
+            @IsLockedOut = m.IsLockedOut,
+            @LastLockoutDate = m.LastLockoutDate,
+            @FailedPasswordAttemptCount = m.FailedPasswordAttemptCount,
+            @FailedPasswordAttemptWindowStart = m.FailedPasswordAttemptWindowStart,
+            @FailedPasswordAnswerAttemptCount = m.FailedPasswordAnswerAttemptCount,
+            @FailedPasswordAnswerAttemptWindowStart = m.FailedPasswordAnswerAttemptWindowStart
+    FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m WITH ( UPDLOCK )
+    WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.ApplicationId = a.ApplicationId    AND
+            u.UserId = m.UserId AND
+            LOWER(@UserName) = u.LoweredUserName
+
+    IF ( @@rowcount = 0 )
+    BEGIN
+        SET @ErrorCode = 1
+        GOTO Cleanup
+    END
+
+    IF( @IsLockedOut = 1 )
+    BEGIN
+        GOTO Cleanup
+    END
+
+    IF( @IsPasswordCorrect = 0 )
+    BEGIN
+        IF( @CurrentTimeUtc > DATEADD( minute, @PasswordAttemptWindow, @FailedPasswordAttemptWindowStart ) )
+        BEGIN
+            SET @FailedPasswordAttemptWindowStart = @CurrentTimeUtc
+            SET @FailedPasswordAttemptCount = 1
+        END
+        ELSE
+        BEGIN
+            SET @FailedPasswordAttemptWindowStart = @CurrentTimeUtc
+            SET @FailedPasswordAttemptCount = @FailedPasswordAttemptCount + 1
+        END
+
+        BEGIN
+            IF( @FailedPasswordAttemptCount >= @MaxInvalidPasswordAttempts )
+            BEGIN
+                SET @IsLockedOut = 1
+                SET @LastLockoutDate = @CurrentTimeUtc
+            END
+        END
+    END
+    ELSE
+    BEGIN
+        IF( @FailedPasswordAttemptCount > 0 OR @FailedPasswordAnswerAttemptCount > 0 )
+        BEGIN
+            SET @FailedPasswordAttemptCount = 0
+            SET @FailedPasswordAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+            SET @FailedPasswordAnswerAttemptCount = 0
+            SET @FailedPasswordAnswerAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+            SET @LastLockoutDate = CONVERT( datetime, '17540101', 112 )
+        END
+    END
+
+    IF( @UpdateLastLoginActivityDate = 1 )
+    BEGIN
+        UPDATE  dbo.aspnet_Users
+        SET     LastActivityDate = @LastActivityDate
+        WHERE   @UserId = UserId
+
+        IF( @@ERROR <> 0 )
+        BEGIN
+            SET @ErrorCode = -1
+            GOTO Cleanup
+        END
+
+        UPDATE  dbo.aspnet_Membership
+        SET     LastLoginDate = @LastLoginDate
+        WHERE   UserId = @UserId
+
+        IF( @@ERROR <> 0 )
+        BEGIN
+            SET @ErrorCode = -1
+            GOTO Cleanup
+        END
+    END
+
+
+    UPDATE dbo.aspnet_Membership
+    SET IsLockedOut = @IsLockedOut, LastLockoutDate = @LastLockoutDate,
+        FailedPasswordAttemptCount = @FailedPasswordAttemptCount,
+        FailedPasswordAttemptWindowStart = @FailedPasswordAttemptWindowStart,
+        FailedPasswordAnswerAttemptCount = @FailedPasswordAnswerAttemptCount,
+        FailedPasswordAnswerAttemptWindowStart = @FailedPasswordAnswerAttemptWindowStart
+    WHERE @UserId = UserId
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	SET @TranStarted = 0
+	COMMIT TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_UpdateUser]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @Email                nvarchar(256),
+    @Comment              ntext,
+    @IsApproved           bit,
+    @LastLoginDate        datetime,
+    @LastActivityDate     datetime,
+    @UniqueEmail          int,
+    @CurrentTimeUtc       datetime
+AS
+BEGIN
+    DECLARE @UserId uniqueidentifier
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @UserId = NULL
+    SELECT  @UserId = u.UserId, @ApplicationId = a.ApplicationId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
+
+    IF (@UserId IS NULL)
+        RETURN(1)
+
+    IF (@UniqueEmail = 1)
+    BEGIN
+        IF (EXISTS (SELECT *
+                    FROM  dbo.aspnet_Membership WITH (UPDLOCK, HOLDLOCK)
+                    WHERE ApplicationId = @ApplicationId  AND @UserId <> UserId AND LoweredEmail = LOWER(@Email)))
+        BEGIN
+            RETURN(7)
+        END
+    END
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+	SET @TranStarted = 0
+
+    UPDATE dbo.aspnet_Users WITH (ROWLOCK)
+    SET
+         LastActivityDate = @LastActivityDate
+    WHERE
+       @UserId = UserId
+
+    IF( @@ERROR <> 0 )
+        GOTO Cleanup
+
+    UPDATE dbo.aspnet_Membership WITH (ROWLOCK)
+    SET
+         Email            = @Email,
+         LoweredEmail     = LOWER(@Email),
+         Comment          = @Comment,
+         IsApproved       = @IsApproved,
+         LastLoginDate    = @LastLoginDate
+    WHERE
+       @UserId = UserId
+
+    IF( @@ERROR <> 0 )
+        GOTO Cleanup
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	SET @TranStarted = 0
+	COMMIT TRANSACTION
+    END
+
+    RETURN 0
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN -1
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UnlockUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_UnlockUser]
+    @ApplicationName                         nvarchar(256),
+    @UserName                                nvarchar(256)
+AS
+BEGIN
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
+
+    IF ( @UserId IS NULL )
+        RETURN 1
+
+    UPDATE dbo.aspnet_Membership
+    SET IsLockedOut = 0,
+        FailedPasswordAttemptCount = 0,
+        FailedPasswordAttemptWindowStart = CONVERT( datetime, '17540101', 112 ),
+        FailedPasswordAnswerAttemptCount = 0,
+        FailedPasswordAnswerAttemptWindowStart = CONVERT( datetime, '17540101', 112 ),
+        LastLockoutDate = CONVERT( datetime, '17540101', 112 )
+    WHERE @UserId = UserId
+
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_SetPassword]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_SetPassword]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256),
+    @NewPassword      nvarchar(128),
+    @PasswordSalt     nvarchar(128),
+    @CurrentTimeUtc   datetime,
+    @PasswordFormat   int = 0
+AS
+BEGIN
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
+
+    IF (@UserId IS NULL)
+        RETURN(1)
+
+    UPDATE dbo.aspnet_Membership
+    SET Password = @NewPassword, PasswordFormat = @PasswordFormat, PasswordSalt = @PasswordSalt,
+        LastPasswordChangedDate = @CurrentTimeUtc
+    WHERE @UserId = UserId
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ResetPassword]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_ResetPassword]
+    @ApplicationName             nvarchar(256),
+    @UserName                    nvarchar(256),
+    @NewPassword                 nvarchar(128),
+    @MaxInvalidPasswordAttempts  int,
+    @PasswordAttemptWindow       int,
+    @PasswordSalt                nvarchar(128),
+    @CurrentTimeUtc              datetime,
+    @PasswordFormat              int = 0,
+    @PasswordAnswer              nvarchar(128) = NULL
+AS
+BEGIN
+    DECLARE @IsLockedOut                            bit
+    DECLARE @LastLockoutDate                        datetime
+    DECLARE @FailedPasswordAttemptCount             int
+    DECLARE @FailedPasswordAttemptWindowStart       datetime
+    DECLARE @FailedPasswordAnswerAttemptCount       int
+    DECLARE @FailedPasswordAnswerAttemptWindowStart datetime
+
+    DECLARE @UserId                                 uniqueidentifier
+    SET     @UserId = NULL
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
+
+    IF ( @UserId IS NULL )
+    BEGIN
+        SET @ErrorCode = 1
+        GOTO Cleanup
+    END
+
+    SELECT @IsLockedOut = IsLockedOut,
+           @LastLockoutDate = LastLockoutDate,
+           @FailedPasswordAttemptCount = FailedPasswordAttemptCount,
+           @FailedPasswordAttemptWindowStart = FailedPasswordAttemptWindowStart,
+           @FailedPasswordAnswerAttemptCount = FailedPasswordAnswerAttemptCount,
+           @FailedPasswordAnswerAttemptWindowStart = FailedPasswordAnswerAttemptWindowStart
+    FROM dbo.aspnet_Membership WITH ( UPDLOCK )
+    WHERE @UserId = UserId
+
+    IF( @IsLockedOut = 1 )
+    BEGIN
+        SET @ErrorCode = 99
+        GOTO Cleanup
+    END
+
+    UPDATE dbo.aspnet_Membership
+    SET    Password = @NewPassword,
+           LastPasswordChangedDate = @CurrentTimeUtc,
+           PasswordFormat = @PasswordFormat,
+           PasswordSalt = @PasswordSalt
+    WHERE  @UserId = UserId AND
+           ( ( @PasswordAnswer IS NULL ) OR ( LOWER( PasswordAnswer ) = LOWER( @PasswordAnswer ) ) )
+
+    IF ( @@ROWCOUNT = 0 )
+        BEGIN
+            IF( @CurrentTimeUtc > DATEADD( minute, @PasswordAttemptWindow, @FailedPasswordAnswerAttemptWindowStart ) )
+            BEGIN
+                SET @FailedPasswordAnswerAttemptWindowStart = @CurrentTimeUtc
+                SET @FailedPasswordAnswerAttemptCount = 1
+            END
+            ELSE
+            BEGIN
+                SET @FailedPasswordAnswerAttemptWindowStart = @CurrentTimeUtc
+                SET @FailedPasswordAnswerAttemptCount = @FailedPasswordAnswerAttemptCount + 1
+            END
+
+            BEGIN
+                IF( @FailedPasswordAnswerAttemptCount >= @MaxInvalidPasswordAttempts )
+                BEGIN
+                    SET @IsLockedOut = 1
+                    SET @LastLockoutDate = @CurrentTimeUtc
+                END
+            END
+
+            SET @ErrorCode = 3
+        END
+    ELSE
+        BEGIN
+            IF( @FailedPasswordAnswerAttemptCount > 0 )
+            BEGIN
+                SET @FailedPasswordAnswerAttemptCount = 0
+                SET @FailedPasswordAnswerAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+            END
+        END
+
+    IF( NOT ( @PasswordAnswer IS NULL ) )
+    BEGIN
+        UPDATE dbo.aspnet_Membership
+        SET IsLockedOut = @IsLockedOut, LastLockoutDate = @LastLockoutDate,
+            FailedPasswordAttemptCount = @FailedPasswordAttemptCount,
+            FailedPasswordAttemptWindowStart = @FailedPasswordAttemptWindowStart,
+            FailedPasswordAnswerAttemptCount = @FailedPasswordAnswerAttemptCount,
+            FailedPasswordAnswerAttemptWindowStart = @FailedPasswordAnswerAttemptWindowStart
+        WHERE @UserId = UserId
+
+        IF( @@ERROR <> 0 )
+        BEGIN
+            SET @ErrorCode = -1
+            GOTO Cleanup
+        END
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	SET @TranStarted = 0
+	COMMIT TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByUserId]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByUserId]
+    @UserId               uniqueidentifier,
+    @CurrentTimeUtc       datetime,
+    @UpdateLastActivity   bit = 0
+AS
+BEGIN
+    IF ( @UpdateLastActivity = 1 )
+    BEGIN
+        UPDATE   dbo.aspnet_Users
+        SET      LastActivityDate = @CurrentTimeUtc
+        FROM     dbo.aspnet_Users
+        WHERE    @UserId = UserId
+
+        IF ( @@ROWCOUNT = 0 ) -- User ID not found
+            RETURN -1
+    END
+
+    SELECT  m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate, m.LastLoginDate, u.LastActivityDate,
+            m.LastPasswordChangedDate, u.UserName, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Membership m
+    WHERE   @UserId = u.UserId AND u.UserId = m.UserId
+
+    IF ( @@ROWCOUNT = 0 ) -- User ID not found
+       RETURN -1
+
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByName]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByName]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @CurrentTimeUtc       datetime,
+    @UpdateLastActivity   bit = 0
+AS
+BEGIN
+    DECLARE @UserId uniqueidentifier
+
+    IF (@UpdateLastActivity = 1)
+    BEGIN
+        -- select user ID from aspnet_users table
+        SELECT TOP 1 @UserId = u.UserId
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
+
+        IF (@@ROWCOUNT = 0) -- Username not found
+            RETURN -1
+
+        UPDATE   dbo.aspnet_Users
+        SET      LastActivityDate = @CurrentTimeUtc
+        WHERE    @UserId = UserId
+
+        SELECT m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
+                u.UserId, m.IsLockedOut, m.LastLockoutDate
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE  @UserId = u.UserId AND u.UserId = m.UserId 
+    END
+    ELSE
+    BEGIN
+        SELECT TOP 1 m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
+                u.UserId, m.IsLockedOut,m.LastLockoutDate
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
+
+        IF (@@ROWCOUNT = 0) -- Username not found
+            RETURN -1
+    END
+
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByEmail]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByEmail]
+    @ApplicationName  nvarchar(256),
+    @Email            nvarchar(256)
+AS
+BEGIN
+    IF( @Email IS NULL )
+        SELECT  u.UserName
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                u.UserId = m.UserId AND
+                m.LoweredEmail IS NULL
+    ELSE
+        SELECT  u.UserName
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                u.UserId = m.UserId AND
+                LOWER(@Email) = m.LoweredEmail
+
+    IF (@@rowcount = 0)
+        RETURN(1)
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPasswordWithFormat]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetPasswordWithFormat]
+    @ApplicationName                nvarchar(256),
+    @UserName                       nvarchar(256),
+    @UpdateLastLoginActivityDate    bit,
+    @CurrentTimeUtc                 datetime
+AS
+BEGIN
+    DECLARE @IsLockedOut                        bit
+    DECLARE @UserId                             uniqueidentifier
+    DECLARE @Password                           nvarchar(128)
+    DECLARE @PasswordSalt                       nvarchar(128)
+    DECLARE @PasswordFormat                     int
+    DECLARE @FailedPasswordAttemptCount         int
+    DECLARE @FailedPasswordAnswerAttemptCount   int
+    DECLARE @IsApproved                         bit
+    DECLARE @LastActivityDate                   datetime
+    DECLARE @LastLoginDate                      datetime
+
+    SELECT  @UserId          = NULL
+
+    SELECT  @UserId = u.UserId, @IsLockedOut = m.IsLockedOut, @Password=Password, @PasswordFormat=PasswordFormat,
+            @PasswordSalt=PasswordSalt, @FailedPasswordAttemptCount=FailedPasswordAttemptCount,
+		    @FailedPasswordAnswerAttemptCount=FailedPasswordAnswerAttemptCount, @IsApproved=IsApproved,
+            @LastActivityDate = LastActivityDate, @LastLoginDate = LastLoginDate
+    FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+    WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.ApplicationId = a.ApplicationId    AND
+            u.UserId = m.UserId AND
+            LOWER(@UserName) = u.LoweredUserName
+
+    IF (@UserId IS NULL)
+        RETURN 1
+
+    IF (@IsLockedOut = 1)
+        RETURN 99
+
+    SELECT   @Password, @PasswordFormat, @PasswordSalt, @FailedPasswordAttemptCount,
+             @FailedPasswordAnswerAttemptCount, @IsApproved, @LastLoginDate, @LastActivityDate
+
+    IF (@UpdateLastLoginActivityDate = 1 AND @IsApproved = 1)
+    BEGIN
+        UPDATE  dbo.aspnet_Membership
+        SET     LastLoginDate = @CurrentTimeUtc
+        WHERE   UserId = @UserId
+
+        UPDATE  dbo.aspnet_Users
+        SET     LastActivityDate = @CurrentTimeUtc
+        WHERE   @UserId = UserId
+    END
+
+
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPassword]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetPassword]
+    @ApplicationName                nvarchar(256),
+    @UserName                       nvarchar(256),
+    @MaxInvalidPasswordAttempts     int,
+    @PasswordAttemptWindow          int,
+    @CurrentTimeUtc                 datetime,
+    @PasswordAnswer                 nvarchar(128) = NULL
+AS
+BEGIN
+    DECLARE @UserId                                 uniqueidentifier
+    DECLARE @PasswordFormat                         int
+    DECLARE @Password                               nvarchar(128)
+    DECLARE @passAns                                nvarchar(128)
+    DECLARE @IsLockedOut                            bit
+    DECLARE @LastLockoutDate                        datetime
+    DECLARE @FailedPasswordAttemptCount             int
+    DECLARE @FailedPasswordAttemptWindowStart       datetime
+    DECLARE @FailedPasswordAnswerAttemptCount       int
+    DECLARE @FailedPasswordAnswerAttemptWindowStart datetime
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    SELECT  @UserId = u.UserId,
+            @Password = m.Password,
+            @passAns = m.PasswordAnswer,
+            @PasswordFormat = m.PasswordFormat,
+            @IsLockedOut = m.IsLockedOut,
+            @LastLockoutDate = m.LastLockoutDate,
+            @FailedPasswordAttemptCount = m.FailedPasswordAttemptCount,
+            @FailedPasswordAttemptWindowStart = m.FailedPasswordAttemptWindowStart,
+            @FailedPasswordAnswerAttemptCount = m.FailedPasswordAnswerAttemptCount,
+            @FailedPasswordAnswerAttemptWindowStart = m.FailedPasswordAnswerAttemptWindowStart
+    FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m WITH ( UPDLOCK )
+    WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.ApplicationId = a.ApplicationId    AND
+            u.UserId = m.UserId AND
+            LOWER(@UserName) = u.LoweredUserName
+
+    IF ( @@rowcount = 0 )
+    BEGIN
+        SET @ErrorCode = 1
+        GOTO Cleanup
+    END
+
+    IF( @IsLockedOut = 1 )
+    BEGIN
+        SET @ErrorCode = 99
+        GOTO Cleanup
+    END
+
+    IF ( NOT( @PasswordAnswer IS NULL ) )
+    BEGIN
+        IF( ( @passAns IS NULL ) OR ( LOWER( @passAns ) <> LOWER( @PasswordAnswer ) ) )
+        BEGIN
+            IF( @CurrentTimeUtc > DATEADD( minute, @PasswordAttemptWindow, @FailedPasswordAnswerAttemptWindowStart ) )
+            BEGIN
+                SET @FailedPasswordAnswerAttemptWindowStart = @CurrentTimeUtc
+                SET @FailedPasswordAnswerAttemptCount = 1
+            END
+            ELSE
+            BEGIN
+                SET @FailedPasswordAnswerAttemptCount = @FailedPasswordAnswerAttemptCount + 1
+                SET @FailedPasswordAnswerAttemptWindowStart = @CurrentTimeUtc
+            END
+
+            BEGIN
+                IF( @FailedPasswordAnswerAttemptCount >= @MaxInvalidPasswordAttempts )
+                BEGIN
+                    SET @IsLockedOut = 1
+                    SET @LastLockoutDate = @CurrentTimeUtc
+                END
+            END
+
+            SET @ErrorCode = 3
+        END
+        ELSE
+        BEGIN
+            IF( @FailedPasswordAnswerAttemptCount > 0 )
+            BEGIN
+                SET @FailedPasswordAnswerAttemptCount = 0
+                SET @FailedPasswordAnswerAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+            END
+        END
+
+        UPDATE dbo.aspnet_Membership
+        SET IsLockedOut = @IsLockedOut, LastLockoutDate = @LastLockoutDate,
+            FailedPasswordAttemptCount = @FailedPasswordAttemptCount,
+            FailedPasswordAttemptWindowStart = @FailedPasswordAttemptWindowStart,
+            FailedPasswordAnswerAttemptCount = @FailedPasswordAnswerAttemptCount,
+            FailedPasswordAnswerAttemptWindowStart = @FailedPasswordAnswerAttemptWindowStart
+        WHERE @UserId = UserId
+
+        IF( @@ERROR <> 0 )
+        BEGIN
+            SET @ErrorCode = -1
+            GOTO Cleanup
+        END
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	SET @TranStarted = 0
+	COMMIT TRANSACTION
+    END
+
+    IF( @ErrorCode = 0 )
+        SELECT @Password, @PasswordFormat
+
+    RETURN @ErrorCode
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetNumberOfUsersOnline]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetNumberOfUsersOnline]
+    @ApplicationName            nvarchar(256),
+    @MinutesSinceLastInActive   int,
+    @CurrentTimeUtc             datetime
+AS
+BEGIN
+    DECLARE @DateActive datetime
+    SELECT  @DateActive = DATEADD(minute,  -(@MinutesSinceLastInActive), @CurrentTimeUtc)
+
+    DECLARE @NumOnline int
+    SELECT  @NumOnline = COUNT(*)
+    FROM    dbo.aspnet_Users u(NOLOCK),
+            dbo.aspnet_Applications a(NOLOCK),
+            dbo.aspnet_Membership m(NOLOCK)
+    WHERE   u.ApplicationId = a.ApplicationId                  AND
+            LastActivityDate > @DateActive                     AND
+            a.LoweredApplicationName = LOWER(@ApplicationName) AND
+            u.UserId = m.UserId
+    RETURN(@NumOnline)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetAllUsers]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetAllUsers]
+    @ApplicationName       nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+    SELECT u.UserId
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u
+    WHERE  u.ApplicationId = @ApplicationId AND u.UserId = m.UserId
+    ORDER BY u.UserName
+
+    SELECT @TotalRecords = @@ROWCOUNT
+
+    SELECT u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY u.UserName
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByName]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByName]
+    @ApplicationName       nvarchar(256),
+    @UserNameToMatch       nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+        SELECT u.UserId
+        FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND u.LoweredUserName LIKE LOWER(@UserNameToMatch)
+        ORDER BY u.UserName
+
+
+    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY u.UserName
+
+    SELECT  @TotalRecords = COUNT(*)
+    FROM    #PageIndexForUsers
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByEmail]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByEmail]
+    @ApplicationName       nvarchar(256),
+    @EmailToMatch          nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    IF( @EmailToMatch IS NULL )
+        INSERT INTO #PageIndexForUsers (UserId)
+            SELECT u.UserId
+            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.Email IS NULL
+            ORDER BY m.LoweredEmail
+    ELSE
+        INSERT INTO #PageIndexForUsers (UserId)
+            SELECT u.UserId
+            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.LoweredEmail LIKE LOWER(@EmailToMatch)
+            ORDER BY m.LoweredEmail
+
+    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY m.LoweredEmail
+
+    SELECT  @TotalRecords = COUNT(*)
+    FROM    #PageIndexForUsers
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_CreateUser]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_CreateUser]
+    @ApplicationName                        nvarchar(256),
+    @UserName                               nvarchar(256),
+    @Password                               nvarchar(128),
+    @PasswordSalt                           nvarchar(128),
+    @Email                                  nvarchar(256),
+    @PasswordQuestion                       nvarchar(256),
+    @PasswordAnswer                         nvarchar(128),
+    @IsApproved                             bit,
+    @CurrentTimeUtc                         datetime,
+    @CreateDate                             datetime = NULL,
+    @UniqueEmail                            int      = 0,
+    @PasswordFormat                         int      = 0,
+    @UserId                                 uniqueidentifier OUTPUT
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+
+    DECLARE @NewUserId uniqueidentifier
+    SELECT @NewUserId = NULL
+
+    DECLARE @IsLockedOut bit
+    SET @IsLockedOut = 0
+
+    DECLARE @LastLockoutDate  datetime
+    SET @LastLockoutDate = CONVERT( datetime, '17540101', 112 )
+
+    DECLARE @FailedPasswordAttemptCount int
+    SET @FailedPasswordAttemptCount = 0
+
+    DECLARE @FailedPasswordAttemptWindowStart  datetime
+    SET @FailedPasswordAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+
+    DECLARE @FailedPasswordAnswerAttemptCount int
+    SET @FailedPasswordAnswerAttemptCount = 0
+
+    DECLARE @FailedPasswordAnswerAttemptWindowStart  datetime
+    SET @FailedPasswordAnswerAttemptWindowStart = CONVERT( datetime, '17540101', 112 )
+
+    DECLARE @NewUserCreated bit
+    DECLARE @ReturnValue   int
+    SET @ReturnValue = 0
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    EXEC dbo.aspnet_Applications_CreateApplication @ApplicationName, @ApplicationId OUTPUT
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    SET @CreateDate = @CurrentTimeUtc
+
+    SELECT  @NewUserId = UserId FROM dbo.aspnet_Users WHERE LOWER(@UserName) = LoweredUserName AND @ApplicationId = ApplicationId
+    IF ( @NewUserId IS NULL )
+    BEGIN
+        SET @NewUserId = @UserId
+        EXEC @ReturnValue = dbo.aspnet_Users_CreateUser @ApplicationId, @UserName, 0, @CreateDate, @NewUserId OUTPUT
+        SET @NewUserCreated = 1
+    END
+    ELSE
+    BEGIN
+        SET @NewUserCreated = 0
+        IF( @NewUserId <> @UserId AND @UserId IS NOT NULL )
+        BEGIN
+            SET @ErrorCode = 6
+            GOTO Cleanup
+        END
+    END
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @ReturnValue = -1 )
+    BEGIN
+        SET @ErrorCode = 10
+        GOTO Cleanup
+    END
+
+    IF ( EXISTS ( SELECT UserId
+                  FROM   dbo.aspnet_Membership
+                  WHERE  @NewUserId = UserId ) )
+    BEGIN
+        SET @ErrorCode = 6
+        GOTO Cleanup
+    END
+
+    SET @UserId = @NewUserId
+
+    IF (@UniqueEmail = 1)
+    BEGIN
+        IF (EXISTS (SELECT *
+                    FROM  dbo.aspnet_Membership m WITH ( UPDLOCK, HOLDLOCK )
+                    WHERE ApplicationId = @ApplicationId AND LoweredEmail = LOWER(@Email)))
+        BEGIN
+            SET @ErrorCode = 7
+            GOTO Cleanup
+        END
+    END
+
+    IF (@NewUserCreated = 0)
+    BEGIN
+        UPDATE dbo.aspnet_Users
+        SET    LastActivityDate = @CreateDate
+        WHERE  @UserId = UserId
+        IF( @@ERROR <> 0 )
+        BEGIN
+            SET @ErrorCode = -1
+            GOTO Cleanup
+        END
+    END
+
+    INSERT INTO dbo.aspnet_Membership
+                ( ApplicationId,
+                  UserId,
+                  Password,
+                  PasswordSalt,
+                  Email,
+                  LoweredEmail,
+                  PasswordQuestion,
+                  PasswordAnswer,
+                  PasswordFormat,
+                  IsApproved,
+                  IsLockedOut,
+                  CreateDate,
+                  LastLoginDate,
+                  LastPasswordChangedDate,
+                  LastLockoutDate,
+                  FailedPasswordAttemptCount,
+                  FailedPasswordAttemptWindowStart,
+                  FailedPasswordAnswerAttemptCount,
+                  FailedPasswordAnswerAttemptWindowStart )
+         VALUES ( @ApplicationId,
+                  @UserId,
+                  @Password,
+                  @PasswordSalt,
+                  @Email,
+                  LOWER(@Email),
+                  @PasswordQuestion,
+                  @PasswordAnswer,
+                  @PasswordFormat,
+                  @IsApproved,
+                  @IsLockedOut,
+                  @CreateDate,
+                  @CreateDate,
+                  @CreateDate,
+                  @LastLockoutDate,
+                  @FailedPasswordAttemptCount,
+                  @FailedPasswordAttemptWindowStart,
+                  @FailedPasswordAnswerAttemptCount,
+                  @FailedPasswordAnswerAttemptWindowStart )
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+	    SET @TranStarted = 0
+	    COMMIT TRANSACTION
+    END
+
+    RETURN 0
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]
+    @ApplicationName       nvarchar(256),
+    @UserName              nvarchar(256),
+    @NewPasswordQuestion   nvarchar(256),
+    @NewPasswordAnswer     nvarchar(128)
+AS
+BEGIN
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Membership m, dbo.aspnet_Users u, dbo.aspnet_Applications a
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
+    IF (@UserId IS NULL)
+    BEGIN
+        RETURN(1)
+    END
+
+    UPDATE dbo.aspnet_Membership
+    SET    PasswordQuestion = @NewPasswordQuestion, PasswordAnswer = @NewPasswordAnswer
+    WHERE  UserId=@UserId
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_AnyDataInTables]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_AnyDataInTables]
+    @TablesToCheck int
+AS
+BEGIN
+    -- Check Membership table if (@TablesToCheck & 1) is set
+    IF ((@TablesToCheck & 1) <> 0 AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Membership))
+        BEGIN
+            SELECT N'aspnet_Membership'
+            RETURN
+        END
+    END
+
+    -- Check aspnet_Roles table if (@TablesToCheck & 2) is set
+    IF ((@TablesToCheck & 2) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Roles') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 RoleId FROM dbo.aspnet_Roles))
+        BEGIN
+            SELECT N'aspnet_Roles'
+            RETURN
+        END
+    END
+
+    -- Check aspnet_Profile table if (@TablesToCheck & 4) is set
+    IF ((@TablesToCheck & 4) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Profile))
+        BEGIN
+            SELECT N'aspnet_Profile'
+            RETURN
+        END
+    END
+
+    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 8) is set
+    IF ((@TablesToCheck & 8) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_PersonalizationPerUser))
+        BEGIN
+            SELECT N'aspnet_PersonalizationPerUser'
+            RETURN
+        END
+    END
+
+    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 16) is set
+    IF ((@TablesToCheck & 16) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'aspnet_WebEvent_LogEvent') AND (type = 'P'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 * FROM dbo.aspnet_WebEvent_Events))
+        BEGIN
+            SELECT N'aspnet_WebEvent_Events'
+            RETURN
+        END
+    END
+
+    -- Check aspnet_Users table if (@TablesToCheck & 1,2,4 & 8) are all set
+    IF ((@TablesToCheck & 1) <> 0 AND
+        (@TablesToCheck & 2) <> 0 AND
+        (@TablesToCheck & 4) <> 0 AND
+        (@TablesToCheck & 8) <> 0 AND
+        (@TablesToCheck & 32) <> 0 AND
+        (@TablesToCheck & 128) <> 0 AND
+        (@TablesToCheck & 256) <> 0 AND
+        (@TablesToCheck & 512) <> 0 AND
+        (@TablesToCheck & 1024) <> 0)
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Users))
+        BEGIN
+            SELECT N'aspnet_Users'
+            RETURN
+        END
+        IF (EXISTS(SELECT TOP 1 ApplicationId FROM dbo.aspnet_Applications))
+        BEGIN
+            SELECT N'aspnet_Applications'
+            RETURN
+        END
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path             NVARCHAR(256),
+    @PageSettings     IMAGE,
+    @CurrentTimeUtc   DATETIME)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Applications_CreateApplication @ApplicationName, @ApplicationId OUTPUT
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        EXEC dbo.aspnet_Paths_CreatePath @ApplicationId, @Path, @PathId OUTPUT
+    END
+
+    IF (EXISTS(SELECT PathId FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId))
+        UPDATE dbo.aspnet_PersonalizationAllUsers SET PageSettings = @PageSettings, LastUpdatedDate = @CurrentTimeUtc WHERE PathId = @PathId
+    ELSE
+        INSERT INTO dbo.aspnet_PersonalizationAllUsers(PathId, PageSettings, LastUpdatedDate) VALUES (@PathId, @PageSettings, @CurrentTimeUtc)
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    DELETE FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationAllUsers p WHERE p.PathId = @PathId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetUserState]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_ResetUserState] (
+    @Count                  int                 OUT,
+    @ApplicationName        NVARCHAR(256),
+    @InactiveSinceDate      DATETIME            = NULL,
+    @UserName               NVARCHAR(256)       = NULL,
+    @Path                   NVARCHAR(256)       = NULL)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+        SELECT @Count = 0
+    ELSE
+    BEGIN
+        DELETE FROM dbo.aspnet_PersonalizationPerUser
+        WHERE Id IN (SELECT PerUser.Id
+                     FROM dbo.aspnet_PersonalizationPerUser PerUser, dbo.aspnet_Users Users, dbo.aspnet_Paths Paths
+                     WHERE Paths.ApplicationId = @ApplicationId
+                           AND PerUser.UserId = Users.UserId
+                           AND PerUser.PathId = Paths.PathId
+                           AND (@InactiveSinceDate IS NULL OR Users.LastActivityDate <= @InactiveSinceDate)
+                           AND (@UserName IS NULL OR Users.LoweredUserName = LOWER(@UserName))
+                           AND (@Path IS NULL OR Paths.LoweredPath = LOWER(@Path)))
+
+        SELECT @Count = @@ROWCOUNT
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetSharedState]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_ResetSharedState] (
+    @Count int OUT,
+    @ApplicationName NVARCHAR(256),
+    @Path NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+        SELECT @Count = 0
+    ELSE
+    BEGIN
+        DELETE FROM dbo.aspnet_PersonalizationAllUsers
+        WHERE PathId IN
+            (SELECT AllUsers.PathId
+             FROM dbo.aspnet_PersonalizationAllUsers AllUsers, dbo.aspnet_Paths Paths
+             WHERE Paths.ApplicationId = @ApplicationId
+                   AND AllUsers.PathId = Paths.PathId
+                   AND Paths.LoweredPath = LOWER(@Path))
+
+        SELECT @Count = @@ROWCOUNT
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_GetCountOfState]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_GetCountOfState] (
+    @Count int OUT,
+    @AllUsersScope bit,
+    @ApplicationName NVARCHAR(256),
+    @Path NVARCHAR(256) = NULL,
+    @UserName NVARCHAR(256) = NULL,
+    @InactiveSinceDate DATETIME = NULL)
+AS
+BEGIN
+
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+        SELECT @Count = 0
+    ELSE
+        IF (@AllUsersScope = 1)
+            SELECT @Count = COUNT(*)
+            FROM dbo.aspnet_PersonalizationAllUsers AllUsers, dbo.aspnet_Paths Paths
+            WHERE Paths.ApplicationId = @ApplicationId
+                  AND AllUsers.PathId = Paths.PathId
+                  AND (@Path IS NULL OR Paths.LoweredPath LIKE LOWER(@Path))
+        ELSE
+            SELECT @Count = COUNT(*)
+            FROM dbo.aspnet_PersonalizationPerUser PerUser, dbo.aspnet_Users Users, dbo.aspnet_Paths Paths
+            WHERE Paths.ApplicationId = @ApplicationId
+                  AND PerUser.UserId = Users.UserId
+                  AND PerUser.PathId = Paths.PathId
+                  AND (@Path IS NULL OR Paths.LoweredPath LIKE LOWER(@Path))
+                  AND (@UserName IS NULL OR Users.LoweredUserName LIKE LOWER(@UserName))
+                  AND (@InactiveSinceDate IS NULL OR Users.LastActivityDate <= @InactiveSinceDate)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_FindState]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_FindState] (
+    @AllUsersScope bit,
+    @ApplicationName NVARCHAR(256),
+    @PageIndex              INT,
+    @PageSize               INT,
+    @Path NVARCHAR(256) = NULL,
+    @UserName NVARCHAR(256) = NULL,
+    @InactiveSinceDate DATETIME = NULL)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    DECLARE @TotalRecords   INT
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table to store the selected results
+    CREATE TABLE #PageIndex (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemId UNIQUEIDENTIFIER
+    )
+
+    IF (@AllUsersScope = 1)
+    BEGIN
+        -- Insert into our temp table
+        INSERT INTO #PageIndex (ItemId)
+        SELECT Paths.PathId
+        FROM dbo.aspnet_Paths Paths,
+             ((SELECT Paths.PathId
+               FROM dbo.aspnet_PersonalizationAllUsers AllUsers, dbo.aspnet_Paths Paths
+               WHERE Paths.ApplicationId = @ApplicationId
+                      AND AllUsers.PathId = Paths.PathId
+                      AND (@Path IS NULL OR Paths.LoweredPath LIKE LOWER(@Path))
+              ) AS SharedDataPerPath
+              FULL OUTER JOIN
+              (SELECT DISTINCT Paths.PathId
+               FROM dbo.aspnet_PersonalizationPerUser PerUser, dbo.aspnet_Paths Paths
+               WHERE Paths.ApplicationId = @ApplicationId
+                      AND PerUser.PathId = Paths.PathId
+                      AND (@Path IS NULL OR Paths.LoweredPath LIKE LOWER(@Path))
+              ) AS UserDataPerPath
+              ON SharedDataPerPath.PathId = UserDataPerPath.PathId
+             )
+        WHERE Paths.PathId = SharedDataPerPath.PathId OR Paths.PathId = UserDataPerPath.PathId
+        ORDER BY Paths.Path ASC
+
+        SELECT @TotalRecords = @@ROWCOUNT
+
+        SELECT Paths.Path,
+               SharedDataPerPath.LastUpdatedDate,
+               SharedDataPerPath.SharedDataLength,
+               UserDataPerPath.UserDataLength,
+               UserDataPerPath.UserCount
+        FROM dbo.aspnet_Paths Paths,
+             ((SELECT PageIndex.ItemId AS PathId,
+                      AllUsers.LastUpdatedDate AS LastUpdatedDate,
+                      DATALENGTH(AllUsers.PageSettings) AS SharedDataLength
+               FROM dbo.aspnet_PersonalizationAllUsers AllUsers, #PageIndex PageIndex
+               WHERE AllUsers.PathId = PageIndex.ItemId
+                     AND PageIndex.IndexId >= @PageLowerBound AND PageIndex.IndexId <= @PageUpperBound
+              ) AS SharedDataPerPath
+              FULL OUTER JOIN
+              (SELECT PageIndex.ItemId AS PathId,
+                      SUM(DATALENGTH(PerUser.PageSettings)) AS UserDataLength,
+                      COUNT(*) AS UserCount
+               FROM aspnet_PersonalizationPerUser PerUser, #PageIndex PageIndex
+               WHERE PerUser.PathId = PageIndex.ItemId
+                     AND PageIndex.IndexId >= @PageLowerBound AND PageIndex.IndexId <= @PageUpperBound
+               GROUP BY PageIndex.ItemId
+              ) AS UserDataPerPath
+              ON SharedDataPerPath.PathId = UserDataPerPath.PathId
+             )
+        WHERE Paths.PathId = SharedDataPerPath.PathId OR Paths.PathId = UserDataPerPath.PathId
+        ORDER BY Paths.Path ASC
+    END
+    ELSE
+    BEGIN
+        -- Insert into our temp table
+        INSERT INTO #PageIndex (ItemId)
+        SELECT PerUser.Id
+        FROM dbo.aspnet_PersonalizationPerUser PerUser, dbo.aspnet_Users Users, dbo.aspnet_Paths Paths
+        WHERE Paths.ApplicationId = @ApplicationId
+              AND PerUser.UserId = Users.UserId
+              AND PerUser.PathId = Paths.PathId
+              AND (@Path IS NULL OR Paths.LoweredPath LIKE LOWER(@Path))
+              AND (@UserName IS NULL OR Users.LoweredUserName LIKE LOWER(@UserName))
+              AND (@InactiveSinceDate IS NULL OR Users.LastActivityDate <= @InactiveSinceDate)
+        ORDER BY Paths.Path ASC, Users.UserName ASC
+
+        SELECT @TotalRecords = @@ROWCOUNT
+
+        SELECT Paths.Path, PerUser.LastUpdatedDate, DATALENGTH(PerUser.PageSettings), Users.UserName, Users.LastActivityDate
+        FROM dbo.aspnet_PersonalizationPerUser PerUser, dbo.aspnet_Users Users, dbo.aspnet_Paths Paths, #PageIndex PageIndex
+        WHERE PerUser.Id = PageIndex.ItemId
+              AND PerUser.UserId = Users.UserId
+              AND PerUser.PathId = Paths.PathId
+              AND PageIndex.IndexId >= @PageLowerBound AND PageIndex.IndexId <= @PageUpperBound
+        ORDER BY Paths.Path ASC, Users.UserName ASC
+    END
+
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_DeleteAllState]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_DeleteAllState] (
+    @AllUsersScope bit,
+    @ApplicationName NVARCHAR(256),
+    @Count int OUT)
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+        SELECT @Count = 0
+    ELSE
+    BEGIN
+        IF (@AllUsersScope = 1)
+            DELETE FROM aspnet_PersonalizationAllUsers
+            WHERE PathId IN
+               (SELECT Paths.PathId
+                FROM dbo.aspnet_Paths Paths
+                WHERE Paths.ApplicationId = @ApplicationId)
+        ELSE
+            DELETE FROM aspnet_PersonalizationPerUser
+            WHERE PathId IN
+               (SELECT Paths.PathId
+                FROM dbo.aspnet_Paths Paths
+                WHERE Paths.ApplicationId = @ApplicationId)
+
+        SELECT @Count = @@ROWCOUNT
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_SetProperties]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_SetProperties]
+    @ApplicationName        nvarchar(256),
+    @PropertyNames          ntext,
+    @PropertyValuesString   ntext,
+    @PropertyValuesBinary   image,
+    @UserName               nvarchar(256),
+    @IsUserAnonymous        bit,
+    @CurrentTimeUtc         datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
+
+    DECLARE @TranStarted   bit
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+       BEGIN TRANSACTION
+       SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    EXEC dbo.aspnet_Applications_CreateApplication @ApplicationName, @ApplicationId OUTPUT
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    DECLARE @UserId uniqueidentifier
+    DECLARE @LastActivityDate datetime
+    SELECT  @UserId = NULL
+    SELECT  @LastActivityDate = @CurrentTimeUtc
+
+    SELECT @UserId = UserId
+    FROM   dbo.aspnet_Users
+    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
+    IF (@UserId IS NULL)
+        EXEC dbo.aspnet_Users_CreateUser @ApplicationId, @UserName, @IsUserAnonymous, @LastActivityDate, @UserId OUTPUT
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    UPDATE dbo.aspnet_Users
+    SET    LastActivityDate=@CurrentTimeUtc
+    WHERE  UserId = @UserId
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF (EXISTS( SELECT *
+               FROM   dbo.aspnet_Profile
+               WHERE  UserId = @UserId))
+        UPDATE dbo.aspnet_Profile
+        SET    PropertyNames=@PropertyNames, PropertyValuesString = @PropertyValuesString,
+               PropertyValuesBinary = @PropertyValuesBinary, LastUpdatedDate=@CurrentTimeUtc
+        WHERE  UserId = @UserId
+    ELSE
+        INSERT INTO dbo.aspnet_Profile(UserId, PropertyNames, PropertyValuesString, PropertyValuesBinary, LastUpdatedDate)
+             VALUES (@UserId, @PropertyNames, @PropertyValuesString, @PropertyValuesBinary, @CurrentTimeUtc)
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
+        GOTO Cleanup
+    END
+
+    IF( @TranStarted = 1 )
+    BEGIN
+    	SET @TranStarted = 0
+    	COMMIT TRANSACTION
+    END
+
+    RETURN 0
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+
+    RETURN @ErrorCode
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProperties]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetProperties]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @CurrentTimeUtc       datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT @UserId = UserId
+    FROM   dbo.aspnet_Users
+    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
+
+    IF (@UserId IS NULL)
+        RETURN
+    SELECT TOP 1 PropertyNames, PropertyValuesString, PropertyValuesBinary
+    FROM         dbo.aspnet_Profile
+    WHERE        UserId = @UserId
+
+    IF (@@ROWCOUNT > 0)
+    BEGIN
+        UPDATE dbo.aspnet_Users
+        SET    LastActivityDate=@CurrentTimeUtc
+        WHERE  UserId = @UserId
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProfiles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @PageIndex              int,
+    @PageSize               int,
+    @UserNameToMatch        nvarchar(256) = NULL,
+    @InactiveSinceDate      datetime      = NULL
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+        SELECT  u.UserId
+        FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
+        WHERE   ApplicationId = @ApplicationId
+            AND u.UserId = p.UserId
+            AND (@InactiveSinceDate IS NULL OR LastActivityDate <= @InactiveSinceDate)
+            AND (     (@ProfileAuthOptions = 2)
+                   OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                   OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+                 )
+            AND (@UserNameToMatch IS NULL OR LoweredUserName LIKE LOWER(@UserNameToMatch))
+        ORDER BY UserName
+
+    SELECT  u.UserName, u.IsAnonymous, u.LastActivityDate, p.LastUpdatedDate,
+            DATALENGTH(p.PropertyNames) + DATALENGTH(p.PropertyValuesString) + DATALENGTH(p.PropertyValuesBinary)
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p, #PageIndexForUsers i
+    WHERE   u.UserId = p.UserId AND p.UserId = i.UserId AND i.IndexId >= @PageLowerBound AND i.IndexId <= @PageUpperBound
+
+    SELECT COUNT(*)
+    FROM   #PageIndexForUsers
+
+    DROP TABLE #PageIndexForUsers
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT 0
+        RETURN
+    END
+
+    SELECT  COUNT(*)
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
+    WHERE   ApplicationId = @ApplicationId
+        AND u.UserId = p.UserId
+        AND (LastActivityDate <= @InactiveSinceDate)
+        AND (
+                (@ProfileAuthOptions = 2)
+                OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+            )
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteProfiles]
+    @ApplicationName        nvarchar(256),
+    @UserNames              nvarchar(4000)
+AS
+BEGIN
+    DECLARE @UserName     nvarchar(256)
+    DECLARE @CurrentPos   int
+    DECLARE @NextPos      int
+    DECLARE @NumDeleted   int
+    DECLARE @DeletedUser  int
+    DECLARE @TranStarted  bit
+    DECLARE @ErrorCode    int
+
+    SET @ErrorCode = 0
+    SET @CurrentPos = 1
+    SET @NumDeleted = 0
+    SET @TranStarted = 0
+
+    IF( @@TRANCOUNT = 0 )
+    BEGIN
+        BEGIN TRANSACTION
+        SET @TranStarted = 1
+    END
+    ELSE
+    	SET @TranStarted = 0
+
+    WHILE (@CurrentPos <= LEN(@UserNames))
+    BEGIN
+        SELECT @NextPos = CHARINDEX(N',', @UserNames,  @CurrentPos)
+        IF (@NextPos = 0 OR @NextPos IS NULL)
+            SELECT @NextPos = LEN(@UserNames) + 1
+
+        SELECT @UserName = SUBSTRING(@UserNames, @CurrentPos, @NextPos - @CurrentPos)
+        SELECT @CurrentPos = @NextPos+1
+
+        IF (LEN(@UserName) > 0)
+        BEGIN
+            SELECT @DeletedUser = 0
+            EXEC dbo.aspnet_Users_DeleteUser @ApplicationName, @UserName, 4, @DeletedUser OUTPUT
+            IF( @@ERROR <> 0 )
+            BEGIN
+                SET @ErrorCode = -1
+                GOTO Cleanup
+            END
+            IF (@DeletedUser <> 0)
+                SELECT @NumDeleted = @NumDeleted + 1
+        END
+    END
+    SELECT @NumDeleted
+    IF (@TranStarted = 1)
+    BEGIN
+    	SET @TranStarted = 0
+    	COMMIT TRANSACTION
+    END
+    SET @TranStarted = 0
+
+    RETURN 0
+
+Cleanup:
+    IF (@TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+    	ROLLBACK TRANSACTION
+    END
+    RETURN @ErrorCode
+END
+GO
+/****** Object:  StoredProcedure [dbo].[AddOrder]    Script Date: 05/16/2018 14:06:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE Procedure [dbo].[AddOrder](
+    @UserID uniqueidentifier,    
+    @OrderID int OUTPUT
+)
+AS
+BEGIN
+/* 启动事务 */
+--BEGIN TRAN AddOrder
+--BEGIN TRY
+
+   /* 插入订单 */
+   INSERT INTO FbOrder(UserID) VALUES(@UserID)
+   /* 保存订单号 */
+   SET @OrderID = @@Identity  
+   /* 将购物车中的图书移到订单细目表 */
+   INSERT INTO FbDetail(OrderID,ProductID,Quantity,Price)
+   SELECT @OrderID, FbCart.ProductID,FbCart.Quantity, FbProduct.Price 
+   FROM FbCart 
+   INNER JOIN FbProduct ON FbCart.ProductID = FbProduct.ID
+   /* 删除购物车中的图书 */
+   DELETE FROM FbCart WHERE userID=@UserID
+   /* 提交事务 */
+--   COMMIT TRAN OrderAdd 
+-- END TRY
+-- BEGIN CATCH
+   /* 回滚事务 */
+-- ROLLBACK TRAN AddOrder
+-- SET @OrderID=0
+--END CATCH
+END
+GO
+/****** Object:  Default [DF__aspnet_Ap__Appli__06CD04F7]    Script Date: 05/16/2018 14:06:22 ******/
+ALTER TABLE [dbo].[aspnet_Applications] ADD  DEFAULT (newid()) FOR [ApplicationId]
+GO
+/****** Object:  Default [DF_Users_Userright]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbUser] ADD  CONSTRAINT [DF_Users_Userright]  DEFAULT ((1)) FOR [Role]
+GO
+/****** Object:  Default [DF__aspnet_Us__UserI__08B54D69]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Users] ADD  DEFAULT (newid()) FOR [UserId]
+GO
+/****** Object:  Default [DF__aspnet_Us__Mobil__09A971A2]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Users] ADD  DEFAULT (NULL) FOR [MobileAlias]
+GO
+/****** Object:  Default [DF__aspnet_Us__IsAno__0A9D95DB]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Users] ADD  DEFAULT ((0)) FOR [IsAnonymous]
+GO
+/****** Object:  Default [DF__aspnet_Pa__PathI__0B91BA14]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Paths] ADD  DEFAULT (newid()) FOR [PathId]
+GO
+/****** Object:  Default [DF__aspnet_Ro__RoleI__0C85DE4D]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Roles] ADD  DEFAULT (newid()) FOR [RoleId]
+GO
+/****** Object:  Default [DF__aspnet_Me__Passw__0D7A0286]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Membership] ADD  DEFAULT ((0)) FOR [PasswordFormat]
+GO
+/****** Object:  Default [DF__aspnet_Perso__Id__0E6E26BF]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_PersonalizationPerUser] ADD  DEFAULT (newid()) FOR [Id]
+GO
+/****** Object:  Default [DF_Orders_OrderDate]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbOrder] ADD  CONSTRAINT [DF_Orders_OrderDate]  DEFAULT (getdate()) FOR [Date]
+GO
+/****** Object:  Default [DF_FbOrder_State]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbOrder] ADD  CONSTRAINT [DF_FbOrder_State]  DEFAULT ((0)) FOR [State]
+GO
+/****** Object:  ForeignKey [FK_FbProduct_FbCategory]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbProduct]  WITH CHECK ADD  CONSTRAINT [FK_FbProduct_FbCategory] FOREIGN KEY([CatID])
+REFERENCES [dbo].[FbCategory] ([ID])
+GO
+ALTER TABLE [dbo].[FbProduct] CHECK CONSTRAINT [FK_FbProduct_FbCategory]
+GO
+/****** Object:  ForeignKey [FK__aspnet_Us__Appli__123EB7A3]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Users]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
+REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Pa__Appli__1332DBDC]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Paths]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
+REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Ro__Appli__14270015]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Roles]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
+REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Me__Appli__151B244E]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
+REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Me__UserI__160F4887]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([UserId])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__17036CC0]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_PersonalizationAllUsers]  WITH CHECK ADD FOREIGN KEY([PathId])
+REFERENCES [dbo].[aspnet_Paths] ([PathId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__17F790F9]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([PathId])
+REFERENCES [dbo].[aspnet_Paths] ([PathId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Pe__UserI__18EBB532]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([UserId])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Pr__UserI__19DFD96B]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_Profile]  WITH CHECK ADD FOREIGN KEY([UserId])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Us__RoleI__1AD3FDA4]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([RoleId])
+REFERENCES [dbo].[aspnet_Roles] ([RoleId])
+GO
+/****** Object:  ForeignKey [FK__aspnet_Us__UserI__1BC821DD]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+/****** Object:  ForeignKey [FK_FbOrder_aspnet_Users]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbOrder]  WITH CHECK ADD  CONSTRAINT [FK_FbOrder_aspnet_Users] FOREIGN KEY([UserID])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+ALTER TABLE [dbo].[FbOrder] CHECK CONSTRAINT [FK_FbOrder_aspnet_Users]
+GO
+/****** Object:  ForeignKey [FK_FbCart_aspnet_Users]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbCart]  WITH CHECK ADD  CONSTRAINT [FK_FbCart_aspnet_Users] FOREIGN KEY([UserID])
+REFERENCES [dbo].[aspnet_Users] ([UserId])
+GO
+ALTER TABLE [dbo].[FbCart] CHECK CONSTRAINT [FK_FbCart_aspnet_Users]
+GO
+/****** Object:  ForeignKey [FK_FbCart_FbProduct]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbCart]  WITH CHECK ADD  CONSTRAINT [FK_FbCart_FbProduct] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[FbProduct] ([ID])
+GO
+ALTER TABLE [dbo].[FbCart] CHECK CONSTRAINT [FK_FbCart_FbProduct]
+GO
+/****** Object:  ForeignKey [FK_FbDetail_FbProduct]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbDetail]  WITH CHECK ADD  CONSTRAINT [FK_FbDetail_FbProduct] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[FbProduct] ([ID])
+GO
+ALTER TABLE [dbo].[FbDetail] CHECK CONSTRAINT [FK_FbDetail_FbProduct]
+GO
+/****** Object:  ForeignKey [FK_FbDetail_FbOrder]    Script Date: 05/16/2018 14:06:23 ******/
+ALTER TABLE [dbo].[FbDetail]  WITH CHECK ADD  CONSTRAINT [FK_FbDetail_FbOrder] FOREIGN KEY([OrderID])
+REFERENCES [dbo].[FbOrder] ([ID])
+GO
+ALTER TABLE [dbo].[FbDetail] CHECK CONSTRAINT [FK_FbDetail_FbOrder]
+GO

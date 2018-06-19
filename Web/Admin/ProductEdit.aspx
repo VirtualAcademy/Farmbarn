@@ -27,9 +27,9 @@
                             SelectedValue='<%# Bind("CatID") %>'>
                         </asp:DropDownList>
                         <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" 
-                            DataObjectTypeName="BsCategory" DeleteMethod="DeleteBsCategory" 
-                            InsertMethod="AddBsCategory" SelectMethod="FindBsCategories" 
-                            TypeName="BsCategoryBLL" UpdateMethod="EditBsCategory">
+                            DataObjectTypeName="FbCategory" DeleteMethod="DeleteFbCategory" 
+                            InsertMethod="AddFbCategory" SelectMethod="FindFbCategories" 
+                            TypeName="FbCategoryBLL" UpdateMethod="EditFbCategory">
                             <DeleteParameters>
                                 <asp:Parameter Name="id" Type="Int32" />
                             </DeleteParameters>
@@ -66,9 +66,9 @@
             <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
         </asp:DetailsView>
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-            DataObjectTypeName="BsProduct" DeleteMethod="DeleteBsProduct" 
-            InsertMethod="AddBsProduct" 
-            SelectMethod="FindBsProduct" TypeName="BsProductBLL" UpdateMethod="EditBsProduct" 
+            DataObjectTypeName="FbProduct" DeleteMethod="DeleteFbProduct" 
+            InsertMethod="AddFbProduct" 
+            SelectMethod="FindFbProduct" TypeName="FbProductBLL" UpdateMethod="EditFbProduct" 
             onupdated="ObjectDataSource1_Updated">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />

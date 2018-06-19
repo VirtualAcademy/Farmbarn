@@ -56,9 +56,9 @@
             CatID:
             <asp:TextBox ID="CatIDTextBox" runat="server" Text='<%# Bind("CatID") %>' />
             <br />
-            BsCategory:
-            <asp:TextBox ID="BsCategoryTextBox" runat="server" 
-                Text='<%# Bind("BsCategory") %>' />
+            FbCategory:
+            <asp:TextBox ID="FbCategoryTextBox" runat="server" 
+                Text='<%# Bind("FbCategory") %>' />
             <br />
             Name:
             <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
@@ -77,7 +77,7 @@
             <br />
             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
                 CommandName="Update" Text="Update" />
-            &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
+            &nfbp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
                 CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
         <InsertItemTemplate>
@@ -87,9 +87,9 @@
             CatID:
             <asp:TextBox ID="CatIDTextBox" runat="server" Text='<%# Bind("CatID") %>' />
             <br />
-            BsCategory:
-            <asp:TextBox ID="BsCategoryTextBox" runat="server" 
-                Text='<%# Bind("BsCategory") %>' />
+            FbCategory:
+            <asp:TextBox ID="FbCategoryTextBox" runat="server" 
+                Text='<%# Bind("FbCategory") %>' />
             <br />
             Name:
             <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
@@ -108,7 +108,7 @@
             <br />
             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                 CommandName="Insert" Text="Insert" />
-            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
+            &nfbp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
                 CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
@@ -147,9 +147,9 @@
     </asp:FormView>
     </center>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        DataObjectTypeName="BsProduct" DeleteMethod="DeleteBsProduct" 
-        InsertMethod="AddBsProduct" SelectMethod="FindBsProduct" TypeName="BsProductBLL" 
-        UpdateMethod="EditBsProduct">
+        DataObjectTypeName="FbProduct" DeleteMethod="DeleteFbProduct" 
+        InsertMethod="AddFbProduct" SelectMethod="FindFbProduct" TypeName="FbProductBLL" 
+        UpdateMethod="EditFbProduct">
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32" />
         </DeleteParameters>

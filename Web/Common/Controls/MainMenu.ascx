@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MainMenu.ascx.cs" Inherits="Web_Common_Controls_MainMenu" %>
-<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Default.aspx">Home Page</asp:HyperLink>
+<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Default.aspx" CssClass=".Menu">Home Page</asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink1" runat="server" 
     NavigateUrl="~/Web/User/Register.aspx">Register</asp:HyperLink>
@@ -23,5 +23,5 @@
     NavigateUrl="~/Web/Admin/ProductManage.aspx" >Product Manage</asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:HyperLink ID="HyperLink9" runat="server" 
-    NavigateUrl="~/Web/Admin/OrderManage.aspx">Order Manage</asp:HyperLink>
+    NavigateUrl="~/Web/Admin/OrderManage.aspx" CssClass=".Menu">Order Manage</asp:HyperLink>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

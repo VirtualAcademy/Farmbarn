@@ -18,7 +18,7 @@
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" 
-                        Text='<%# ((BsCategory)Eval("BsCategory")).Name %>'></asp:Label>
+                        Text='<%# ((FbCategory)Eval("FbCategory")).Name %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
@@ -44,9 +44,9 @@
         <SortedDescendingHeaderStyle BackColor="#820000" />
     </asp:GridView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        DataObjectTypeName="BsProduct" DeleteMethod="DeleteBsProduct" 
-        InsertMethod="AddBsProduct" SelectMethod="FindBsProducts" TypeName="BsProductBLL" 
-        UpdateMethod="EditBsProduct" EnablePaging="True" 
+        DataObjectTypeName="FbProduct" DeleteMethod="DeleteFbProduct" 
+        InsertMethod="AddFbProduct" SelectMethod="FindFbProducts" TypeName="FbProductBLL" 
+        UpdateMethod="EditFbProduct" EnablePaging="True" 
         SelectCountMethod="FindCount" SortParameterName="sortExpression">
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32" />

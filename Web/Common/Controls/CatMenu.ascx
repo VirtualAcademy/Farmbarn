@@ -10,9 +10,9 @@
     </ItemTemplate>
 </asp:DataList>
 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-    DataObjectTypeName="BsCategory" DeleteMethod="DeleteBsCategory" 
-    InsertMethod="AddBsCategory" SelectMethod="FindBsCategories" 
-    TypeName="BsCategoryBLL" UpdateMethod="EditBsCategory">
+    DataObjectTypeName="FbCategory" DeleteMethod="DeleteFbCategory" 
+    InsertMethod="AddFbCategory" SelectMethod="FindFbCategories" 
+    TypeName="FbCategoryBLL" UpdateMethod="EditFbCategory">
     <DeleteParameters>
         <asp:Parameter Name="id" Type="Int32" />
     </DeleteParameters>

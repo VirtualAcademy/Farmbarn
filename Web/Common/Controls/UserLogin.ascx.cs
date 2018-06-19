@@ -17,7 +17,7 @@ public partial class Web_Common_Controls_UserLogin : System.Web.UI.UserControl
     {
         if (Session["user"] != null)
         {
-            BsUser user = (BsUser)Session["user"];
+            FbUser user = (FbUser)Session["user"];
             Label1.Text = "Welcome the visit of " + user.Realname ;
             MultiView1.ActiveViewIndex = 1;
         }
@@ -32,7 +32,7 @@ public partial class Web_Common_Controls_UserLogin : System.Web.UI.UserControl
 
         if (TxtUserName.Text == "cho" && TxtUserPwd.Text == "1234")
         {
-            BsUser user = new BsUser();
+            FbUser user = new FbUser();
             user.Realname = "cho";
             Session["user"] = user;
             Response.Redirect("Default.aspx");

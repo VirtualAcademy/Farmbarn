@@ -1,5 +1,5 @@
 ﻿using System;
-public class BsDetail
+public class FbDetail
 {
     private int _orderID;
     private int _ProductID;
